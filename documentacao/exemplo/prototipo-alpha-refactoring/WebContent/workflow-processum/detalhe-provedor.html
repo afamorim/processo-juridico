@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8" />
+
+		<title>Processum Ofício - Workflow Ordem/Requisição</title>
+		
+		<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/default.css" />
+		<script type="text/javascript" src="assets/js/jquery-2.2.2.min.js"></script>
+		<script type="text/javascript" src="assets/js/default.js"></script>
+	</head>
+
+	<body>
+		
+		<div id="MainWrapper">
+			<div class="inner-wrapper">
+				<div id="Header">
+					<a href="javascript:;" onclick="Utils.backPage()" title="Voltar" class="btn-back fa fa-chevron-left"></a>
+					<h1><a href="#">Processum Ofício</a></h1>
+					<h5><a href="#">Workflow</a></h5>
+					
+					<strong class="telefonica-vivo">Telefonica | Vivo</strong>
+				</div>
+				<div id="Content">
+					<div class="inner-wrapper">
+						<h2>AMDOCS 
+							<select id="cmbTipo">
+								<option value="0" selected>.: Todos os Status :.</option>
+								<option value="1">Aguardando retorno</option>
+								<option value="2">Aguardando arquivo</option>
+								<option value="3">Processado com falha</option>
+							</select>
+							<span id="totalItems" class="badge state-danger">0</span>
+						</h2>
+
+						<div class="text-content">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<ul id="listStatus" class="list-history">
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>TESTE:</h5>
+										<strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>5h</strong>
+									</span>
+									<span class="col">
+										<h5>TESTE:</h5>
+										<strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</strong>
+									</span>
+									<span class="col">
+										<h5>Intermediário:</h5>
+										<strong>SPIC</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>									
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>5h</strong>
+									</span>
+									<span class="col">
+										<h5>Intermediário:</h5>
+										<strong>SPIC</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>5h</strong>
+									</span>
+									<span class="col">
+										<h5>Intermediário:</h5>
+										<strong>SPIC</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>5h</strong>
+									</span>
+									<span class="col">
+										<h5>Intermediário:</h5>
+										<strong>SPIC</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>5h</strong>
+									</span>
+									<span class="col">
+										<h5>Intermediário:</h5>
+										<strong>SPIC</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="2" class="hide-type">
+									<span class="list-type state-warning">Aguardando arquivo</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Expira em:</h5>
+										<strong>54m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="3" class="hide-type">
+									<span class="list-type state-danger">Processado com falha</span>
+									<span class="col">
+										<h5>Processado à:</h5>
+										<strong>10m</strong>
+									</span>
+									<span class="col">
+										<h5>Solicitado à:</h5>
+										<strong>1d</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+									<span class="col">
+										<h5>Motivo falha:</h5>
+										<strong>Nonono no nonon no nonono no</strong>
+									</span>
+								</li>
+								<li data-type="1" class="hide-type">
+									<span class="list-type state-warning-d">Aguardando retorno</span>
+									<span class="col">
+										<h5>Aguardando à:</h5>
+										<strong>12h</strong>
+									</span>
+									<span class="col">
+										<h5>Identificação:</h5>
+										<strong>identificacao-do-arquivo/requisicao</strong>
+									</span>
+								</li>
+							</ul>
+
+							<div class="group-buttons">
+								<button type="button" onclick="Utils.backPage()" class="btn state-primary"><i class="fa fa-arrow-left"></i> Voltar</button>
+								<button type="button" onclick="Utils.scrollTop()" class="btn state-primary"><i class="fa fa-arrow-up"></i> Topo</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div id="Footer">
+				<span class="rights"><span>© 2016 Telefônica S.A.</span><span>Todos os direitos reservados.</span></div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

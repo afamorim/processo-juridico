@@ -1,0 +1,2063 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:i="http://indra.es/alpha"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/templates/default-template.xhtml">
+	
+	<ui:define name="content">
+		
+		<p:fieldset legend="Painel Geral">
+
+			<i:fluidGrid>
+			
+			    <i:fluidRow>
+			    
+			        <i:fluidField column="2">
+						<p:outputLabel for="codigoOrcamento">Código Orçamento:</p:outputLabel>
+						<p:inputText id="codigoOrcamento" placeholder="Código Orçamento" />
+					</i:fluidField>
+					
+					<i:fluidField column="1">
+						<p:outputLabel for="anosCompetencia" title="Ano competência">Ano compet.:</p:outputLabel>
+						<p:inputText id="anosCompetencia" value="2015" placeholder="Ano competência" />
+					</i:fluidField>
+					
+					<i:fluidField column="3">
+						<p:outputLabel for="elementoOrganogramaNome">Gerência Divisão (Linha Orç.):</p:outputLabel>
+						<p:inputText id="elementoOrganogramaNome" readonly="true" placeholder="Gerência Divisão (Linha Orçamentária)" value="#{prototipoBean.gerenciaDivisao.childVO.attr1}" />
+						
+						<div class="field-actions">
+						
+							<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" process="@this" update="dialogAreaGestor" oncomplete="dShow('dialogAreaGestor')">
+								<f:setPropertyActionListener target="#{dialogAreaGestorBean.bean}" value="#{prototipoBean}" />
+								<f:setPropertyActionListener target="#{dialogAreaGestorBean.property}" value="gerenciaDivisao.childVO" />
+								<f:setPropertyActionListener target="#{dialogAreaGestorBean.update}" value="elementoOrganogramaNome" />
+							</p:commandLink>
+							
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" process="@this" update="elementoOrganogramaNome">
+								<f:setPropertyActionListener target="#{prototipoBean.gerenciaDivisao.childVO}" value="#{null}" />
+							</p:commandLink>
+						</div>
+						
+					</i:fluidField>
+					
+					<i:fluidField column="3">
+						<p:outputLabel for="solicitacaoOrcamentariaCoordenadorNome">Solicitante:</p:outputLabel>
+						<p:inputText id="solicitacaoOrcamentariaCoordenadorNome" placeholder="Solicitante" />
+						
+						<div class="field-actions">
+							<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+						</div>
+						
+					</i:fluidField>
+					
+					<i:fluidField column="3">
+						<p:outputLabel for="diretoriaNome">Diretoria (Linha Orç.):</p:outputLabel>
+						<p:inputText id="diretoriaNome" placeholder="Diretoria (Linha Orçamentária)" value="#{prototipoBean.diretoria.attr1}" />
+						
+						<div class="field-actions">
+							<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" update="dialogAreaGestor" oncomplete="dShow('dialogAreaGestor')">
+								<f:setPropertyActionListener target="#{dialogAreaGestorBean.bean}" value="#{prototipoBean}" />
+								<f:setPropertyActionListener target="#{dialogAreaGestorBean.property}" value="diretoria" />
+								<f:setPropertyActionListener target="#{dialogAreaGestorBean.update}" value="diretoriaNome,elementoOrganogramaNome" />
+							</p:commandLink>
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+						</div>
+						
+					</i:fluidField>
+					
+			    </i:fluidRow>
+			    
+			    <i:fluidRow>
+
+					<i:fluidField column="3">
+						<p:outputLabel for="nome">Nome Linha Orçamentária:</p:outputLabel>
+						<p:inputText id="nome" placeholder="Nome Linha Orçamentária" />
+					</i:fluidField>
+					
+					<i:fluidField column="3">
+						<p:outputLabel for="lineOwnerNome">Line Owner:</p:outputLabel>
+						<p:inputText id="lineOwnerNome" placeholder="Line Owner" />
+						
+						<div class="field-actions">
+							<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+						</div>
+						
+					</i:fluidField>
+					
+					<i:fluidField column="3">
+						<p:outputLabel for="ordemInternaProjetoDivisaoNome">Gerência Divisão (Projeto):</p:outputLabel>
+						<p:inputText id="ordemInternaProjetoDivisaoNome" placeholder="Gerência Divisão (Projeto)" />
+						
+						<div class="field-actions">
+							<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+						</div>
+						
+					</i:fluidField>
+					
+					<i:fluidField column="3">
+						<p:outputLabel for="nomeProjetoContaContabil">Mega-Projeto\Nome Conta Contábil:</p:outputLabel>
+						<p:inputText id="nomeProjetoContaContabil" placeholder="Mega-Projeto\Nome Conta Contábil" />			
+					</i:fluidField>
+					
+				</i:fluidRow>
+				
+				<i:fluidRow>
+
+					<i:fluidField column="3">
+						<p:outputLabel for="contratoFornecedorNome">Fornecedor Contrato:</p:outputLabel>
+						<p:inputText id="contratoFornecedorNome" placeholder="Fornecedor Contrato" />
+						
+						<div class="field-actions">
+							<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+						</div>
+						
+					</i:fluidField>
+					
+					<i:fluidField column="3">
+						<p:outputLabel for="ordemInternaProjetoGerenteProjetoNome">Gestor do Projeto (PMO):</p:outputLabel>
+						<p:inputText id="ordemInternaProjetoGerenteProjetoNome" placeholder="Gestor do Projeto (PMO)" />
+						
+						<div class="field-actions">
+							<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+						</div>
+						
+					</i:fluidField>
+					
+					<i:fluidField column="3">
+						<p:outputLabel for="ordemInternaAcaoInversora">Ação Inversora:</p:outputLabel>
+						<p:inputText id="ordemInternaAcaoInversora" placeholder="Ação Inversora" />			
+					</i:fluidField>
+					
+					<i:fluidField column="3" rowspan="2">
+						<p:outputLabel for="naturezasCodigo">Natureza(Tipo Orç.):</p:outputLabel>
+						<p:selectManyMenu id="naturezasCodigo">
+				            <f:selectItem itemLabel="CAPEX" itemValue="2" />
+				            <f:selectItem itemLabel="OPEX" itemValue="1" />
+				        </p:selectManyMenu>
+						
+						<div class="field-actions">
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" onclick="w('naturezasCodigo').unselectAll(); return false" />
+						</div>
+						
+					</i:fluidField>
+					
+				</i:fluidRow>
+				
+				<i:fluidRow>
+					
+					<i:fluidField column="3">
+						<p:outputLabel for="ordemInternaProjetoSecaoGestorNome">Gerente Seção (Projeto):</p:outputLabel>
+						<p:inputText id="ordemInternaProjetoSecaoGestorNome" placeholder="Gerente Seção (Projeto)" />
+						
+						<div class="field-actions">
+							<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+						</div>
+						
+					</i:fluidField>
+					
+					<i:fluidField column="2">
+						<p:outputLabel for="ordemInternaProjetoDiretoriaNome">Diretoria (Projeto):</p:outputLabel>
+						<p:inputText id="ordemInternaProjetoDiretoriaNome" placeholder="Diretoria (Projeto)" />
+						
+						<div class="field-actions">
+							<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+							<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+						</div>
+						
+					</i:fluidField>
+					
+					<i:fluidField column="2">
+		        		<p:outputLabel for="provisao">Provisão:</p:outputLabel>
+						<p:selectOneMenu id="provisao">
+							<f:selectItem itemLabel=".: Selecione :." />
+							<f:selectItem itemValue="true" itemLabel="SIM" />
+							<f:selectItem itemValue="false" itemLabel="NÃO" />
+						</p:selectOneMenu>
+		        	</i:fluidField>
+		        	
+		        	<i:fluidField column="2">
+		        		<p:outputLabel for="selectLegado">Legado?</p:outputLabel>
+						<p:selectOneMenu id="selectLegado">
+							<f:selectItem itemLabel=".: Selecione :." />
+							<f:selectItem itemValue="true" itemLabel="SIM" />
+							<f:selectItem itemValue="false" itemLabel="NÃO" />
+						</p:selectOneMenu>
+		        	</i:fluidField>
+					
+					
+				</i:fluidRow>
+			    
+			</i:fluidGrid>
+			
+			<p:fieldset legend="Avançado" toggleable="true" collapsed="true" styleClass="size3">
+				
+				<i:fluidGrid>
+			
+				    <i:fluidRow>
+				    
+				        <i:fluidField column="3" rowspan="2">
+							<p:outputLabel for="frentesCodigo">Frente:</p:outputLabel>
+							<p:selectManyMenu id="frentesCodigo">
+					            <f:selectItem itemValue="6" itemLabel="ANTI-FRAUDE" />
+					            <f:selectItem itemValue="9" itemLabel="APROVISIONAMENTO" />
+					            <f:selectItem itemValue="26" itemLabel="ARQUITETURA" />
+					            <f:selectItem itemValue="10" itemLabel="ATENDIMENTO AO CLIENTE" />
+					            <f:selectItem itemValue="11" itemLabel="CO-BILLING" />
+					            <f:selectItem itemValue="4" itemLabel="COMISSIONAMENTO" />
+					            <f:selectItem itemValue="27" itemLabel="CREDENCIADAS INTERNET" />
+					            <f:selectItem itemValue="8" itemLabel="DESCONHECIDO" />
+					            <f:selectItem itemValue="28" itemLabel="DRSN" />
+					            <f:selectItem itemValue="12" itemLabel="DW" />
+					            <f:selectItem itemValue="13" itemLabel="EM PLANEJAMENTO" />
+					            <f:selectItem itemValue="14" itemLabel="ESPECIFICACAO" />
+					            <f:selectItem itemValue="29" itemLabel="FRAUDE" />
+					            <f:selectItem itemValue="3" itemLabel="GESTÃO DE RECEITA" />
+					            <f:selectItem itemValue="15" itemLabel="GESTAO EMPRESSARIAL" />
+					            <f:selectItem itemValue="30" itemLabel="GESTÃO NEG  REL CLIENTES" />
+					            <f:selectItem itemValue="5" itemLabel="GESTÃO OPERACIONAL" />
+					            <f:selectItem itemValue="31" itemLabel="GSIM-SIGAN" />
+					            <f:selectItem itemValue="41" itemLabel="GUARDA-CHUVA" />
+					            <f:selectItem itemValue="16" itemLabel="INFRA-ESTRUTURA" />
+					            <f:selectItem itemValue="17" itemLabel="INSTALACAO / IMPLEMENTACAO" />
+					            <f:selectItem itemValue="18" itemLabel="INTEGRACAO DE SISTEMAS" />
+					            <f:selectItem itemValue="19" itemLabel="INTERCONEXAO" />
+					            <f:selectItem itemValue="1" itemLabel="JURÍDICO FISCAL" />
+					            <f:selectItem itemValue="32" itemLabel="LVN-SGP-CAT-TAVJEC-GBL" />
+					            <f:selectItem itemValue="20" itemLabel="MEDIACAO" />
+					            <f:selectItem itemValue="21" itemLabel="OUTROS" />
+					            <f:selectItem itemValue="33" itemLabel="PORTAL NOVO - FO" />
+					            <f:selectItem itemValue="22" itemLabel="POS-PAGO" />
+					            <f:selectItem itemValue="23" itemLabel="PRE-PAGO" />
+					            <f:selectItem itemValue="34" itemLabel="PRODUTOS &amp; SERVIÇOS" />
+					            <f:selectItem itemValue="35" itemLabel="PROG.PTS-INTER-INTRA" />
+					            <f:selectItem itemValue="2" itemLabel="REDES E TI" />
+					            <f:selectItem itemValue="7" itemLabel="RH" />
+					            <f:selectItem itemValue="24" itemLabel="SAP" />
+					            <f:selectItem itemValue="36" itemLabel="SCC" />
+					            <f:selectItem itemValue="37" itemLabel="SISTEMAS DE ARMAZENAMENTO DE EVENTOS" />
+					            <f:selectItem itemValue="38" itemLabel="SUPORTE A PRODUÇÃO" />
+					            <f:selectItem itemValue="25" itemLabel="TESTES" />
+					            <f:selectItem itemValue="39" itemLabel="VIVONET-VOL-TAV-VOLE" />
+					            <f:selectItem itemValue="40" itemLabel="VIVOTOOLS" />
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="2">
+							<p:outputLabel for="contratoCodigoSAP">Contrato SAP:</p:outputLabel>
+							<p:inputText id="contratoCodigoSAP" placeholder="Contrato SAP" />
+						</i:fluidField>
+						
+						<i:fluidField column="2">
+							<p:outputLabel for="codigoLancamentoRequest" title="Lançamento Contrato REQUEST">Lançamento Contrato REQ.:</p:outputLabel>
+							<p:inputText id="codigoLancamentoRequest" placeholder="Lançamento Contrato REQUEST" />
+						</i:fluidField>
+						
+						<i:fluidField column="2">
+							<p:outputLabel for="contratoDiferido">Diferimento:</p:outputLabel>
+							<p:selectOneMenu id="contratoDiferido">
+								<f:selectItem itemLabel=".: SELECIONE :." />
+								<f:selectItem itemValue="true" itemLabel="DIFERIDO" />
+								<f:selectItem itemValue="false" itemLabel="SEM DIFERIDO" />
+							</p:selectOneMenu>
+						</i:fluidField>
+						
+						<i:fluidField column="3" rowspan="2">
+							<p:outputLabel for="regionaisCodigo">Regional:</p:outputLabel>
+							<p:selectManyMenu id="regionaisCodigo">
+					            <f:selectItem itemValue="2" itemLabel="BAHIA/SERGIPE" />
+					            <f:selectItem itemValue="6" itemLabel="CENTRO-OESTE" />
+					            <f:selectItem itemValue="9" itemLabel="MINAS GERAIS" />
+					            <f:selectItem itemValue="8" itemLabel="NORDESTE SEM BA/SE/MA" />
+					            <f:selectItem itemValue="7" itemLabel="NORTE" />
+					            <f:selectItem itemValue="3" itemLabel="PARANÁ/SANTA CATARINA" />
+					            <f:selectItem itemValue="5" itemLabel="RIO DE JANEIRO/ESPÍRITO SANTO" />
+					            <f:selectItem itemValue="4" itemLabel="RIO GRANDE DO SUL" />
+					            <f:selectItem itemValue="1" itemLabel="SÃO PAULO" />
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+					
+					</i:fluidRow>
+					
+					<i:fluidRow>
+						
+						<i:fluidOffset column="3" />
+						
+						<i:fluidField column="2">
+							<p:outputLabel for="lancamentoNumeroNota">Nº Nota:</p:outputLabel>
+							<p:inputText id="lancamentoNumeroNota" placeholder="Nº Nota" />
+						</i:fluidField>
+						
+						<i:fluidField column="2">
+							<p:outputLabel for="ganhoCompra">Linha ganho compra OPEX:</p:outputLabel>
+							<p:selectOneMenu id="ganhoCompra">
+								<f:selectItem itemValue="false" itemLabel="NÃO EXIBIR" />
+								<f:selectItem itemValue="true" itemLabel="EXIBIR" />
+							</p:selectOneMenu>
+						</i:fluidField>
+						
+						<i:fluidField column="2">
+							<p:outputLabel for="isFinalizadoForecast">Forecast Finalizado:</p:outputLabel>
+							<p:selectOneMenu id="isFinalizadoForecast">
+								<f:selectItem itemLabel=".: SELECIONE :." />
+								<f:selectItem itemValue="true" itemLabel="SIM" />
+								<f:selectItem itemValue="false" itemLabel="NÃO" />
+							</p:selectOneMenu>
+						</i:fluidField>
+						
+					</i:fluidRow>
+					
+					<i:fluidRow>
+				    
+				        <i:fluidField column="3">
+							<p:outputLabel for="gerenciasDivisaoCodigo">Gerência(s) Divisão (Linha Orç.):</p:outputLabel>
+							<p:selectManyMenu id="gerenciasDivisaoCodigo" styleClass="field-row-2">
+								<f:selectItems value="#{prototipoBean.gerenciasDivisao}" var="item" itemLabel="#{item.attr1}" itemValue="#{item}" />
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" process="@this" update="dialogAreaGestor" oncomplete="dShow('dialogAreaGestor')">
+									<f:setPropertyActionListener target="#{dialogAreaGestorBean.bean}" value="#{prototipoBean}" />
+									<f:setPropertyActionListener target="#{dialogAreaGestorBean.property}" value="gerenciasDivisao" />
+									<f:setPropertyActionListener target="#{dialogAreaGestorBean.update}" value="gerenciasDivisaoCodigo" />
+									<f:setPropertyActionListener target="#{dialogAreaGestorBean.selectionMode}" value="multiple" />
+								</p:commandLink>
+								
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" process="@this" update="gerenciasDivisaoCodigo">
+									<f:setPropertyActionListener target="#{prototipoBean.gerenciasDivisao}" value="#{null}" />
+								</p:commandLink>
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="3">
+							<p:outputLabel for="sistemasCodigo">Sistema:</p:outputLabel>
+							<p:selectManyMenu id="sistemasCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="3">
+							<p:outputLabel for="classificacoesOrcamentoCodigo">Classificação Orçamento:</p:outputLabel>
+							<p:selectManyMenu id="classificacoesOrcamentoCodigo" styleClass="field-row-2">
+								<f:selectItem itemValue="106" itemLabel="Demandas - Negócios" />
+								<f:selectItem itemValue="105" itemLabel="Demandas - TI" />
+								<f:selectItem itemValue="104" itemLabel="Leasing" />
+								<f:selectItem itemValue="110" itemLabel="Legais e Obrigatórios" />
+								<f:selectItem itemValue="107" itemLabel="Lojas " />
+								<f:selectItem itemValue="6" itemLabel="Man. Sistemas e Licenças" />
+								<f:selectItem itemValue="4" itemLabel="Manut. Equip. Inform" />
+								<f:selectItem itemValue="109" itemLabel="Minas " />
+								<f:selectItem itemValue="101" itemLabel="Nordeste" />
+								<f:selectItem itemValue="103" itemLabel="Novo Front Office " />
+								<f:selectItem itemValue="102" itemLabel="PCN " />
+								<f:selectItem itemValue="8" itemLabel="Proc. Dados" />
+								<f:selectItem itemValue="108" itemLabel="P&amp;S " />
+								<f:selectItem itemValue="100" itemLabel="Upgrade SAP " />
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						
+						<i:fluidField column="3" rowspan="4">
+							<p:outputLabel for="contasContabeisCodigo">Conta Contábil:</p:outputLabel>
+							<p:selectManyMenu id="contasContabeisCodigo" styleClass="field-row-4">
+								<f:selectItem itemValue="0" itemLabel="MG-1111" />
+								<f:selectItem itemValue="515" itemLabel="11121613" />
+								<f:selectItem itemValue="2" itemLabel="11221172" />
+								<f:selectItem itemValue="6" itemLabel="11221178" />
+								<f:selectItem itemValue="475" itemLabel="11222111" />
+								<f:selectItem itemValue="24" itemLabel="11311112" />
+								<f:selectItem itemValue="18" itemLabel="11311221" />
+								<f:selectItem itemValue="735" itemLabel="21153311" />
+								<f:selectItem itemValue="4" itemLabel="21153312" />
+								<f:selectItem itemValue="435" itemLabel="21153351" />
+								<f:selectItem itemValue="436" itemLabel="21153361" />
+								<f:selectItem itemValue="755" itemLabel="21153381" />
+								<f:selectItem itemValue="535" itemLabel="31011914" />
+								<f:selectItem itemValue="33" itemLabel="31012912" />
+								<f:selectItem itemValue="91" itemLabel="31021113" />
+								<f:selectItem itemValue="105" itemLabel="31021114" />
+								<f:selectItem itemValue="795" itemLabel="31021121" />
+								<f:selectItem itemValue="971" itemLabel="31021122" />
+								<f:selectItem itemValue="972" itemLabel="31021124" />
+								<f:selectItem itemValue="973" itemLabel="31021132" />
+								<f:selectItem itemValue="974" itemLabel="31021133" />
+								<f:selectItem itemValue="379" itemLabel="31021134" />
+								<f:selectItem itemValue="976" itemLabel="31021135" />
+								<f:selectItem itemValue="104" itemLabel="31021212" />
+								<f:selectItem itemValue="458" itemLabel="31022112" />
+								<f:selectItem itemValue="975" itemLabel="31022113" />
+								<f:selectItem itemValue="957" itemLabel="31029114" />
+								<f:selectItem itemValue="970" itemLabel="31029115" />
+								<f:selectItem itemValue="956" itemLabel="31031111" />
+								<f:selectItem itemValue="96" itemLabel="31031211" />
+								<f:selectItem itemValue="655" itemLabel="31031213" />
+								<f:selectItem itemValue="94" itemLabel="31031301" />
+								<f:selectItem itemValue="106" itemLabel="31031302" />
+								<f:selectItem itemValue="107" itemLabel="31031303" />
+								<f:selectItem itemValue="108" itemLabel="31031304" />
+								<f:selectItem itemValue="109" itemLabel="31031305" />
+								<f:selectItem itemValue="110" itemLabel="31031306" />
+								<f:selectItem itemValue="92" itemLabel="31031307" />
+								<f:selectItem itemValue="111" itemLabel="31031308" />
+								<f:selectItem itemValue="80" itemLabel="31031309" />
+								<f:selectItem itemValue="89" itemLabel="31031310" />
+								<f:selectItem itemValue="315" itemLabel="31031311" />
+								<f:selectItem itemValue="375" itemLabel="31031312" />
+								<f:selectItem itemValue="112" itemLabel="31031313" />
+								<f:selectItem itemValue="536" itemLabel="31031314" />
+								<f:selectItem itemValue="93" itemLabel="31031315" />
+								<f:selectItem itemValue="113" itemLabel="31031318" />
+								<f:selectItem itemValue="460" itemLabel="31031319" />
+								<f:selectItem itemValue="968" itemLabel="31031400" />
+								<f:selectItem itemValue="967" itemLabel="31031410" />
+								<f:selectItem itemValue="964" itemLabel="31031411" />
+								<f:selectItem itemValue="961" itemLabel="31031412" />
+								<f:selectItem itemValue="962" itemLabel="31031413" />
+								<f:selectItem itemValue="965" itemLabel="31031414" />
+								<f:selectItem itemValue="966" itemLabel="31031415" />
+								<f:selectItem itemValue="83" itemLabel="31031416" />
+								<f:selectItem itemValue="963" itemLabel="31031419" />
+								<f:selectItem itemValue="615" itemLabel="31031911" />
+								<f:selectItem itemValue="969" itemLabel="31032191" />
+								<f:selectItem itemValue="960" itemLabel="31032192" />
+								<f:selectItem itemValue="980" itemLabel="31032193" />
+								<f:selectItem itemValue="978" itemLabel="31032200" />
+								<f:selectItem itemValue="958" itemLabel="31034000" />
+								<f:selectItem itemValue="979" itemLabel="31034110" />
+								<f:selectItem itemValue="935" itemLabel="31034113" />
+								<f:selectItem itemValue="955" itemLabel="31034116" />
+								<f:selectItem itemValue="981" itemLabel="31035111" />
+								<f:selectItem itemValue="97" itemLabel="31035115" />
+								<f:selectItem itemValue="103" itemLabel="31035213" />
+								<f:selectItem itemValue="95" itemLabel="31035214" />
+								<f:selectItem itemValue="90" itemLabel="31036102" />
+								<f:selectItem itemValue="102" itemLabel="31036105" />
+								<f:selectItem itemValue="85" itemLabel="31036106" />
+								<f:selectItem itemValue="82" itemLabel="31036114" />
+								<f:selectItem itemValue="995" itemLabel="31036124" />
+								<f:selectItem itemValue="815" itemLabel="31036125" />
+								<f:selectItem itemValue="378" itemLabel="31036134" />
+								<f:selectItem itemValue="135" itemLabel="31039111" />
+								<f:selectItem itemValue="855" itemLabel="31039112" />
+								<f:selectItem itemValue="877" itemLabel="31039113" />
+								<f:selectItem itemValue="5" itemLabel="31039114" />
+								<f:selectItem itemValue="835" itemLabel="31039115" />
+								<f:selectItem itemValue="1" itemLabel="31039131" />
+								<f:selectItem itemValue="7" itemLabel="31039132" />
+								<f:selectItem itemValue="335" itemLabel="31039133" />
+								<f:selectItem itemValue="296" itemLabel="31039134" />
+								<f:selectItem itemValue="959" itemLabel="31039140" />
+								<f:selectItem itemValue="155" itemLabel="31039144" />
+								<f:selectItem itemValue="765" itemLabel="31039219" />
+								<f:selectItem itemValue="101" itemLabel="31039311" />
+								<f:selectItem itemValue="84" itemLabel="31039411" />
+								<f:selectItem itemValue="100" itemLabel="31039412" />
+								<f:selectItem itemValue="35" itemLabel="31039719" />
+								<f:selectItem itemValue="977" itemLabel="31039811" />
+								<f:selectItem itemValue="99" itemLabel="31039901" />
+								<f:selectItem itemValue="1.055" itemLabel="31039902" />
+								<f:selectItem itemValue="377" itemLabel="31039911" />
+								<f:selectItem itemValue="775" itemLabel="31039917" />
+								<f:selectItem itemValue="86" itemLabel="31039919" />
+								<f:selectItem itemValue="81" itemLabel="31039998" />
+								<f:selectItem itemValue="75" itemLabel="31041111" />
+								<f:selectItem itemValue="11" itemLabel="31041121" />
+								<f:selectItem itemValue="3" itemLabel="31041122" />
+								<f:selectItem itemValue="10" itemLabel="31041123" />
+								<f:selectItem itemValue="25" itemLabel="31041124" />
+								<f:selectItem itemValue="12" itemLabel="31041125" />
+								<f:selectItem itemValue="87" itemLabel="31041219" />
+								<f:selectItem itemValue="88" itemLabel="31041901" />
+								<f:selectItem itemValue="98" itemLabel="31041905" />
+								<f:selectItem itemValue="459" itemLabel="31042111" />
+								<f:selectItem itemValue="455" itemLabel="31043111" />
+								<f:selectItem itemValue="13" itemLabel="31045111" />
+								<f:selectItem itemValue="8" itemLabel="31085111" />
+								<f:selectItem itemValue="32" itemLabel="31085112" />
+								<f:selectItem itemValue="9" itemLabel="31086911" />
+								<f:selectItem itemValue="235" itemLabel="31086912" />
+								<f:selectItem itemValue="395" itemLabel="31086913" />
+								<f:selectItem itemValue="31" itemLabel="31086919" />
+								<f:selectItem itemValue="34" itemLabel="31089423" />
+								<f:selectItem itemValue="175" itemLabel="31089999" />
+								<f:selectItem itemValue="575" itemLabel="31911913" />
+								<f:selectItem itemValue="415" itemLabel="31911914" />
+								<f:selectItem itemValue="595" itemLabel="31911919" />
+								<f:selectItem itemValue="635" itemLabel="31921199" />
+								<f:selectItem itemValue="895" itemLabel="31939113" />
+								<f:selectItem itemValue="555" itemLabel="31985111" />
+								<f:selectItem itemValue="675" itemLabel="31989212" />
+								<f:selectItem itemValue="695" itemLabel="40C2998001" />
+								<f:selectItem itemValue="915" itemLabel="41912111" />
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+					</i:fluidRow>
+					
+					<i:fluidRow>
+				    
+				        <i:fluidField column="3">
+							<p:outputLabel for="gerenciasSecaoCodigo">Gerência Seção (Linha Orç.):</p:outputLabel>
+							<p:selectManyMenu id="gerenciasSecaoCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="3">
+							<p:outputLabel for="classificacoesRecursosCodigo">Classe:</p:outputLabel>
+							<p:selectManyMenu id="classificacoesRecursosCodigo" styleClass="field-row-2">
+								<f:selectItem itemValue="56" itemLabel="DESP" />
+								<f:selectItem itemValue="64" itemLabel="Em Planejamento" />
+								<f:selectItem itemValue="10" itemLabel="HW" />
+								<f:selectItem itemValue="40" itemLabel="SVC" />
+								<f:selectItem itemValue="26" itemLabel="SW" />
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="3">
+							<p:outputLabel for="classificacoesEspanhaCodigo">Espanha:</p:outputLabel>
+							<p:selectManyMenu id="classificacoesEspanhaCodigo" styleClass="field-row-2">
+								<f:selectItem itemValue="5" itemLabel="BSS" />
+								<f:selectItem itemValue="1" itemLabel="Comercial" />
+								<f:selectItem itemValue="6" itemLabel="EMS" />
+								<f:selectItem itemValue="8" itemLabel="Infra" />
+								<f:selectItem itemValue="7" itemLabel="IT Governance" />
+								<f:selectItem itemValue="3" itemLabel="Operação" />
+								<f:selectItem itemValue="9" itemLabel="OSS" />
+								<f:selectItem itemValue="4" itemLabel="Segurança" />
+								<f:selectItem itemValue="10" itemLabel="VAS" />
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+					</i:fluidRow>
+					
+					<i:fluidRow>
+				    
+				        <i:fluidField column="3">
+							<p:outputLabel for="promotoresCodigo">Promotor(es):</p:outputLabel>
+							<p:selectManyMenu id="promotoresCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="3">
+							<p:outputLabel for="subClassificacoesRecursosCodigo">Sub-classe:</p:outputLabel>
+							<p:selectManyMenu id="subClassificacoesRecursosCodigo" styleClass="field-row-2">
+								<f:selectItem itemValue="57" itemLabel="Aluguel de Equipamento" />
+								<f:selectItem itemValue="58" itemLabel="Aluguel de Espaço" />
+								<f:selectItem itemValue="75" itemLabel="Anti-Virus" />
+								<f:selectItem itemValue="32" itemLabel="Aplicação Principal" />
+								<f:selectItem itemValue="41" itemLabel="Auditoria" />
+								<f:selectItem itemValue="11" itemLabel="Backup" />
+								<f:selectItem itemValue="27" itemLabel="Backup(SW)" />
+								<f:selectItem itemValue="33" itemLabel="Banco de Dados" />
+								<f:selectItem itemValue="29" itemLabel="Base" />
+								<f:selectItem itemValue="38" itemLabel="Call Center(HW)" />
+								<f:selectItem itemValue="42" itemLabel="Call Center(SW)" />
+								<f:selectItem itemValue="72" itemLabel="Consultoria" />
+								<f:selectItem itemValue="43" itemLabel="Consultoria Negócio" />
+								<f:selectItem itemValue="44" itemLabel="Consultoria Sistemas" />
+								<f:selectItem itemValue="77" itemLabel="Desenvolvimento" />
+								<f:selectItem itemValue="73" itemLabel="Desenvolvimento" />
+								<f:selectItem itemValue="45" itemLabel="Desenvolvimento aplicação" />
+								<f:selectItem itemValue="46" itemLabel="Desenvolvimento de Interfaces" />
+								<f:selectItem itemValue="14" itemLabel="Desktop" />
+								<f:selectItem itemValue="65" itemLabel="Em Planejamento " />
+								<f:selectItem itemValue="76" itemLabel="Em Planejamento (SW)" />
+								<f:selectItem itemValue="59" itemLabel="Folha de Pagamento (DGSI)  " />
+								<f:selectItem itemValue="60" itemLabel="Folha de Pagamento (Outras áreas)  " />
+								<f:selectItem itemValue="28" itemLabel="Garantia(SW)" />
+								<f:selectItem itemValue="47" itemLabel="Gerencia de Projeto" />
+								<f:selectItem itemValue="74" itemLabel="Gestão Projeto" />
+								<f:selectItem itemValue="78" itemLabel="GSS/SAL" />
+								<f:selectItem itemValue="34" itemLabel="Infra Estrutura (básico)  " />
+								<f:selectItem itemValue="48" itemLabel="Instalação / Implementação" />
+								<f:selectItem itemValue="54" itemLabel="Manutenção Corretiva" />
+								<f:selectItem itemValue="37" itemLabel="Manutenção de Licenças" />
+								<f:selectItem itemValue="36" itemLabel="Manutenção e Suporte(SW)" />
+								<f:selectItem itemValue="55" itemLabel="Manutenção Evolutiva" />
+								<f:selectItem itemValue="35" itemLabel="Monitoramento" />
+								<f:selectItem itemValue="49" itemLabel="Movimentação Data Center" />
+								<f:selectItem itemValue="15" itemLabel="Notebook" />
+								<f:selectItem itemValue="50" itemLabel="Outros" />
+								<f:selectItem itemValue="61" itemLabel="Outros(DESP)" />
+								<f:selectItem itemValue="17" itemLabel="Outros(HW)" />
+								<f:selectItem itemValue="30" itemLabel="Outros(SW)" />
+								<f:selectItem itemValue="53" itemLabel="Outsoursing" />
+								<f:selectItem itemValue="16" itemLabel="Periféricos" />
+								<f:selectItem itemValue="51" itemLabel="QA" />
+								<f:selectItem itemValue="69" itemLabel="Rede" />
+								<f:selectItem itemValue="13" itemLabel="SAN" />
+								<f:selectItem itemValue="31" itemLabel="Segurança" />
+								<f:selectItem itemValue="80" itemLabel="Servidores CISC" />
+								<f:selectItem itemValue="81" itemLabel="Servidores EPIC" />
+								<f:selectItem itemValue="79" itemLabel="Servidores RISC" />
+								<f:selectItem itemValue="20" itemLabel="Storage" />
+								<f:selectItem itemValue="71" itemLabel="TAV" />
+								<f:selectItem itemValue="82" itemLabel="Teradata" />
+								<f:selectItem itemValue="52" itemLabel="Testes" />
+								<f:selectItem itemValue="39" itemLabel="Transf.de Arquivos" />
+								<f:selectItem itemValue="62" itemLabel="Treinamento" />
+								<f:selectItem itemValue="63" itemLabel="Viagens" />	
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="3">
+							<p:outputLabel for="solicitantesCodigo">Solicitante(s):</p:outputLabel>
+							<p:selectManyMenu id="solicitantesCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="3">
+							<p:outputLabel for="diretoriasCodigo">Diretoria(s):</p:outputLabel>
+							<p:selectManyMenu id="diretoriasCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+					</i:fluidRow>
+					
+					<i:fluidRow>
+				    
+				        <i:fluidField column="4">
+							<p:outputLabel for="lineOwnersCodigo">Line Owner(s):</p:outputLabel>
+							<p:selectManyMenu id="lineOwnersCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="4">
+							<p:outputLabel for="gerenciasDivisaoPMOCodigo">Gerência(s) Divisão (Projeto):</p:outputLabel>
+							<p:selectManyMenu id="gerenciasDivisaoPMOCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="4">
+							<p:outputLabel for="fornecedoresContratoCodigo">Fornecedor(es) Contrato:</p:outputLabel>
+							<p:selectManyMenu id="fornecedoresContratoCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+					</i:fluidRow>
+					
+					<i:fluidRow>
+				    
+				        <i:fluidField column="4">
+							<p:outputLabel for="editoresForecastCodigo">Editores de Forecast:</p:outputLabel>
+							<p:selectManyMenu id="editoresForecastCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="4">
+							<p:outputLabel for="projetosCodigo">Mega-Projeto(s):</p:outputLabel>
+							<p:selectManyMenu id="projetosCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+						<i:fluidField column="4">
+							<p:outputLabel for="ordensInternasCodigo">Ação Inversora/Ordem Interna:</p:outputLabel>
+							<p:selectManyMenu id="ordensInternasCodigo" styleClass="field-row-2">
+					        </p:selectManyMenu>
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</i:fluidField>
+						
+					</i:fluidRow>
+				
+				</i:fluidGrid>
+				
+			</p:fieldset>
+			
+			<p:outputPanel styleClass="form-actions">
+				
+				<p:commandButton value="Limpar" icon="fa fa-trash" />
+				<p:commandButton value="Pesquisar" icon="fa fa-search" styleClass="state-primary" update="gridLinhas" />
+				
+			</p:outputPanel>
+			
+			<div class="clear"></div>
+			
+			<p:fieldset legend="Linhas Orçamentárias" styleClass="hierarchy">
+
+				<p:dataTable  var="item" style="width: 0px;" id="gridLinhas" widgetVar="gridLinhas"
+					value="#{prototipoBean.genericListSub}" selectionMode="checkbox" rowKey="#{item.codigo}" selection="#{prototipoBean.selectedGenericListSub}"
+					scrollable="true" scrollWidth="100%"
+					paginator="true" rows="10" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false">
+						
+						<p:ajax event="rowSelectCheckbox" process="gridLinhas" onstart="callDynamicCommand('checkItemLinhas',ext)" />
+						<p:ajax event="rowUnselectCheckbox" process="gridLinhas" onstart="callDynamicCommand('uncheckItemLinhas',ext)" />
+						<p:ajax event="rowSelect" process="gridLinhas" onstart="callDynamicCommand('checkItemLinhas',ext)" />
+						<p:ajax event="rowUnselect" process="gridLinhas" onstart="callDynamicCommand('uncheckItemLinhas',ext)" />
+						
+						<p:ajax event="toggleSelect" process="gridLinhas" listener="#{prototipoBean.checkAllLinhas}" oncomplete="console.log(ext)" />
+						
+						<p:column styleClass="ui-selection-column" width="20">
+							<f:facet name="header">
+								<div class="ui-chkbox ui-widget ui-chkbox-all">
+									<div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default ui-state-active">
+										<span class="ui-chkbox-icon ui-icon ui-icon-check ui-c"></span>
+									</div>
+								</div>
+								
+							</f:facet>
+						</p:column>
+						
+						<p:column width="80" />
+						<p:column headerText="REQUEST" width="70" />
+						<p:column headerText="Nat." width="70" />
+						<p:column headerText="Ano" width="70" />
+						<p:column headerText="Código" width="80" />
+						<p:column headerText="Nome" width="200" />
+						<p:column headerText="Gestor" width="150" />
+						<p:column headerText="Regional" width="150" />
+						<p:column headerText="Orçamento Atual(R$)" width="130" />
+						<p:column headerText="RC Reserva SAP(R$)" width="150" />
+						<p:column headerText="Pedido Reserva SAP(R$)" width="150" />
+						<p:column headerText="Compromisso(R$)" width="120" />
+						<p:column headerText="Realizado(R$)" width="120" />
+						<p:column headerText="Disponível(R$)" width="120" />
+					
+					<p:subTable var="subitem" value="#{item.children}">
+			            <f:facet name="header">
+			            	 MEGA-PROJETO: #{item.attr1} | AÇÃO INVERSORA: #{item.attr2}
+			            </f:facet>
+			            
+			            <p:column styleClass="ui-selection-column #{(subitem.isTotalRow()) ? 'cellcolspan colspan-2' : ''}">
+			            
+			            	<h:panelGroup rendered="#{!subitem.isTotalRow()}">
+								<div class="ui-chkbox ui-widget" data-selected="#{subitem.checked}" data-rowkey="#{subitem.codigo}">
+									<div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
+										<span class="ui-chkbox-icon ui-icon ui-c ui-icon-blank"></span>
+									</div>
+								</div>
+							
+								<p:remoteCommand name="checkItemLinhas#{subitem.codigo}" actionListener="#{subitem.setChecked(true)}" />
+								<p:remoteCommand name="uncheckItemLinhas#{subitem.codigo}" actionListener="#{subitem.setChecked(false)}" />
+							</h:panelGroup>
+							
+						</p:column>
+						
+						<p:column styleClass="align-center">
+							
+							<div class="grid-cell-icons">
+								<p:commandLink styleClass="fa fa-check-circle state-success" title="Status: APROVADA" />
+								<p:commandLink styleClass="fa fa-bar-chart-o state-info" title="Gráfico barras" />
+								<p:commandLink styleClass="fa fa-pie-chart state-primary " title="Gráfico pizza" />
+								<p:commandLink styleClass="fa fa-edit state-warning" title="Edição Forecast e Provisão" />
+							</div>
+							
+						</p:column>
+						
+						<p:column styleClass="#{(subitem.isTotalRow()) ? 'align-left cellcolspan colspan-7' : 'align-center'}">
+							
+							<h:panelGroup rendered="#{!subitem.isTotalRow()}">
+								<h:outputText styleClass="datatable-child-cell" rendered="#{subitem.isSubChild()}" />54443-#{subitem.codigo}
+							</h:panelGroup>
+							
+							<h:panelGroup rendered="#{subitem.isTotalRow()}">
+								<h:outputText styleClass="datatable-child-cell" /><strong>Totalização Hierarquia Linhas:</strong>
+							</h:panelGroup>
+							
+						</p:column>
+						
+						<p:column styleClass="align-center" rendered="#{!subitem.isTotalRow()}">
+							CAPEX
+						</p:column>
+						
+						<p:column styleClass="align-center" rendered="#{!subitem.isTotalRow()}">
+							2015
+						</p:column>
+						
+						<p:column styleClass="align-center" rendered="#{!subitem.isTotalRow()}">
+							#{subitem.attr1}
+						</p:column>
+						
+						<p:column styleClass="align-center" rendered="#{!subitem.isTotalRow()}">
+							#{subitem.attr2}
+						</p:column>
+						
+						<p:column styleClass="align-center" rendered="#{!subitem.isTotalRow()}">
+							Maria Teresa Ragone
+						</p:column>
+						
+						<p:column styleClass="align-center" rendered="#{!subitem.isTotalRow()}">
+							SÃO PAULO
+						</p:column>
+						
+						<p:column styleClass="align-right">
+							<h:outputText value="#{(subitem.isTotalRow()) ? 999999 : subitem.attrDouble1}">
+                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+                    		</h:outputText>
+						</p:column>
+						
+						<p:column styleClass="align-right">
+							<h:outputText value="#{(subitem.isTotalRow()) ? 999999 : subitem.attrDouble2}">
+                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+                    		</h:outputText>
+						</p:column>
+						
+						<p:column styleClass="align-right">
+							<h:outputText value="#{(subitem.isTotalRow()) ? 999999 : subitem.attrDouble1}">
+                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+                    		</h:outputText>
+						</p:column>
+						
+						<p:column styleClass="align-right">
+							<h:outputText value="#{(subitem.isTotalRow()) ? 999999 : subitem.attrDouble2}">
+                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+                    		</h:outputText>
+						</p:column>
+						
+						<p:column styleClass="align-right">
+							<h:outputText value="#{(subitem.isTotalRow()) ? 999999 : subitem.attrDouble1}">
+                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+                    		</h:outputText>
+						</p:column>
+						
+						<p:column styleClass="align-right">
+							<h:outputText value="#{(subitem.isTotalRow()) ? 999999 : subitem.attrDouble2}">
+                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+                    		</h:outputText>
+						</p:column>	
+
+						<p:columnGroup type="footer">
+			                <p:row styleClass="state-primary">
+			                	<p:column colspan="2" />
+			                    <p:column colspan="7" footerText="Totalização: " />
+			                    <p:column styleClass="align-right">
+			                    	<f:facet name="footer">
+			                    		<h:outputText value="#{item.attrDouble1}">
+			                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+			                    		</h:outputText>
+			                    	</f:facet>
+			                    </p:column>
+			                    <p:column styleClass="align-right">
+			                    	<f:facet name="footer">
+			                    		<h:outputText value="#{item.attrDouble2}">
+			                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+			                    		</h:outputText>
+			                    	</f:facet>
+			                    </p:column>
+			                    <p:column styleClass="align-right">
+			                    	<f:facet name="footer">
+			                    		<h:outputText value="#{item.attrDouble1}">
+			                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+			                    		</h:outputText>
+			                    	</f:facet>
+			                    </p:column>
+			                    <p:column styleClass="align-right">
+			                    	<f:facet name="footer">
+			                    		<h:outputText value="#{item.attrDouble2}">
+			                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+			                    		</h:outputText>
+			                    	</f:facet>
+			                    </p:column>
+			                    <p:column styleClass="align-right">
+			                    	<f:facet name="footer">
+			                    		<h:outputText value="#{item.attrDouble1}">
+			                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+			                    		</h:outputText>
+			                    	</f:facet>
+			                    </p:column>
+			                    <p:column styleClass="align-right">
+			                    	<f:facet name="footer">
+			                    		<h:outputText value="#{item.attrDouble2}">
+			                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+			                    		</h:outputText>
+			                    	</f:facet>
+			                    </p:column>
+			                </p:row>
+			            </p:columnGroup>
+											
+					</p:subTable>
+					
+					<p:columnGroup type="footer">
+						<p:row styleClass="state-primary">
+		                	<p:column colspan="2" />
+		                    <p:column colspan="7" footerText="Totalização GERAL: " styleClass="align-left" />
+		                    <p:column styleClass="align-right">
+		                    	<f:facet name="footer">
+		                    		<h:outputText value="#{1000}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+		                    	</f:facet>
+		                    </p:column>
+		                    <p:column styleClass="align-right">
+		                    	<f:facet name="footer">
+		                    		<h:outputText value="#{1000}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+		                    	</f:facet>
+		                    </p:column>
+		                    <p:column styleClass="align-right">
+		                    	<f:facet name="footer">
+		                    		<h:outputText value="#{1000}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+		                    	</f:facet>
+		                    </p:column>
+		                    <p:column styleClass="align-right">
+		                    	<f:facet name="footer">
+		                    		<h:outputText value="#{1000}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+		                    	</f:facet>
+		                    </p:column>
+		                    <p:column styleClass="align-right">
+		                    	<f:facet name="footer">
+		                    		<h:outputText value="#{1000}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+		                    	</f:facet>
+		                    </p:column>
+		                    <p:column styleClass="align-right">
+		                    	<f:facet name="footer">
+		                    		<h:outputText value="#{1000}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+		                    	</f:facet>
+		                    </p:column>
+		                </p:row>
+					</p:columnGroup>
+
+					<f:facet name="footer">
+						
+						<div class="grid-actions">
+							
+							<p:commandButton title="Comparar SAP" icon="fa fa-copy state-warning" styleClass="small" />
+							<p:commandButton title="Salvar alterações" icon="fa fa-check-circle state-success" styleClass="small" />
+							<p:commandButton title="Confirmar Forecast" icon="fa fa-bar-chart-o state-primary" styleClass="small" />
+							<p:commandButton title="Confirmar Provisão" icon="fa fa-dollar state-primary" styleClass="small" />
+							<p:commandButton title="Nova linha orçamentária" icon="fa fa-line-chart state-primary" styleClass="small" />
+							<p:commandButton value="Opex" icon="fa fa-area-chart state-primary" styleClass="small" />
+							<p:commandButton value="Capex" icon="fa fa-area-chart state-primary" styleClass="small" />
+							<p:commandButton value="Batimento" icon="fa fa-file-excel-o state-success" styleClass="small" />
+							<p:commandButton value="Pendência Forecast" icon="fa fa-file-excel-o state-success" styleClass="small" />
+							<p:commandButton value="Realizado" icon="fa fa-file-excel-o state-success" styleClass="small" />
+							<p:commandButton value="Planilha CAPEX" icon="fa fa-file-excel-o state-success" styleClass="small" />
+							<p:commandButton value="Planilha OPEX" icon="fa fa-file-excel-o state-success" styleClass="small" />
+							<p:commandButton title="Ajuda" icon="fa fa-question state-info" styleClass="small" />
+							
+						</div>				        
+
+				    </f:facet>
+					
+				</p:dataTable>
+				
+				<p:fieldset legend="RCs" styleClass="size4">
+				
+					<p:fieldset legend="RCs da Linha Orçamentária Selecionada" toggleable="true" collapsed="true" styleClass="size3">
+
+						<p:dataTable id="gridRCsLinhaSelecionada" var="item" value="#{prototipoBean.genericList}" selection="#{prototipoBean.selectedGenericList}" rowKey="#{item.codigo}"
+							style="width: 0px;" scrollable="true" scrollWidth="100%"
+							paginator="true" rows="10" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false">
+							
+							<p:column selectionMode="multiple" width="20" />
+
+							<p:column headerText="RC/CRC" width="60" styleClass="align-center">
+								RC
+							</p:column>
+							
+							<p:column headerText="Natureza" width="80" styleClass="align-center">
+								CAPEX
+							</p:column>
+							
+							<p:column headerText="RC REQUEST" width="100" styleClass="align-center">
+								43510-#{item.codigo}
+							</p:column>
+							
+							<p:column headerText="SAP RC" width="80" styleClass="align-center">
+								120001753
+							</p:column>
+							
+							<p:column headerText="Linhas" width="200" styleClass="align-center">
+								2015 - CAP13104 / 2013 - CAP13100 / 2014 - CAP13102
+							</p:column>
+							
+							<p:column headerText="Diretoria" width="120" styleClass="align-center">
+								IIP - Dir Projetos e Infraestrutura
+							</p:column>
+							
+							<p:column headerText="Ger.Divisão" width="120" styleClass="align-center">
+								IIPD - Div Posto Trab Mobilidade
+							</p:column>
+							
+							<p:column headerText="Ger.Seção" width="120" styleClass="align-center">
+								
+							</p:column>
+							
+							<p:column headerText="Abertura" width="80" styleClass="align-center">
+								25/07/2012
+							</p:column>
+							
+							<p:column headerText="Status" width="90" styleClass="align-center">
+								<h:outputText styleClass="simple-text state-success" value="CONTRATADA" />
+							</p:column>
+							
+							<p:column headerText="Descrição" width="250" styleClass="align-center">
+								Aquisição do direito de uso dos softwares Microsoft (licenças)
+							</p:column>
+							
+							<p:column headerText="Valor(R$)" width="100" styleClass="align-right">
+								<h:outputText value="#{202000}">
+	                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+	                    		</h:outputText>
+							</p:column>
+							
+							<f:facet name="footer">
+								
+								<div class="grid-actions">
+								
+									<p:commandButton value="Exportar RCs apresentadas" icon="fa fa-file-excel-o state-success" styleClass="small" />
+									
+								</div>				        
+		
+						    </f:facet>
+							
+						</p:dataTable>
+						
+					</p:fieldset>
+					
+					<p:fieldset legend="Lançamentos das CRCs Selecionadas" toggleable="true" collapsed="true" styleClass="size3">
+				
+						<p:dataTable var="item" value="#{prototipoBean.genericList}" style="width: 0px;"
+							scrollable="true" scrollWidth="100%"
+							paginator="true" rows="10" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false">
+							
+							<p:column headerText="REQUEST" width="80" styleClass="align-center">
+								321654-#{item.codigo}
+							</p:column>
+							<p:column headerText="CRC REQUEST" width="100" styleClass="align-center">
+								CRC REQUEST
+							</p:column>
+							<p:column headerText="CRC SAP" width="80" styleClass="align-center">
+								CRC SAP
+							</p:column>
+							<p:column headerText="Pedido" width="80" styleClass="align-center">
+								Pedido
+							</p:column>
+							<p:column headerText="Nota" width="80" styleClass="align-center">
+								Nota
+							</p:column>
+							<p:column headerText="Valor Bruto(R$)" width="100" styleClass="align-right">
+								<h:outputText value="#{202000}">
+	                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+	                    		</h:outputText>
+							</p:column>
+							<p:column headerText="Status" width="80" styleClass="align-center">
+								<h:outputText styleClass="simple-text state-danger" value="STATUS" />
+							</p:column>
+							<p:column headerText="Linhas CAP/OP" width="120" styleClass="align-center">
+								
+							</p:column>
+							<p:column headerText="Mês/Ano" width="80" styleClass="align-center">
+							
+							</p:column>
+							<p:column headerText="Solicitante(es)Resp." width="120" styleClass="align-center">
+							
+							</p:column>
+							<p:column headerText="Natureza" width="80" styleClass="align-center">
+							
+							</p:column>
+							<p:column headerText="Fornecedor" width="80" styleClass="align-center">
+							
+							</p:column>
+							<p:column headerText="Previsão Pagamento" width="140" styleClass="align-center">
+							
+							</p:column>
+							<p:column headerText="Entrega JU" width="80" styleClass="align-center">
+							
+							</p:column>
+							<p:column headerText="Valor Pedido(R$)" width="100" styleClass="align-right">
+								<h:outputText value="#{202000}">
+	                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+	                    		</h:outputText>
+							</p:column>
+							<p:column headerText="Saldo Pedido(R$)" width="100" styleClass="align-right">
+								<h:outputText value="#{202000}">
+	                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+	                    		</h:outputText>
+							</p:column>
+							<p:column headerText="Observação" width="220" styleClass="align-center">
+								
+							</p:column>
+							
+							<f:facet name="footer">
+								
+								<div class="grid-actions">
+								
+									<p:commandButton value="Exportar lançamento(s) das CRC(s) selecionada(s)" icon="fa fa-file-excel-o state-success" styleClass="small" />
+									
+								</div>				        
+		
+						    </f:facet>
+							
+						</p:dataTable>
+						
+					</p:fieldset>
+					
+				</p:fieldset>
+				
+				<p:fieldset legend="Contratos" styleClass="size4">
+				
+					<p:fieldset legend="Contratos da Linha Orçamentária Selecionada" toggleable="true" collapsed="true" styleClass="size3">
+						
+						<p:dataTable var="item" value="#{prototipoBean.genericList}" selection="#{prototipoBean.selectedGenericList}" rowKey="#{item.codigo}"
+							style="width: 0px;" scrollable="true" scrollWidth="100%"
+							paginator="true" rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false">
+							
+							<p:columnGroup type="header">
+							
+            					<p:row>
+            						
+            						<p:column selectionMode="multiple" rowspan="2" width="20" />
+            						<p:column rowspan="2" width="20" />
+            						<p:column rowspan="2" headerText="Natureza" width="120" />
+            						<p:column rowspan="2" headerText="Contrato REQUEST" width="120" />
+									<p:column rowspan="2" headerText="Contrato SAP" width="120" />
+									<p:column rowspan="2" headerText="Proc.Compra REQUEST" width="160" />
+									<p:column rowspan="2" headerText="Fornecedor" width="120" />
+									<p:column rowspan="2" headerText="Status" width="120" />
+									<p:column rowspan="2" headerText="Projeto" width="200" />
+									<p:column rowspan="2" headerText="Vigência" width="160" />
+									<p:column rowspan="2" headerText="Comprador" width="200" />
+            						
+            						<p:column colspan="4" headerText="Funções Contratadas" width="800" />
+            						<p:column colspan="6" headerText="Totais" width="800" />
+            						<p:column colspan="12" headerText="Realizado/Mês" width="1500" />
+            						
+            					</p:row>
+            					
+            					<p:row>
+
+            						<p:column headerText="Nome" styleClass="align-center" />
+									<p:column headerText="Jornada" />
+									<p:column headerText="Valor Jor. (R$)" />
+									<p:column headerText="Contratado(R$)" />
+									
+									<p:column headerText="Rec.Humano(R$)" />
+									<p:column headerText="Rec.Material(R$)" />
+									<p:column headerText="Geral(R$)" />
+									<p:column headerText="Realizado(R$)" />
+									<p:column headerText="Realizado SAP(R$)" />
+									<p:column headerText="Saldo(R$)" />
+									
+									<p:column headerText="Janeiro" />
+									<p:column headerText="Fevereiro" />
+									<p:column headerText="Março" />
+									<p:column headerText="Abril" />
+									<p:column headerText="Maio" />
+									<p:column headerText="Junho" />
+									<p:column headerText="Julho" />
+									<p:column headerText="Agosto" />
+									<p:column headerText="Setembro" />
+									<p:column headerText="Outubro" />
+									<p:column headerText="Novembro" />
+									<p:column headerText="Dezembro" /> 
+            						
+            					</p:row>
+            					
+            				</p:columnGroup>
+							
+							<p:column selectionMode="multiple" />
+							
+							<p:column>
+								<div class="grid-cell-icons">
+									<p:commandLink styleClass="fa fa-pie-chart state-primary " title="Gráfico pizza" />
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									CAPEX
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									26584-#{item.codigo}
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									4100098104
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									38084
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									BRASOFTWARE
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									<h:outputText styleClass="simple-text state-warning" value="ADJUDICADO" />
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									Licenças Microsoft - 2013
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									01/06/2012 - 31/12/2012
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									Jose Eduardo Pinheiro Reis
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-right">
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+								</div>
+							</p:column>
+							
+							<f:facet name="footer">
+								
+								<div class="grid-actions">
+								
+									<p:commandButton value="Exportar recurso(s) do(s) contrato(s)" icon="fa fa-file-excel-o state-success" styleClass="small" />
+									<p:commandButton value="Exportar contratos apresentados" icon="fa fa-file-excel-o state-success" styleClass="small" />
+									
+								</div>				        
+		
+						    </f:facet>
+							
+						</p:dataTable>
+						
+					</p:fieldset>
+					
+					<p:fieldset legend="Lançamento dos Contratos Selecionados" toggleable="true" collapsed="true" styleClass="size3">
+						
+						<p:dataTable var="item" value="#{prototipoBean.genericList}" style="width: 0px;"
+							scrollable="true" scrollWidth="100%"
+							paginator="true" rows="10" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false">
+							
+							<p:column headerText="REQUEST" width="80" styleClass="align-center">
+								48010-#{item.codigo}
+							</p:column>
+							<p:column headerText="Contrato REQUEST" width="120" styleClass="align-center">
+								26584-#{item.codigo}
+							</p:column>
+							<p:column headerText="Contrato SAP" width="80" styleClass="align-center">
+								4100098104
+							</p:column>
+							<p:column headerText="Pedido" width="80" styleClass="align-center">
+								5100215847
+							</p:column>
+							<p:column headerText="Nota" width="80" styleClass="align-center">
+								146021-1
+							</p:column>
+							<p:column headerText="Valor Bruto(R$)" width="100" styleClass="align-right">
+								<h:outputText value="#{89534.34}">
+	                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+	                    		</h:outputText>
+							</p:column>
+							<p:column headerText="Status" width="80" styleClass="align-center">
+								<h:outputText styleClass="simple-text state-success" value="APROVADO" />
+							</p:column>
+							<p:column headerText="PC" width="80" styleClass="align-center">
+								<h:outputText styleClass="simple-text state-success" value="LIBERADO" />
+							</p:column>
+							<p:column headerText="Status PC" width="80" styleClass="align-center">
+								<h:outputText styleClass="simple-text state-info" value="ARQUIVO" />
+							</p:column>
+							<p:column headerText="Linhas CAP/OP" width="100" styleClass="align-center">
+								CAP13100
+							</p:column>
+							<p:column headerText="Mês/Ano" width="80" styleClass="align-center">
+								03/2013
+							</p:column>
+							<p:column headerText="Solicitante(es) Resp." width="200" styleClass="align-center">
+								Estephano Cosentino Neto
+							</p:column>
+							<p:column headerText="Natureza" width="80" styleClass="align-center">
+								
+							</p:column>
+							<p:column headerText="Fornecedor" width="150" styleClass="align-center">
+								BRASOFTWARE
+							</p:column>
+							<p:column headerText="Previsão Pagamento" width="130" styleClass="align-center">
+								22/05/2013
+							</p:column>
+							<p:column headerText="Entrega JU" width="80" styleClass="align-center">
+								14/03/2013
+							</p:column>
+							<p:column headerText="Valor Pedido(R$)" width="110" styleClass="align-right">
+								<h:outputText value="#{89534.34 }">
+	                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+	                    		</h:outputText>
+							</p:column>
+							<p:column headerText="Saldo Pedido(R$)" width="110" styleClass="align-right">
+								<h:outputText value="#{0}">
+	                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+	                    		</h:outputText>
+							</p:column>
+							<p:column headerText="Observação" width="220" styleClass="align-center">
+								CARGA SAP 
+							</p:column>
+							
+							<f:facet name="footer">
+								
+								<div class="grid-actions">
+								
+									<p:commandButton value="Exportar lançamento apresentados" icon="fa fa-file-excel-o state-success" styleClass="small" />
+									
+								</div>				        
+		
+						    </f:facet>
+							
+						</p:dataTable>
+						
+					</p:fieldset>
+					
+				</p:fieldset>
+				
+				<p:fieldset legend="Solicitações" styleClass="size4">
+				
+					<p:fieldset legend="Solicitação para a Linha Orçamentária Selecionada" toggleable="true" collapsed="true" styleClass="size3">
+						
+						<p:dataTable var="item" value="#{prototipoBean.genericList}" selection="#{prototipoBean.selectedGenericList}" rowKey="#{item.codigo}"
+							style="width: 0px;" scrollable="true" scrollWidth="100%"
+							paginator="true" rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false">
+							
+							<p:columnGroup type="header">
+							
+            					<p:row>
+            						
+            						<p:column selectionMode="multiple" rowspan="2" width="20" />
+            						<p:column rowspan="2" headerText="Ano" width="40" />
+									<p:column rowspan="2" headerText="Código" width="70" />
+									<p:column rowspan="2" headerText="Título" width="220" />
+									<p:column rowspan="2" headerText="Solicitante" width="160" />
+									<p:column rowspan="2" headerText="Data" width="70" />
+									<p:column rowspan="2" headerText="Softwares " width="310" />
+									
+            						<p:column colspan="13" headerText="Realizado/Mês" width="3000" />
+            						
+            					</p:row>
+            					
+            					<p:row>
+									
+									<p:column headerText="Janeiro" />
+									<p:column headerText="Fevereiro" />
+									<p:column headerText="Março" />
+									<p:column headerText="Abril" />
+									<p:column headerText="Maio" />
+									<p:column headerText="Junho" />
+									<p:column headerText="Julho" />
+									<p:column headerText="Agosto" />
+									<p:column headerText="Setembro" />
+									<p:column headerText="Outubro" />
+									<p:column headerText="Novembro" />
+									<p:column headerText="Dezembro" />
+									<p:column headerText="Totalização" />
+            						
+            					</p:row>
+            					
+            				</p:columnGroup>
+							
+							<p:column selectionMode="multiple" />
+							
+							<p:column>
+								<div class="align-center">
+									2012
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									28804-#{item.codigo}
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									Solicitação automática a partir de RC
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									Estephano Cosentino Neto
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									15/03/2012
+								</div>
+							</p:column>
+							
+							<p:column>
+								<div class="align-center">
+									NÃO DEFINIDO P/ FRENTE DESCONHECIDO, NÃO DEFINIDO P/ FRENTE PRODUTOS &amp; SERVIÇOS 
+								</div>
+							</p:column>
+							
+							<p:column>
+								
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+								
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-primary" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-primary" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<p:column>
+								<h:panelGrid styleClass="cell-subtable key-value" columns="2">
+									
+									<h:outputText value="P\Aprov.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Prev.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText value="Real.:" />
+									<h:outputText value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+									<h:outputText styleClass="simple-text state-danger" value="(Prev. - Real.):" />
+									<h:outputText styleClass="simple-text state-danger" value="#{999999}">
+		                    			<f:convertNumber currencySymbol="R$ " locale="pt_br" type="currency" minFractionDigits="2"  />
+		                    		</h:outputText>
+									
+								</h:panelGrid>
+							</p:column>
+							
+							<f:facet name="footer">
+								
+								<div class="grid-actions">
+								
+									<p:commandButton value="Exportar solicitações apresentados" icon="fa fa-file-excel-o state-success" styleClass="small" />
+									
+								</div>				        
+		
+						    </f:facet>
+							
+						</p:dataTable>
+						
+					</p:fieldset>
+					
+				</p:fieldset>
+				
+				
+			</p:fieldset>
+
+		</p:fieldset>
+		
+	</ui:define>
+	
+	<ui:define name="dialogs">
+		
+		<ui:include src="/includes/dialog-area-gestor.xhtml" />
+		
+	</ui:define>
+	
+	<ui:define name="scriptsFooter">
+		<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/assets/js/linhas-orcamentarias.js"></script>
+	</ui:define>
+	
+</ui:composition>

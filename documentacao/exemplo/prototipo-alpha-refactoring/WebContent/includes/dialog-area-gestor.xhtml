@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:i="http://indra.es/alpha">
+	
+	<p:dialog header="Consulta Área / Gestor" id="dialogAreaGestor" widgetVar="dialogAreaGestor" width="600" modal="true" resizable="false"
+		onHide="dialogAreaGestorClear()">
+		<p:outputPanel>
+		
+			<p:remoteCommand name="dialogAreaGestorClear" actionListener="#{dialogAreaGestorBean.clear}" immediate="true" ignoreAutoUpdate="true" partialSubmit="true" process="@this" update="@parent" />
+			
+			<i:fluidGrid>
+				<i:fluidRow>
+			    	<i:fluidField column="12">
+						<p:outputLabel for="txtAreaGestor">Área / Gestor:</p:outputLabel>
+						<p:inputText id="txtAreaGestor" placeholder="Digite ao menos 5 caracteres" />
+					</i:fluidField>
+				</i:fluidRow>
+			</i:fluidGrid>
+			
+			<p:outputPanel styleClass="form-actions">
+				<p:commandButton value="Limpar" icon="fa fa-trash" styleClass="small" />
+				<p:commandButton value="Pesquisar" icon="fa fa-search" styleClass="small" />
+			</p:outputPanel>
+			
+			<div class="clear"></div>
+			
+			<p:outputPanel id="dialogAreaGestorDTContainer">
+				<p:dataTable rendered="#{dialogAreaGestorBean.selectionMode.equals('single')}" var="item" value="#{dialogAreaGestorBean.list}" selection="#{dialogAreaGestorBean.selectedItem}" rowKey="#{item.codigo}"
+					paginator="true" rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false">
+					
+					<p:column selectionMode="#{dialogAreaGestorBean.selectionMode}" width="20" />
+		
+					<p:column headerText="Área" styleClass="align-center">
+						#{item.attr1}
+					</p:column>
+					
+					<p:column headerText="Gestor" styleClass="align-center">
+						#{item.attr2}
+					</p:column>
+					
+				</p:dataTable>
+				
+				<p:dataTable rendered="#{dialogAreaGestorBean.selectionMode.equals('multiple')}" var="item" value="#{dialogAreaGestorBean.list}" selection="#{dialogAreaGestorBean.selectedItems}" rowKey="#{item.codigo}"
+					paginator="true" rows="5" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false">
+					
+					<p:column selectionMode="#{dialogAreaGestorBean.selectionMode}" width="20" />
+		
+					<p:column headerText="Área" styleClass="align-center">
+						#{item.attr1}
+					</p:column>
+					
+					<p:column headerText="Gestor" styleClass="align-center">
+						#{item.attr2}
+					</p:column>
+					
+				</p:dataTable>
+			</p:outputPanel>
+			
+			<p:outputPanel styleClass="form-actions dialog-actions">
+			
+				<p:commandButton value="Cancelar" icon="fa fa-close" styleClass="small" type="button" onclick="dHide('dialogAreaGestor');" />			
+				<p:commandButton value="Confirmar" icon="fa fa-check" actionListener="#{dialogAreaGestorBean.set}" styleClass="state-primary small" process="@this,dialogAreaGestorDTContainer" update="#{dialogAreaGestorBean.update}" oncomplete="dHide('dialogAreaGestor');" />
+
+			</p:outputPanel>
+			
+		</p:outputPanel>
+	</p:dialog>
+
+</ui:composition>

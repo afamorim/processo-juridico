@@ -1,0 +1,16 @@
+apps/.metadata/
+documentacao/exemplo/prototipo-alpha-refactoring/.settings/
+apps/processum-ear/.classpath
+apps/processum-ear/.project
+apps/processum-ear/.settings/
+apps/processum-service/.classpath
+apps/processum-web/.project
+apps/processum-web/.settings/
+apps/processum-service/.settings/
+apps/processum-web/.classpath
+apps/processum-service/.project
+apps/RemoteSystemsTempFiles/
+apps/processum-service/.project
+apps/processum-service/.classpath
+apps/processum-service/.settings/
+apps/.recommenders/

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Built-By: antonio
+Build-Jdk: 1.8.0_05
+Created-By: Maven Integration for Eclipse

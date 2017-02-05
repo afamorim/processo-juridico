@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8" />
+
+		<title>Processum Ofício - Workflow Ordem/Requisição</title>
+		
+		<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/default.css" />
+		<script type="text/javascript" src="assets/js/jquery-2.2.2.min.js"></script>
+		<script type="text/javascript" src="assets/js/default.js"></script>
+	</head>
+
+	<body>
+		
+		<div id="MainWrapper">
+			<div class="inner-wrapper">
+				<div id="Header">
+					<h1><a href="#">Processum Ofício</a></h1>
+					<h5><a href="#">Workflow</a></h5>
+					
+					<strong class="telefonica-vivo">Telefonica | Vivo</strong>
+				</div>
+				<div id="Content">
+					<div class="inner-wrapper">
+						<h2 id="ordem_judicial">Ordem Judicial<span class="badge state-danger total">520</span></h2>
+
+						<div class="workflow-box workflow-ordem">
+							<a id="ordem_disponivel" href="javascript:;" class="flow-step state-primary" style="top: 0px; left: 0px;"><span>Disponível</span><i class="total">20</i></a>
+							<a id="ordem_em_analise" href="javascript:;" class="flow-step state-primary" style="top: 0px; left: 187px;"><span>Em análise</span><i class="total">200</i></a>
+							<a id="ordem_rejeitado_cadastro" href="javascript:;" class="flow-step state-danger" style="top: 48px; left: 421px;"><span>Rejeitado<br /><small>Equipe Cadastro</small></span><i class="total">150</i></a>
+							<a id="ordem_rejeitado" href="javascript:;" class="flow-step state-danger" style="top: 48px; left: 612px;"><span>Rejeitado</span><i class="total">50</i></a>
+							<a id="ordem_novo_oficio" href="javascript:;" class="flow-step state-info" style="top: 149px; left: 328px;"><span>Novo Ofício</span></a>
+						</div>
+
+						<h2 id="requisicao">Requisição<span class="badge state-danger total">0</span></h2>
+
+						<div class="workflow-box workflow-requisicao" style="padding-top: 124px;">
+							<a id="requisicao_em_analise" href="javascript:;" class="flow-step state-primary" style="top: 0px; left: 0px;"><span>Em análise</span><i class="total">0</i></a>
+							<a id="requisicao_rejeitado_cadastro" href="javascript:;" class="flow-step state-danger" style="top: 46px; left: 233px;"><span>Rejeitado<br /><small>Equipe Cadastro</small></span><i class="total">0</i></a>
+							<a id="requisicao_rejeitado" href="javascript:;" class="flow-step state-danger" style="top: 46px; left: 424px;"><span>Rejeitado</span><i class="total">0</i></a>
+						
+
+							<div class="workflow-box group-box" style="width: 761px; margin: 0;">
+								<h3 id="requisicao_em_processamento">Em processamento<span class="badge state-danger total">0</span></h3>
+								<span data-role="tab-buttons" class="group-box-buttons">
+									<button data-path="WORKFLOW_PROCESSAMENTO_REQUISICAO_PATH" type="button" class="btn xsmall state-info"><i class="fa fa-eye"></i> Requisições</button>
+									<button data-path="WORKFLOW_PROCESSAMENTO_ARQUIVO_PATH" type="button" class="btn xsmall state-disabled"><i class="fa fa-eye"></i> Arquivos</button>
+								</span>
+								<div class="workflow-box workflow-requisicao-processamento">
+									<span id="em_processamento_aguardando_retorno" data-role="group-steps">
+										<a data-role="step-title" href="javascript:;" class="flow-step state-primary" style="top: 0px; left: 0px;"><span>Aguardando retorno do Provedor</span><i class="total">0</i></a>
+											<a data-role="vivonet" href="detalhe-provedor.html?s=1" class="flow-step step-small state-primary" style="top: 20px; left: 164px;"><span>VIVONET</span><i class="total">0</i></a>
+											<a data-role="atis" href="detalhe-provedor.html?s=1" class="flow-step step-small state-primary" style="top: 20px; left: 247px;"><span>ATIS</span><i class="total">0</i></a>
+											<a data-role="cso" href="detalhe-provedor.html?s=1" class="flow-step step-small state-primary" style="top: 20px; left: 330px;"><span>CSO</span><i class="total">0</i></a>
+											<a data-role="sia" href="detalhe-provedor.html?s=1" class="flow-step step-small state-primary" style="top: 20px; left: 413px;"><span>SI@</span><i class="total">0</i></a>
+											<a data-role="amdocs" href="detalhe-provedor.html?s=1" class="flow-step step-small state-primary" style="top: 20px; left: 496px;"><span>AMDOCS</span><i class="total">0</i></a>
+											<a data-role="mvne" href="detalhe-provedor.html?s=1" class="flow-step step-small state-primary" style="top: 20px; left: 579px;"><span>MVNE</span><i class="total">0</i></a>
+											<a data-role="spic" href="detalhe-provedor.html?s=1" class="flow-step step-small state-primary" style="top: 20px; left: 662px;"><span>SPIC</span><i class="total">0</i></a>
+									</span>
+									<span id="em_processamento_aguardando_arquivo" data-role="group-steps">
+										<a data-role="step-title" href="javascript:;" class="flow-step state-primary" style="top: 70px; left: 0px;"><span>Aguardando arquivo</span><i class="total">0</i></a>
+											<a data-role="vivonet" href="detalhe-provedor.html?s=2" class="flow-step step-small state-primary" style="top: 90px; left: 164px;"><span>VIVONET</span><i class="total">0</i></a>
+											<a data-role="atis" href="detalhe-provedor.html?s=2" class="flow-step step-small state-primary" style="top: 90px; left: 247px;"><span>ATIS</span><i class="total">0</i></a>
+											<a data-role="cso" href="detalhe-provedor.html?s=2" class="flow-step step-small state-primary" style="top: 90px; left: 330px;"><span>CSO</span><i class="total">0</i></a>
+											<a data-role="sia" href="detalhe-provedor.html?s=2" class="flow-step step-small state-primary" style="top: 90px; left: 413px;"><span>SI@</span><i class="total">0</i></a>
+											<a data-role="amdocs" href="detalhe-provedor.html?s=2" class="flow-step step-small state-primary" style="top: 90px; left: 496px;"><span>AMDOCS</span><i class="total">0</i></a>
+											<a data-role="mvne" href="detalhe-provedor.html?s=2" class="flow-step step-small state-primary" style="top: 90px; left: 579px;"><span>MVNE</span><i class="total">0</i></a>
+											<a data-role="spic" href="detalhe-provedor.html?s=2" class="flow-step step-small state-primary" style="top: 90px; left: 662px;"><span>SPIC</span><i class="total">0</i></a>
+									</span>
+									<a id="em_processamento_aguardando_validacao" href="javascript:;" class="flow-step state-primary" style="top: 140px; left: 0px; width: 100%;"><span>Aguardando Validação</span><i class="total">0</i></a>
+									
+								</div>	
+							</div>
+
+							<div class="workflow-box">
+								<a id="requisicao_processado_com_sucesso" href="javascript:;" class="flow-step state-primary" style="top: 36px; left: 312px; width: 180px;"><span>Processado com sucesso</span><i class="total">0</i></a>
+								
+								<span id="requisicao_transmitido" data-role="group-steps">
+									<a data-role="step-title" href="javascript:;" class="flow-step state-primary" style="top: 123px; left: 106px;"><span>Transmitido</span><i class="total">0</i></a>
+										<a data-role="parcial" href="javascript:;" class="flow-step step-small state-primary" style="top: 192px; left: 106px;"><span>Parcial</span><i class="total">0</i></a>
+										<a data-role="total" href="javascript:;" class="flow-step step-small state-primary" style="top: 192px; left: 187px;"><span>Total</span><i class="total">0</i></a>
+								</span>
+
+								<a id="requisicao_orgao" href="javascript:;" class="flow-step step-circle state-info" style="top: 161px; left: 349px;"><span>Órgão</span></a>
+									<a id="requisicao_aceite_parcial" href="javascript:;" class="flow-step state-primary" style="top: 123px; left: 526px;"><span>Aceite Parcial</span><i class="total">0</i></a>
+									<a id="requisicao_aceite_total" href="javascript:;" class="flow-step state-primary" style="top: 188px; left: 526px;"><span>Aceite Total</span><i class="total">0</i></a>
+									<a id="requisicao_recusada" href="javascript:;" class="flow-step state-danger" style="top: 252px; left: 526px;"><span>Recusada</span><i class="total">0</i></a>
+
+								<span id="requisicao_processado_com_falha" data-role="group-steps">
+									<a data-role="step-title" href="javascript:;" class="flow-step state-danger" style="top: 353px; left: 322px; width: 160px;"><span>Processado com falha</span><i class="total">0</i></a>
+										<a data-role="vivonet" href="detalhe-provedor.html?s=3" class="flow-step step-small state-danger" style="top: 423px; left: 117px;"><span>VIVONET</span><i class="total">0</i></a>
+										<a data-role="atis" href="detalhe-provedor.html?s=3" class="flow-step step-small state-danger" style="top: 423px; left: 200px;"><span>ATIS</span><i class="total">0</i></a>
+										<a data-role="cso" href="detalhe-provedor.html?s=3" class="flow-step step-small state-danger" style="top: 423px; left: 283px;"><span>CSO</span><i class="total">0</i></a>
+										<a data-role="sia" href="detalhe-provedor.html?s=3" class="flow-step step-small state-danger" style="top: 423px; left: 366px;"><span>SI@</span><i class="total">0</i></a>
+										<a data-role="amdocs" href="detalhe-provedor.html?s=3" class="flow-step step-small state-danger" style="top: 423px; left: 449px;"><span>AMDOCS</span><i class="total">0</i></a>
+										<a data-role="mvne" href="detalhe-provedor.html?s=3" class="flow-step step-small state-danger" style="top: 423px; left: 532px;"><span>MVNE</span><i class="total">0</i></a>
+										<a data-role="spic" href="detalhe-provedor.html?s=3" class="flow-step step-small state-danger" style="top: 423px; left: 615px;"><span>SPIC</span><i class="total">0</i></a>
+								</span>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div id="Footer">
+				<span class="rights"><span>© 2016 Telefônica S.A.</span><span>Todos os direitos reservados.</span></div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

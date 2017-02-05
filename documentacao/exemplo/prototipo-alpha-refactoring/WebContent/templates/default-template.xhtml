@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:loadBundle basename="resources.application" var="msg"/>
+
+<h:head>
+
+    <title><h:outputText value="#{msg.systemTitle}" /></title>
+    
+    <!-- theme css and js -->
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/javax.faces.resource/css/custom-theme.css.xhtml?ln=primefaces-alpha-theme" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/javax.faces.resource/css/custom-components.css.xhtml?ln=primefaces-alpha-theme" type="text/css" media="screen"/>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javax.faces.resource/js/theme-behaviours.js.xhtml?ln=primefaces-alpha-theme"></script>
+    
+    <!-- specific project css and js -->
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/assets/css/project.css" type="text/css" media="screen"/>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/assets/js/project.js"></script>
+ 	
+ 	<ui:insert name="scriptsHeader" />
+ 	
+</h:head>
+
+<h:body>
+
+<h:form id="mainForm" styleClass="main-container">
+
+	<p:growl autoUpdate="true" showDetail="true" showSummary="false" escape="false" />
+	
+	<div class="main-container-wrapper">
+	
+		<div id="MenuTrigger"><a href="javascript:;"><i class="fa fa-bars ico-menu-open"></i><i class="fa fa-arrow-left ico-menu-back"></i></a></div>
+		
+		<div id="MenuCollapse">
+			
+			<div class="menu-container custom-scrollbars">
+				
+				<div class="menu-header">
+					<h3>#{msg.systemTitle}</h3>
+					<h5>#{msg.systemDescription}</h5>
+				</div>
+				
+				<div id="MenuSearch">
+					<input type="text" placeholder="Pesquise um item de menu" class="ui-inputfield" />
+					<i class="fa fa-search"></i>
+					
+					<span class="simple-message state-info">Nenhum menu encontrado.</span>
+				</div>
+				
+				<p:menubar widgetVar="mainMenu" toggleEvent="click" styleClass="clean-menubar vertical-menubar">
+					<p:menuitem value="Painel Geral" />
+					<p:submenu label="SubMenu">
+						<p:menuitem value="Item de menu 01" />
+						<p:menuitem value="Item de menu 02" />
+						<p:menuitem value="Item de menu 03" />
+					</p:submenu>
+					<p:menuitem value="Pendências Atualização" />
+					<p:menuitem value="CIT" />
+					<p:menuitem value="Nova Linha Orçamentária" />
+					<p:menuitem value="Nova Solicitação" />
+					<p:menuitem value="Nova RC" />
+					<p:menuitem value="RC" />
+					<p:menuitem value="Alteração Datas" />
+					<p:menuitem value="Processo de Compra" />
+					<p:menuitem value="Aprovação PC" />
+					<p:menuitem value="Forecast Massivo" />
+					<p:menuitem value="Pesquisar Pedidos" />
+					<p:menuitem value="Contratos" />
+					<p:menuitem value="Termo de Autorização" />
+					<p:menuitem value="Projeto" />
+					<p:menuitem value="Fornecedor" />
+					<p:menuitem value="Classificação Linha Orc." />
+					<p:menuitem value="Classificação Espanha" />
+					<p:menuitem value="Centro de custo" />
+					<p:menuitem value="Configuração Mês Ano" />
+					<p:menuitem value="Elemento Organograma" />
+					<p:menuitem value="Segurança" />
+					<p:menuitem value="Valores Orçamento" />
+					<p:menuitem value="Colaboradores" />
+					<p:menuitem value="Grupos" />
+					<p:menuitem value="Minuta Padrão" />
+					<p:menuitem value="Backup Line Owner / PMO" />
+					<p:menuitem value="Download Plugin Java" />
+					<p:menuitem value="Relatórios" />
+			    </p:menubar>
+				
+			</div>
+			
+		</div>
+		
+		<div id="NavBar">
+			<div class="inner">
+			
+				<ul class="nav-menu">
+					<li><i class="fa fa-user"></i> Bem vindo, Fabricio Lefundes!</li>
+					<li><a href="javascript:;" onclick="dShow('dialogConfiguracoes')"><i class="fa fa-gear"></i> Configurações</a></li>
+					<li><p:commandLink><i class="fa fa-unlock-alt"></i> Alterar senha</p:commandLink></li>
+					<li><p:commandLink><i class="fa fa-question"></i> Ajuda</p:commandLink></li>
+					<li class="logout"><p:commandLink><i class="fa fa-power-off"></i> Sair</p:commandLink></li>
+				</ul>
+			
+			</div>
+		</div>
+		
+		<div id="Top">
+			<div class="inner">
+				<h1><a href="#">#{msg.systemTitle}</a></h1>
+				<h5><a href="#">#{msg.systemDescription}</a></h5>
+				
+				<strong class="telefonica-vivo">Telefonica | Vivo</strong>
+			</div>
+		</div>
+		
+		<div id="Content">		
+			
+			<ui:insert name="content" />
+			
+		</div>
+
+	</div>
+	
+	<div id="Footer">
+		<div class="bar-colors"><span class="b5">&nbsp;</span><span class="b4">&nbsp;</span><span class="b3">&nbsp;</span><span class="b2">&nbsp;</span><span class="b1">&nbsp;</span></div>
+		<div class="inner">
+			<p class="rights"><span>#{msg.systemCopy}</span> <span>#{msg.systemRights}</span></p>
+		</div>
+	</div>
+	
+	<ui:insert name="dialogs" />
+	
+	<p:dialog header="Configurações" modal="true" width="600" widgetVar="dialogConfiguracoes">
+		Teste
+	</p:dialog>
+	
+	<p:confirmDialog global="true">
+		<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no small state-default" icon="fa fa-close" />
+        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes small state-danger" icon="fa fa-trash" />
+    </p:confirmDialog>
+	
+</h:form>
+
+<ui:insert name="scriptsFooter" />
+
+
+<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+<p:dialog widgetVar="statusDialog" styleClass="status-dialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" />
+<script type="text/javascript">$(function(){ window['statusDialog'] = PF('statusDialog'); });</script>
+
+</h:body>
+</html>

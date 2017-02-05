@@ -1,0 +1,201 @@
+/* FONTS */
+@font-face {
+    font-family: 'telefonica_textregular';
+    src: url(../fonts/telefonicatext-regular-webfont.eot);
+    src: url(../fonts/telefonicatext-regular-webfont.eot#iefix) format('embedded-opentype'),
+         url(../fonts/telefonicatext-regular-webfont.woff) format('woff'),
+         url(../fonts/telefonicatext-regular-webfont.ttf) format('truetype'),
+         url(../fonts/telefonicatext-regular-webfont.svg#telefonica_textregular) format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'telefonica_textitalic';
+    src: url(../fonts/telefonicatext-italic-webfont.eot);
+    src: url(../fonts/telefonicatext-italic-webfont.eot#iefix) format('embedded-opentype'),
+         url(../fonts/telefonicatext-italic-webfont.woff) format('woff'),
+         url(../fonts/telefonicatext-italic-webfont.ttf) format('truetype'),
+         url(../fonts/telefonicatext-italic-webfont.svg#telefonica_textitalic) format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'telefonica_textbold';
+    src: url(../fonts/telefonicatext-bold-webfont.eot);
+    src: url(../fonts/telefonicatext-bold-webfont.eot#iefix) format('embedded-opentype'),
+         url(../fonts/telefonicatext-bold-webfont.woff) format('woff'),
+         url(../fonts/telefonicatext-bold-webfont.ttf) format('truetype'),
+         url(../fonts/telefonicatext-bold-webfont.svg#telefonica_textbold) format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'telefonica_headline_lightRg';
+    src: url(../fonts/telefonicaheadline-light-webfont.eot);
+    src: url(../fonts/telefonicaheadline-light-webfont.eot#iefix) format('embedded-opentype'),
+         url(../fonts/telefonicaheadline-light-webfont.woff) format('woff'),
+         url(../fonts/telefonicaheadline-light-webfont.ttf) format('truetype'),
+         url(../fonts/telefonicaheadline-light-webfont.svg#telefonica_headline_lightRg) format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+a[href="javascript:;"],
+.cursor-default { cursor: default !important; }
+
+html,body { height: 100%; margin: 0; padding: 0; }
+body { font: 12px Arial; background: #EEE; }
+
+#MainWrapper { min-width: 900px; height: 100%; }
+#MainWrapper > .inner-wrapper { min-height: 100%; height: auto; margin-bottom: -40px; }
+
+#Header {
+    padding: 0 15px;
+    height: 50px;
+    background: #115a6b; /* Old browsers */
+    background: -moz-linear-gradient(top, #115a6b 0%, #0f4d5b 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#115a6b), color-stop(100%,#0f4d5b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #115a6b 0%,#0f4d5b 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #115a6b 0%,#0f4d5b 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #115a6b 0%,#0f4d5b 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #115a6b 0%,#0f4d5b 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#115a6b', endColorstr='#0f4d5b',GradientType=0 ); /* IE6-9 */
+
+    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+    position: relative;
+}
+
+#Header .btn-back { color: #FFF; text-decoration: none; text-shadow: 0px 1px 1px rgba(0,0,0,1); font-size: 16px; padding: 0 6px; border-radius: 4px; margin: 0; }
+
+#Header h1,
+#Header h5 { margin: 0; padding: 0; display: inline-block; }
+
+#Header h1 { font: 22px 'telefonica_headline_lightRg'; padding: 10px 13px 0 0; }
+#Header h5 { font: 14px 'telefonica_textregular'; background: rgba(255,255,255,.2); padding: 5px 8px; border-radius: 5px;}
+
+#Header h1 a,
+#Header h5 a { color: #FFF; text-decoration: none; text-shadow: 0px 1px 1px rgba(0,0,0,.6); cursor: default; }
+
+#Header .telefonica-vivo { position: absolute; right: 15px; top: 50%; margin-top: -15px; background: url(../img/telefonica-vivo-top.png); width: 138px; height: 30px; overflow: hidden; text-indent: -9999%; }
+
+#Content { padding: 10px 0 60px;}
+
+#Content h2 {font: 22px Arial;font-weight: bold;letter-spacing: -1px;padding: 5px 6%;margin: 10px 0 20px;position: relative;z-index: 0;color: #333;}
+#Content h2:after {content: " ";position: absolute;top: 0;right: 0;width: 95%;height: 100%;background: #DDD;z-index: -1;border-radius: 4px;border-top-right-radius: 0;border-bottom-right-radius: 0;box-shadow: 0px 1px 1px rgba(255,255,255,.8),inset 1px 1px 2px rgba(0,0,0,.1);}
+
+#Content h2 select { font: .8em Arial; border: 0; background: none; border-bottom: solid 2px #CCC; color: #333; letter-spacing: -.8px; outline: none !important; position: relative; top: -2px; }
+
+.text-content { width: 900px; margin: 0 auto; }
+
+.btn { cursor: pointer; border: 0; font: 14px Arial; padding: 6px 10px; border-radius: 4px; margin: 0 4px; box-shadow: 0px 1px 4px rgba(0,0,0,.5); }
+.btn.xsmall { font-size: 10px; text-transform: uppercase; }
+
+.group-buttons { display: block; text-align: right; }
+.group-buttons:after { content: " "; clear: both; display: table; height: 0; }
+.group-buttons .btn:last-child { margin-right: 0; }
+
+.list-history,
+.list-history li,
+.list-history li h5 { margin: 0; padding: 0; list-style: none; }
+
+.list-history { padding: 10px 0 0; }
+.list-history li { height: 58px; overflow: hidden; transition: height .3s, opacity .3s; }
+
+.list-history li .col { display: table-cell; padding: 2px 6px 2px 0; }
+.list-history li .col:after { content: " "; clear: both; display: table; height: 0; }
+.list-history li .col h5 {text-transform: uppercase;font-size: 10px; white-space: nowrap;/* font-weight: normal; */}
+.list-history li .col strong {background: #FFF;box-shadow: 0px 1px 1px rgba(0,0,0,.3);display: block;padding: 6px 8px;border-radius: 4px;font-size: 14px;line-height: 1em;font-weight: normal;letter-spacing: -.8px;height: 25px;overflow: hidden;vertical-align: middle;}
+
+.list-history li .list-type { float: left; overflow: hidden; box-shadow: 0px 1px 1px rgba(0,0,0,.3);padding: 15px 0;margin: 0 6px 0 0; width: 90px; height: 52px; box-sizing: border-box; background: #CCC;text-align: center;text-transform: uppercase;font-size: 10px; border-radius: 4px;
+  transition: color .3s, width .3s, text-shadow .3s; transition-delay: .6s; }
+.list-history li.hide-type { height: 0px; opacity: 0; }
+.list-history li.filter-type .list-type {width: 5px;color: rgba(255,255,255,0) !important;text-shadow: none !important;}
+
+.badge { font-weight: normal; letter-spacing: 0px; display: inline-block; font-size: .65em; background: #FFF; padding: 2px 5px; margin: 0 0 0 8px; border-radius: 4px; transform: translateY(-1px); }
+
+.workflow-box { width: 803px; background-position: top left; background-repeat: no-repeat;position: relative;z-index: 2;margin: 0 auto;}
+.workflow-box.group-box { background: #FFF; border-radius: 5px; box-shadow: 0px 1px 5px rgba(0,0,0,.4); box-sizing: border-box; padding: 10px 10px 20px 10px; }
+
+.workflow-box h3 { margin: 0 10px 15px; padding: 4px; font: 20px Arial; font-weight: bold; letter-spacing: -1px; color: #666; border-bottom: solid 1px #666; }
+
+.workflow-ordem { background-image: url(../img/setas-ordem.png); width: 803px; height: 303px; margin-bottom: -36px;}
+.workflow-requisicao { background-image: url(../img/setas-requisicao.png); width: 805px; height: 836px; }
+.workflow-requisicao-processamento { background-image: url(../img/setas-requisicao-emprocessamento.png); width: 735px; height: 186px; }
+
+.workflow-box .flow-step { padding: 0 10px; box-sizing: border-box; box-shadow: inset 0px -4px 20px rgba(0,0,0,.2), 0px 1px 1px rgba(0,0,0,.5); display: table;background: #666;color: #FFF;text-shadow: 0px 1px 1px rgba(0,0,0,.5); width: 150px; height: 46px; border-radius: 5px; font: 15px Arial; text-align: center; text-decoration: none; position: absolute;}
+.workflow-box .flow-step.step-small { width: 73px; height: 26px; font-size: 12px; }
+.workflow-box .flow-step.step-circle { width: 100px; height: 100px; border-radius: 50%; }
+.workflow-box .flow-step.step-full { width: 100%; }
+.workflow-box .flow-step span { display: table-cell; vertical-align: middle; line-height: .9em; }
+.workflow-box .flow-step span small { font-size: .77em; letter-spacing: .07em; }
+.workflow-box .flow-step > i {position: absolute;top: 0;right: 0;font-size: 11px;font-style: normal;background: #A63333;color: #FFF;padding: 2px 4px;border-radius: 6px;box-shadow: -1px 1px 4px -2px rgba(0,0,0,1);transform: translateX(5px) translateY(-60%);}
+
+.group-box-buttons { position: absolute; right: 18px; top: 9px; }
+
+#Footer { text-align: center; height: 40px; background: #FFF; box-shadow: 0px 0px 10px rgba(0,0,0,.3); }
+#Footer span span { display: inline-block; padding: 14px 5px 0; font-size: 11px; color: #333; }
+
+
+/* states */
+.state-primary {
+  color: #fff !important;
+  background-color: #337ab7 !important;
+  border-color: #2b679b !important;
+  text-shadow: 0px 1px 1px #333333 !important; }
+
+.state-primary-l {
+  background-color: #b3d0ea !important;
+  border-color: #9fc4e4 !important; }
+
+.state-success {
+  color: #fff !important;
+  background-color: #5cb85c !important;
+  border-color: #49a749 !important;
+  text-shadow: 0px 1px 1px #333333 !important; }
+
+.state-success-l {
+  background-color: #d8eed8 !important;
+  border-color: #c7e6c7 !important; }
+
+.state-info {
+  color: #fff !important;
+  background-color: #31b0d5 !important;
+  border-color: #269abc !important;
+  text-shadow: 0px 1px 1px #333333 !important; }
+
+.state-info-l {
+  background-color: #c5e9f3 !important;
+  border-color: #b0e1ef !important; }
+
+.state-warning {
+  color: #fff !important;
+  background-color: #f0ad4e !important;
+  border-color: #ed9e2d !important;
+  text-shadow: 0px 1px 1px #333333 !important; }
+
+.state-warning-d {
+  color: #fff !important;
+  background-color: #CB7C0C !important;
+  border-color: #C96C03 !important;
+  text-shadow: 0px 1px 1px #333333 !important; }
+
+.state-warning-l {
+  background-color: #fef9f3 !important;
+  border-color: #fceedb !important; }
+
+.state-danger {
+  color: #fff !important;
+  background-color: #d9534f !important;
+  border-color: #d33632 !important;
+  text-shadow: 0px 1px 1px #333333 !important; }
+
+.state-danger-l {
+  background-color: #f9e2e2 !important;
+  border-color: #f4cecd !important; }

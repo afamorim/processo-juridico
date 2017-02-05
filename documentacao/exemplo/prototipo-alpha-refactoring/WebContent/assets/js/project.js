@@ -1,0 +1,2 @@
+/* project specific js */
+$(function(){});

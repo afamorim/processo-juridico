@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:i="http://indra.es/alpha"
+	template="/templates/default-template.xhtml">
+	
+	<ui:define name="content">
+
+		<p:fieldset legend="Dynamic include test">
+			
+			<i:fluidRow>
+				<i:fluidField>
+					<p:outputLabel for="xhtmlPath" value="XHTML path:" />
+					<p:inputText id="xhtmlPath" value="#{prototipoBean.xhtmlPath}" />
+				</i:fluidField>
+			</i:fluidRow>
+			
+			<div class="form-actions">
+				<p:commandButton value="Dumb AJAX" icon="fa fa-flash" styleClass="state-warning" process="@none" update="@none" ignoreAutoUpdate="true" partialSubmit="true" />
+				<p:commandButton value="Update!" icon="fa fa-flash" styleClass="state-primary" process="@this,xhtmlPath" update="includeOutput" />
+			</div>
+
+		</p:fieldset>
+		
+		<p:fieldset id="includeOutput" legend="Include output" styleClass="size3">
+			
+			<ui:include src="#{prototipoBean.xhtmlPath}" />
+			
+		</p:fieldset>		
+		
+		<div class="clear"></div>
+		
+	</ui:define>
+	
+</ui:composition>

@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:i="http://indra.es/alpha"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:pe="http://primefaces.org/ui/extensions" 
+	template="/templates/default-template.xhtml">
+	
+	<ui:define name="content">
+
+		<p:fieldset id="fieldsetContainer">
+			<f:facet name="legend">
+				Linhas Orçamentárias
+				
+				<div class="field-actions inline">
+					<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+					<p:commandLink styleClass="fa fa-trash state-primary" title="#{msg.lblLimpar}" />
+					<p:commandLink styleClass="fa fa-search state-success" title="#{msg.lblPesquisar}" />
+					<p:commandLink styleClass="fa fa-trash state-info" title="#{msg.lblLimpar}" />
+					<p:commandLink styleClass="fa fa-search state-warning" title="#{msg.lblPesquisar}" />
+					<p:commandLink styleClass="fa fa-trash state-danger" title="#{msg.lblLimpar}" />
+				</div>
+				
+			</f:facet>
+			
+			<div class="ui-grid ui-grid-responsive">
+			    <div class="ui-grid-row">
+			        <div class="field-col ui-grid-col-4">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo1">Campo 1:</p:outputLabel>
+							<p:inputText id="campo1" placeholder="Campo 1" />
+							
+							<div class="field-actions">
+								<p:commandLink styleClass="fa fa-search" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash state-primary" title="#{msg.lblLimpar}" />
+								<p:commandLink styleClass="fa fa-search state-success" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash state-info" title="#{msg.lblLimpar}" />
+								<p:commandLink styleClass="fa fa-search state-warning" title="#{msg.lblPesquisar}" />
+								<p:commandLink styleClass="fa fa-trash state-danger" title="#{msg.lblLimpar}" />
+							</div>
+							
+						</div>
+					</div>
+			        <div class="field-col ui-grid-col-3">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo2">Campo 2:</p:outputLabel>
+							<p:inputText id="campo2" placeholder="Campo 2" />
+						</div>
+					</div>
+			        <div class="field-col ui-grid-col-2">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo3">Campo 3:</p:outputLabel>
+							<p:selectCheckboxMenu id="campo3" label="Campo 3">
+								<f:selectItem itemLabel="Item 1" />
+								<f:selectItem itemLabel="Item 2" />
+								<f:selectItem itemLabel="Item 3" />
+							</p:selectCheckboxMenu>
+						</div>
+					</div>
+					<div class="field-col ui-grid-col-2">
+						<div class="field-inner">
+							<p:outputLabel for="campo4">Campo 4:</p:outputLabel>
+							<p:inputText id="campo4" placeholder="Campo 4" />
+						</div>
+					</div>
+					<div class="field-col ui-grid-col-1">
+						<div class="field-inner">
+							<p:outputLabel for="campo5">Campo 5:</p:outputLabel>
+							<p:inputText id="campo5" placeholder="Campo 5" />
+						</div>
+					</div>
+			    </div>
+
+			    <div class="ui-grid-row">
+			    	<div class="field-col rowspan-3 ui-grid-col-2">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo6">Campo 6:</p:outputLabel>
+							<p:inputTextarea id="campo6" />
+						</div>
+					</div>
+					<div class="field-col ui-grid-col-2">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo7">Campo 7:</p:outputLabel>
+							<p:selectOneMenu id="campo7" disabled="true">
+								<f:selectItem itemLabel=".: Selecione :." />
+								<f:selectItem itemLabel="Item 1" />
+								<f:selectItem itemLabel="Item 2" />
+								<f:selectItem itemLabel="Item 3" />
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<div class="field-col ui-grid-col-2">
+						<div class="field-inner">
+							<p:outputLabel for="campo8">Campo 8:</p:outputLabel>
+							<p:inputText id="campo8" placeholder="Campo 8" required="true" />
+						</div>
+					</div>
+					<div class="field-col ui-grid-col-3">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo9">Campo 9:</p:outputLabel>
+							<p:selectOneMenu id="campo9" required="true">
+								<f:selectItem itemLabel=".: Selecione :." />
+								<f:selectItem itemLabel="Item 1" />
+								<f:selectItem itemLabel="Item 2" />
+								<f:selectItem itemLabel="Item 3" />
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<div class="field-col rowspan-2 ui-grid-col-3">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo10">Campo 10:</p:outputLabel>
+							<p:inputTextarea id="campo10" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui-grid-row">
+					<div class="field-col ui-grid-col-2"></div>
+			        <div class="field-col ui-grid-col-2">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo11">Campo 11:</p:outputLabel>
+							<p:inputText id="campo11" placeholder="Campo 11" />
+						</div>
+					</div>
+			        <div class="field-col rowspan-2 ui-grid-col-3">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo12">Campo 12:</p:outputLabel>
+							<p:selectManyMenu id="campo12" required="true">
+					            <f:selectItem itemLabel="Option 1" itemValue="1" />
+					            <f:selectItem itemLabel="Option 2" itemValue="2" />
+					            <f:selectItem itemLabel="Option 3" itemValue="3" />
+					            <f:selectItem itemLabel="Option 4" itemValue="4" />
+					            <f:selectItem itemLabel="Option 5" itemValue="5" />
+					            <f:selectItem itemLabel="Option 6" itemValue="6" />
+					        </p:selectManyMenu>
+						</div>
+					</div>
+			        <div class="field-col ui-grid-col-2">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo13">Campo 13:</p:outputLabel>
+							<p:inputText id="campo13" placeholder="Campo 13" />
+						</div>
+					</div>
+					
+			    </div>
+			    
+			    <div class="ui-grid-row">
+			    	<div class="field-col ui-grid-col-2"></div>
+			        <div class="field-col ui-grid-col-2">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo16">Campo 16:</p:outputLabel>
+							<p:inputText id="campo16" placeholder="Campo 16" />
+						</div>
+					</div>
+			        <div class="field-col ui-grid-col-3"></div>
+			        <div class="field-col ui-grid-col-2">
+			        	<div class="field-inner">
+							<p:outputLabel for="campo18">Campo 18:</p:outputLabel>
+							<p:inputText id="campo18" placeholder="Campo 18" />
+						</div>
+					</div>
+					<div class="field-col ui-grid-col-2">
+						<div class="field-inner">
+							<p:outputLabel for="campo19">Campo 19:</p:outputLabel>
+							<p:inputText id="campo19" placeholder="Campo 19" />
+						</div>
+					</div>
+					<div class="field-col ui-grid-col-1">
+						<div class="field-inner">
+							<p:outputLabel for="campo20">Campo 20:</p:outputLabel>
+							<p:inputText id="campo20" placeholder="Campo 20" />
+						</div>
+					</div>
+			    </div>
+			    
+			    <div class="ui-grid-row">
+				    <div class="field-col ui-grid-col-12 pull-label">
+			        	<div class="field-inner">
+			        		
+			        		<p:selectBooleanButton offLabel="Provisão" onLabel="Provisão" styleClass="boolean-button" />
+			        		
+			        	</div>
+			        </div>
+			    </div>
+				
+			</div>		
+
+		</p:fieldset>
+		
+		<p:fieldset styleClass="size3" legend="Teste required">
+			
+			<i:fluidGrid id="fgrid_test">
+			    <i:fluidRow>
+			        <i:fluidField column="3" styleClass="pull-label">
+						<p:inputText id="campo_required_1" placeholder="Teste required 1" required="#{prototipoBean.bool1}" />
+					</i:fluidField>
+					<i:fluidField column="3" styleClass="pull-label">
+						<pe:inputNumber id="campo_required_number" placeholder="Teste required number X" required="#{prototipoBean.bool1}" />
+					</i:fluidField>
+					<i:fluidField column="6" styleClass="pull-label" rowspan="3">
+						<p:inputTextarea placeholder="Teste required 2" required="#{prototipoBean.bool1}" />
+					</i:fluidField>
+				</i:fluidRow>
+				<i:fluidRow>
+					<i:fluidOffset column="16.66%" />
+					<i:fluidField column="33.33%" styleClass="pull-label">
+						<p:selectOneMenu required="#{prototipoBean.bool1}" disabled="true">
+							<f:selectItem itemValue="1" itemLabel=".: Selecione :." />
+						</p:selectOneMenu>
+					</i:fluidField>
+				</i:fluidRow>
+				<i:fluidRow>
+					<i:fluidField column="2" styleClass="pull-label">
+						<p:calendar required="#{prototipoBean.bool1}" pattern="dd/MM/yyyy" />
+					</i:fluidField>
+					<i:fluidField column="4" styleClass="pull-label">
+						<p:password required="#{prototipoBean.bool1}" />
+					</i:fluidField>
+				</i:fluidRow>
+				<i:fluidRow>
+					<i:fluidField column="6" styleClass="pull-label">
+						<p:spinner required="#{prototipoBean.bool1}" />
+					</i:fluidField>
+					<i:fluidField column="6" styleClass="pull-label">
+						<p:inputMask mask="999.999" required="#{prototipoBean.bool1}" />
+					</i:fluidField>
+				</i:fluidRow>
+			</i:fluidGrid>
+			
+			<p:outputPanel styleClass="form-actions">
+				
+				<p:commandButton value="Alternar required" icon="fa fa-refresh state-primary" styleClass="small" process="@this" update="fgrid_test">
+					<f:setPropertyActionListener value="#{!prototipoBean.bool1}" target="#{prototipoBean.bool1}" />
+				</p:commandButton>
+				
+			</p:outputPanel>
+			
+		</p:fieldset>
+		
+		<p:fieldset styleClass="size3" legend="Teste confirm update">
+		
+			<p:dataTable id="grid_btn_confirm" value="#{prototipoBean.genericList}" selection="#{prototipoBean.selectedGenericListSub}" rowKey="#{item.codigo}" var="item" rows="5" paginator="true">
+				<p:ajax global="false" event="rowSelectCheckbox" process="@parent" update="btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+				<p:ajax global="false" event="rowUnselectCheckbox" process="@parent" update="btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+				<p:ajax global="false" event="rowSelect" process="@parent" update="btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+				<p:ajax global="false" event="rowUnselect" process="@parent" update="btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+				<p:ajax global="false" event="toggleSelect" process="@parent" update="btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+				
+				<p:column selectionMode="multiple" width="20" />
+				<p:column headerText="Nome">
+					#{item.attr1}
+				</p:column>
+				<f:facet name="footer">
+					<div class="grid-actions">
+						<p:commandButton id="btnExcluir" value="Testar confirm" icon="fa fa-trash" styleClass="small state-danger" process="@this" update="grid_btn_confirm">
+							<p:confirm header="Confirmação" message="Texto de mensagem de confirmação!?" icon="ui-icon-alert" />
+						</p:commandButton>
+					</div>
+				</f:facet>
+			</p:dataTable>
+			
+		</p:fieldset>
+		
+		<p:fieldset toggleable="false" styleClass="size3">
+			<p:dataTable id="gridResultado" var="templateCit"
+				value="#{prototipoBean.genericList}"
+				selection="#{prototipoBean.selectedGenericListSub}"
+				rowKey="#{templateCit}" emptyMessage="Nenhum registro encontrado."
+				paginator="true" rows="10"
+				rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"
+				paginatorAlwaysVisible="false">
+				
+				<p:ajax global="false" event="rowSelectCheckbox" process="@parent" update=":mainForm:btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+				<p:ajax global="false" event="rowUnselectCheckbox" process="@parent" update=":mainForm:btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+				<p:ajax global="false" event="rowSelect" process="@parent" update=":mainForm:btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+				<p:ajax global="false" event="rowUnselect" process="@parent" update=":mainForm:btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+				<p:ajax global="false" event="toggleSelect" process="@parent" update=":mainForm:btnExcluir" ignoreAutoUpdate="true" partialSubmit="true" />
+
+				<p:column selectionMode="multiple" styleClass="align-center"
+					width="14" />
+
+				<p:column headerText="Arquivo">
+					a
+				</p:column>
+
+				<f:facet name="footer">
+					<div class="grid-actions">
+						<p:commandButton value="Anexar IMF" type="button" onclick="dShow('wModalAnexoIMF')"
+							icon="fa fa-file-excel-o state-success" styleClass="small" />
+						<p:commandButton value="Anexar Pleito" type="button" onclick="dShow('wModalAnexoPleito')"
+							icon="fa fa-file-powerpoint-o state-danger" styleClass="small" />
+						<p:commandButton value="Anexar Manual" type="button" onclick="dShow('wModalAnexoManual')"
+							icon="fa fa-file-pdf-o state-danger" styleClass="small" />
+						<p:commandButton icon="fa fa-paperclip" onclick="PrimeFaces.monitorDownload(function(){ statusDialog.show(); },function(){ statusDialog.hide(); })"
+							value="Baixar todos os anexos" styleClass="small" ajax="false" actionListener="#{gerenciamentoTemplateCITMB.downloadFiles}" />
+						
+					</div>
+				</f:facet>
+			</p:dataTable>
+
+			<p:outputPanel styleClass="form-actions">
+				<p:commandButton id="btnExcluir" icon="fa fa-trash" value="Excluir Selecionados" styleClass="state-danger" process="@this,gridResultado" update="gridResultado"
+					disabled="#{prototipoBean.selectedGenericListSub==null or fn:length(prototipoBean.selectedGenericListSub) == 0}">
+					<i:confirm header="Confirmação" message="Deseja realmente excluir o(s) registro(s) selecionados?" icon="ui-icon-alert" />
+				</p:commandButton>
+			</p:outputPanel>
+			<div class="clear"></div>
+			
+		</p:fieldset>
+		
+		<p:fieldset legend="Tabview">
+			<p:tabView>
+				<p:tab title="Aba 1">
+					Content 1
+				</p:tab>
+				<p:tab title="Aba 2">
+					Content 2
+				</p:tab>
+				<p:tab title="Aba 3">
+					Content 3
+				</p:tab>
+				<p:tab title="Aba 4">
+					Content 4
+				</p:tab>
+			</p:tabView>
+		</p:fieldset>
+		
+
+		<p:outputPanel styleClass="form-actions">
+				
+			<p:commandButton value="Default" icon="fa fa-search" />
+			<p:commandButton value="state-primary" icon="fa fa-search" styleClass="state-primary" update="fieldsetContainer" />
+			<p:commandButton value="state-success" icon="fa fa-search" styleClass="state-success" />
+			<p:commandButton value="state-info" icon="fa fa-search" styleClass="state-info" />
+			<p:commandButton value="state-warning" icon="fa fa-search" styleClass="state-warning" />
+			<p:commandButton value="state-danger" icon="fa fa-search" styleClass="state-danger" />
+			<p:commandButton value="Limpar" icon="fa fa-trash state-danger" />
+			
+		</p:outputPanel>
+		
+		<div class="clear"></div>
+		
+	</ui:define>
+	
+</ui:composition>

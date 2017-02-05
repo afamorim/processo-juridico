@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	
+<f:loadBundle basename="resources.application" var="msg"/>
+
+<h:head>
+
+    <title>#{msg.systemTitle}</title>
+    
+    <!-- theme css and js -->
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/javax.faces.resource/css/custom-theme.css.xhtml?ln=primefaces-alpha-theme" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/javax.faces.resource/css/custom-components.css.xhtml?ln=primefaces-alpha-theme" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/javax.faces.resource/css/custom-theme-login.css.xhtml?ln=primefaces-alpha-theme" type="text/css" media="screen"/>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javax.faces.resource/js/theme-behaviours.js.xhtml?ln=primefaces-alpha-theme"></script>
+    
+    <!-- specific project css and js -->
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/primefaces/assets/css/project.css" type="text/css" media="screen"/>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/primefaces/assets/js/project.js"></script>
+ 	
+ 	<ui:insert name="scriptsHeader" />
+ 	
+</h:head>
+
+<h:body>
+
+<h:form id="mainForm" styleClass="main-container">
+	
+	<p:growl id="growl" showDetail="true" showSummary="false" escape="false"/>
+	
+	<div class="login-container">
+	
+		<h1><a href="javascript:void;">Telefonica | Vivo</a></h1>
+		
+		<div class="login-box">
+			<div class="login-header">
+				<h2><a href="#">#{msg.systemTitle}</a></h2>
+				<h5><a href="#">#{msg.systemDescription}</a><h:outputLink id="systemInfo" value="javascript:;" styleClass="fa fa-fw fa-question-circle state-primary" /></h5>
+				<pe:tooltip for="systemInfo" value="#{msg.systemInfo}" hideDelay="1000" myPosition="left top" atPosition="center top" />
+			</div>
+			
+			<div class="login-content">
+				<ui:insert name="content" />
+			</div>
+			
+			<div class="login-footer">
+				<p><span>#{msg.systemCopy}</span> <span>#{msg.systemRights}</span></p>
+			</div>
+		</div>
+	</div>
+	
+	<ui:insert name="dialogs" />
+	
+</h:form>
+
+<ui:insert name="scriptsFooter" />
+
+
+<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" onerror="PF('statusDialog').hide()"/>
+<p:dialog widgetVar="statusDialog" styleClass="status-dialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" />
+<script type="text/javascript">$(function(){ window['statusDialog'] = PF('statusDialog'); });</script>
+
+</h:body>
+</html>
