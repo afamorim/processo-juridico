@@ -1,5 +1,7 @@
 package br.com.telefonica.processum.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import br.com.telefonica.processum.service.ProcessoScrapingService;
 @RestController
 public class ProcessoScrapingController {
 
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	
 	@Autowired
 	private ProcessoScrapingService	processoService;
 	
@@ -29,6 +33,8 @@ public class ProcessoScrapingController {
     public void salvarNumeroProcesso(@RequestParam String numeroProcesso) throws ServicoException {
 		ProcessoScrapingModel processo = new ProcessoScrapingModel();
 		processo.setNumeroProcesso(numeroProcesso);
+		processo.setStatusProcessoScraping(new StatusProcessoScraping(StatusProcessoScraping.A_CARREGAR));
+		processo.setStrDataInclusao(dateFormat.format(new Date()));
 		processoService.insert(processo);
 	}
 }
