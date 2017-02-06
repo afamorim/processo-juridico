@@ -36,7 +36,7 @@ public class PocOcorrencia implements Serializable {
     
     @Column(name = "DTC_POC_OCORRENCIA")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dtcPocOcorrencia;
+    private Date dtcPocOcorrencia = new Date();
     
     @Column(name = "NUM_PROCESSO")
     private String numProcesso;
