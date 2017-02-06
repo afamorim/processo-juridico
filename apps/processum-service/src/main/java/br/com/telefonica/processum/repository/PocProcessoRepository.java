@@ -15,4 +15,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin
 public interface PocProcessoRepository extends PagingAndSortingRepository<PocProcesso, BigDecimal> {
 
+	public PocProcesso findByNumProcesso(String numProcesso);
 }
