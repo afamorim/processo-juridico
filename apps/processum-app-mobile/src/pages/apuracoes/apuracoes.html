@@ -1,0 +1,44 @@
+<!--
+  Generated template for the Apuracoes page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Apurações</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+    <ion-item-divider color="light">Processo 1002268-96.2016.8.26.00831</ion-item-divider>
+
+    <button *ngFor="let item of apuracoes" ion-item detail-none (click)="showActionSheetApuracao(item)">
+      <div class="text-block" item-left>
+        <span>{{item.dtcPocOcorrencia}}</span>
+      </div>
+      <h3>{{item.labelExibicao}}</h3>
+      <p>Status da assinatura {{item.stsAssinatura}}.</p>
+
+      <ion-badge *ngIf="item.historico != null && item.historico.length > 0" color="danger" item-right>{{item.historico.length}}</ion-badge>
+      <ion-icon item-right clear color="dark" name="more"></ion-icon>
+    </button>
+
+  </ion-list>
+
+  <ion-fab right bottom padding>
+    <button ion-fab color="primary" (click)="addApuracao()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>
