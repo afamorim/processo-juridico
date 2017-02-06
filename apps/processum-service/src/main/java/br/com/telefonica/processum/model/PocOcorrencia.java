@@ -13,12 +13,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  *
  * @author ifbomfim
  */
 @Data
+@ToString
 @Entity
 @Table(name = "POC_OCORRENCIA")
 public class PocOcorrencia implements Serializable {
@@ -83,5 +85,11 @@ public class PocOcorrencia implements Serializable {
     
     @Column(name = "NOM_FORMA_PAGAMENTO")
     private String nomFormaPagamento;
+    
+    @Column(name="STS_ERRO")
+    private String stsErro;
+    
+    @Column(name="DES_ERRO")
+    private String desErro;
 
 }

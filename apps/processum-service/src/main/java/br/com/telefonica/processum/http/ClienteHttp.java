@@ -112,12 +112,13 @@ public class ClienteHttp {
                 List<Conta> contas = new ArrayList<>();
                 for (XML conta : dadosPessoa.nodes("//ns8:contas/*")) {
                     Conta contaVO = new Conta();
-                    contaVO.setCodigo(conta.xpath("//con:codigo/text()").get(0));
+                    final String codigoConta = conta.xpath("//con:codigo/text()").get(0);
+                    contaVO.setCodigo(codigoConta);
                     String codigoContaSistemaOrigem = conta.xpath("//con:codigoContaSistemOrigem/text()").get(0);
                     contaVO.setCodigoContaSistemOrigem(codigoContaSistemaOrigem);
 
                     cliente.setUrl("http://10.129.165.27/Conta");
-                    request.setCodigoConta(codigoContaSistemaOrigem);
+                    request.setCodigoConta(codigoConta);
 
                     cliente.setSoapEnvelope(request.getBuscaContaRequest());
                     cliente.executarChamada();
@@ -135,6 +136,8 @@ public class ClienteHttp {
                                 .registerNs("ns8", "http://www.vivo.com.br/MC/Pessoa")
                                 .registerNs("con", "http://www.vivo.com.br/MC/Conta")
                                 .registerNs("ass", "http://www.vivo.com.br/MC/Assinatura");
+                        
+                        System.out.println(dadosConta);
 
                         contaVO.setDataInicialCiclo(dadosConta.xpath("//con:dataInicialCiclo/text()").get(0));
                         contaVO.setNomeConta(dadosConta.xpath("//con:tipoConta/con:descricao/text()").get(0));
