@@ -1,0 +1,37 @@
+<div class="main-container">
+
+  <div class="color-lines"><span></span></div>
+
+  <div class="side-menu">
+
+    <div class="inner-wrapper">
+      <div class="menu-header">
+        <h1>Processum Web</h1>
+        <h5>Bem vindo, Nome do Usuário.</h5>
+        <small>Login em 00/00/0000 hh:mm:ss<br />Último acesso em 00/00/0000 hh:mm:ss</small>
+      </div>
+
+      <ul class="menu-list">
+        <li><a routerLink=""><i class="fa fa-home"></i>Principal</a></li>
+        <li><a routerLink="/processo/importados"><i class="fa fa-file-text-o stack-back"></i><i class="fa fa-search stack-front"></i>Processos Importados <span class="badge badge-danger">18</span></a></li>
+        <li><a routerLink="/processo/solicitados"><i class="fa fa-clock-o stack-back"></i><i class="fa fa-search stack-front"></i>Processos Solicitados <span class="badge badge-danger">5</span></a></li>
+        <li><a routerLink="/processo/apuracoes" href="javascript:;"><i class="fa fa-user-secret stack-back"></i><i class="fa fa-search stack-front"></i>Apurações</a></li>
+        <li class="menu-item-danger"><a href="javascript:;"><i class="fa fa-power-off"></i>Sair</a></li>
+      </ul>
+    </div>
+
+    <div class="menu-footer">
+      <h5>Processum Web <strong>Vivo Extranet</strong></h5>
+    </div>
+
+  </div>
+  <div class="main-content">
+
+      <router-outlet></router-outlet>
+
+  </div>
+
+</div>
+<div class="main-footer">
+  <a href="javascript:;" class="logo-telefonica-vivo">Telefonica | Vivo</a>
+</div>
