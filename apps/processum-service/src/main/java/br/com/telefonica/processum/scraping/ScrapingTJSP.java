@@ -96,25 +96,34 @@ public class ScrapingTJSP {
 			
 			HtmlSubmitInput btnPesquisa = (HtmlSubmitInput) consultaProcessoForm.getInputByName("pbEnviar");
 			
-			//JA VAI ACESSAR A PAGINA DE FORMA DIRETA
 			consultaProcessosPG = (HtmlPage)webClient.getPage("https://esaj.tjsp.jus.br/cpopg/search.do?conversationId=&dadosConsulta.localPesquisa.cdLocal=83&cbPesquisa=NMPARTE&dadosConsulta.tipoNuProcesso=UNIFICADO&dadosConsulta.valorConsulta=telefonica&uuidCaptcha=");
-			List<ProcessoScrapingModel> processos = new ArrayList<>();
-			System.out.println(consultaProcessosPG.getAnchors());
-			boolean temPaginacao;
-			do {
-				temPaginacao = false;
-				processos.addAll(loadProcessosByLinks(consultaProcessosPG));
-				for (HtmlAnchor link : consultaProcessosPG.getAnchors()){
-					if (link.getAttribute("title").indexOf("Próxima") > -1){
-						temPaginacao = true;
-						consultaProcessosPG = (HtmlPage)link.click();
-					}
-				}
-			}while (temPaginacao);
-			processoService.insert(processos);
+			loadProcessosDiretos(consultaProcessosPG);
+			
+			consultaProcessosPG = (HtmlPage)webClient.getPage("https://esaj.tjsp.jus.br/cpopg/search.do?conversationId=&dadosConsulta.localPesquisa.cdLocal=81&cbPesquisa=NMPARTE&dadosConsulta.tipoNuProcesso=UNIFICADO&dadosConsulta.valorConsulta=telefonica&uuidCaptcha=&pbEnviar=Pesquisar");
+			loadProcessosDiretos(consultaProcessosPG);
+			
+			consultaProcessosPG = (HtmlPage)webClient.getPage("https://esaj.tjsp.jus.br/cpopg/search.do?conversationId=&dadosConsulta.localPesquisa.cdLocal=35&cbPesquisa=NMPARTE&dadosConsulta.tipoNuProcesso=UNIFICADO&dadosConsulta.valorConsulta=telefonica&uuidCaptcha=&pbEnviar=Pesquisar");
+			loadProcessosDiretos(consultaProcessosPG);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void loadProcessosDiretos(HtmlPage consultaProcessosPG) throws IOException{
+		List<ProcessoScrapingModel> processos = new ArrayList<>();
+		System.out.println(consultaProcessosPG.getAnchors());
+		boolean temPaginacao;
+		do {
+			temPaginacao = false;
+			processos.addAll(loadProcessosByLinks(consultaProcessosPG));
+			for (HtmlAnchor link : consultaProcessosPG.getAnchors()){
+				if (link.getAttribute("title").indexOf("Próxima") > -1){
+					temPaginacao = true;
+					consultaProcessosPG = (HtmlPage)link.click();
+				}
+			}
+		}while (temPaginacao);
+		processoService.insert(processos);
 	}
 	
 	private List<ProcessoScrapingModel> loadProcessosByLinks(HtmlPage consultaProcessosPG) throws IOException{
@@ -199,8 +208,14 @@ public class ScrapingTJSP {
 				if (domElement.getElementsByTagName("td").size() >= 3){
 					String strRequerente = domElement.getElementsByTagName("td").get(1).getTextContent();
 					String strRequerido = domElement.getElementsByTagName("td").get(3).getTextContent();
-					processoTJSP.setRequerente(strRequerente.trim().substring(0, strRequerente.trim().indexOf("\n")));
-					processoTJSP.setAdvogado(strRequerente.trim().substring(strRequerente.trim().indexOf("\n")).trim());
+					
+					if (strRequerente.trim().indexOf("\n") > -1){
+						processoTJSP.setRequerente(strRequerente.trim().substring(0, strRequerente.trim().indexOf("\n")));
+						processoTJSP.setAdvogado(strRequerente.trim().substring(strRequerente.trim().indexOf("\n")).trim());
+					}else{
+						processoTJSP.setRequerente(strRequerente.trim());
+					}
+					
 					if (strRequerido.trim().indexOf("\n") > -1){
 						processoTJSP.setRequerido(strRequerido.trim().substring(0, strRequerido.trim().indexOf("\n")));
 					}else{
