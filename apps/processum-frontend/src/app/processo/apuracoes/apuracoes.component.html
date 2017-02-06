@@ -1,0 +1,244 @@
+<div class="content-header">
+    <h3>Processo <span class="badge badge-default">#1002268-96.2016.8.26.00831</span></h3>
+    <small>Detalhe do processo, e visualização/solicitação das apurações.</small>
+    <div class="header-buttons">
+        
+    </div>
+</div>
+
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-3">
+            <label>Número</label>
+            <div class="text-field">
+                <span>1002268-96.2016.8.26.00831</span>
+            </div>
+        </div>
+        <div class="ui-grid-col-3">
+            <label>Empresa</label>
+            <div class="text-field">
+                <span>TBRA - VIVO SP</span>
+            </div>
+        </div>
+        <div class="ui-grid-col-3">
+            <label>Divisão Responsável</label>
+            <div class="text-field">
+                <span>CONSUMIDOR NACIONAL</span>
+            </div>
+        </div>        
+
+        <div class="ui-grid-col-3">
+            <label>Tipo de Ação</label>
+            <div class="text-field">
+                <span>Processo de conhecimento</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-4">
+
+            <p-fieldset legend="Polo Ativo" styleClass="no-border-legend">
+                <p-listbox class="custom-listbox" [options]="listboxGenerico" multiple="true">
+                    <template let-item pTemplate="item">
+                        <span class="badge badge-default">98.791.358/0001-84</span>{{item.label}}
+                    </template>
+                </p-listbox>
+            </p-fieldset>
+
+        </div>
+        <div class="ui-grid-col-4">
+
+            <p-fieldset legend="Polo Passivo" styleClass="no-border-legend">
+                <p-listbox class="custom-listbox" [options]="listboxGenerico" multiple="true">
+                    <template let-item pTemplate="item">
+                        <span class="badge badge-default">98.791.358/0001-84</span>{{item.label}}
+                    </template>
+                </p-listbox>
+            </p-fieldset>
+
+        </div>
+        <div class="ui-grid-col-4">
+
+            <p-fieldset legend="Vivo Terceiro Interessado" styleClass="no-border-legend">
+                <p-listbox class="custom-listbox" [options]="listboxGenerico" multiple="true">
+                    <template let-item pTemplate="item">
+                        <span class="badge badge-default">98.791.358/0001-84</span>{{item.label}}
+                    </template>
+                </p-listbox>
+            </p-fieldset>
+
+        </div>
+    </div>
+</div>
+
+<p-fieldset legend="Apurações" styleClass="size-2 margin-top">
+
+    <div [formGroup]="formGroup" class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2 button-field">
+                <p-selectButton [options]="cpfCnpj" formControlName="isCpfCnpj"></p-selectButton>
+            </div>
+            <div class="ui-grid-col-2">
+                <label for="cpfCnpj">{{(formGroup.value.isCpfCnpj=='cpf')?'CPF':'CNPJ'}}</label>
+                <p-inputMask *ngIf="formGroup.value.isCpfCnpj=='cpf'" formControlName="numCpfCnpj" id="cpfCnpj" mask="999.999.999-99" placeholder="999.999.999-99"></p-inputMask>
+                <p-inputMask *ngIf="formGroup.value.isCpfCnpj=='cnpj'" formControlName="numCpfCnpj" id="cpfCnpj" mask="99.999.999/9999-99" placeholder="99.999.999/9999-99"></p-inputMask>
+            </div>
+            <div class="ui-grid-col-2 button-field">
+                <p-selectButton [options]="fixaMovel" formControlName="isFixaMovel"></p-selectButton>
+            </div>
+            <div class="ui-grid-col-2">
+                <label for="numLinha">{{(formGroup.value.isFixaMovel=='fixa')?'Número linha fixa':'Número linha móvel'}}</label>
+                <p-inputMask *ngIf="formGroup.value.isFixaMovel=='fixa'" formControlName="numLinha" id="numLinha" mask="(99)9999-9999" placeholder="(99)9999-9999"></p-inputMask>
+                <p-inputMask *ngIf="formGroup.value.isFixaMovel=='movel'" formControlName="numLinha" id="numLinha" mask="(99)99999-9999" placeholder="(99)99999-9999"></p-inputMask>
+            </div>
+            <div class="ui-grid-col-2">
+                <label for="dataInicioPesquisa">Data início pesquisa</label>
+                <p-calendar formControlName="dtcInicioPequisa" id="dataInicioPesquisa" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
+            </div>
+            <div class="ui-grid-col-2">
+                <label for="dataFimPesquisa">Data fim pesquisa</label>
+                <p-calendar formControlName="dtcFimPesquisa" id="dataFimPesquisa" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button pButton type="button" label="Efetuar apuração" icon="fa-search" class="ui-button-primary" (click)="efetuarApuracao()"></button>
+        <button pButton type="button" label="Limpar campos" icon="fa-close" class="ui-button-secondary" (click)="clearForm()"></button>
+    </div>
+
+    <p-menu [model]="itemsSubmenuApuracoes" #submenuOcorrencias popup="popup"></p-menu>
+
+    <ul class="cards-list">
+        <li *ngFor="let item of apuracoes">
+            <div class="card-item">
+                <span class="header">
+                    <span *ngIf="item.historico != null && item.historico.length > 0" class="badge badge-danger collapse-text">{{item.historico.length}}<span class="text"> apurações no histórico desse registro</span></span>
+                    <span class="date">{{item.dtcPocOcorrencia}}</span>
+                    <span class="text">
+                        <h5>{{item.labelExibicao}}</h5>
+                        <small>Status da assinatura {{item.stsAssinatura}}.</small>
+                    </span>
+                    <button pButton icon="fa-ellipsis-v" class="icon-only btn-more" (click)="showSubmenuOcorrencias($event,submenuOcorrencias,item)"></button>
+                </span>
+            </div>
+        </li>
+    </ul>
+
+</p-fieldset>
+
+<p-dialog #dialogDetalheApuracao width="800" modal="true" resizable="false" [(visible)]="dialogDetalheApuracao.visible">
+    <p-header>
+        Detalhe da Apuração
+        <select [(ngModel)]="detailApuracao">
+            <option [ngValue]="selectedApuracao">{{selectedApuracao.dtcPocOcorrencia}}</option>
+            <option *ngFor="let item of selectedApuracao.historico" [ngValue]="item">{{item.dtcPocOcorrencia}}</option>
+        </select>
+    </p-header>
+    
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3">
+                <label>CPF/CNPJ</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.numCpfCnpj}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <label>Nro. linha fixa/móvel</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.numLinha}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <label>Data início pesquisa</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.dtcInicioPequisa}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <label>Data fim pesquisa</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.dtcFimPesquisa}}</span>
+                </div>
+            </div>
+            
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-6">
+                <label>Nome do Cliente</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.nomCliente}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <label>Nome da conta</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.nomConta}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <label>Tipo de Conta </label>
+                <div class="text-field">
+                    <span>{{detailApuracao.nomTipoConta}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                <label>Data do Cadastro</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.dtcCadastro}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <label>Tipo de Assinatura</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.nomTipoAssinatura}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-col-2">
+                <label>Status da assinatura</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.stsAssinatura}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-col-2">
+                <label>Saldo</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.valSaldo}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-col-3">
+                <label>Forma de pagamento</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.nomFormaPagamento}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <label>Endereço Correspondência</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.desEnderecoCorrespondencia}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <label>Endereço Tributação</label>
+                <div class="text-field">
+                    <span>{{detailApuracao.desEnderecoTributacao}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button pButton type="button" label="Exportar PDF" icon="fa-file-pdf-o" class="ui-button-primary" (click)="exportarPDF(detailApuracao)"></button>
+        <button pButton type="button" label="Fechar" icon="fa-close" class="ui-button-secondary" (click)="hideDialog(dialogDetalheApuracao)"></button>
+    </div>
+</p-dialog>

@@ -1,0 +1,190 @@
+<div class="content-header">
+    <h3>Cadastro de Processo</h3>
+    <small>Breve descrição para a tela de cadastro de processo.</small>
+    <div class="header-buttons">
+        
+    </div>
+</div>
+
+<span [formGroup]="formGroup">
+
+    <p-fieldset legend="Dados do processo" toggleable="true">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3">
+                    <label for="empresa">Empresa</label>
+                    <p-autoComplete id="empresa" placeholder="Digite aqui para buscar" field="nomEmpresa" [suggestions]="empresas" (completeMethod)="searchEmpresas($event)" (onDropdownClick)="searchEmpresas($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="divisaoResponsavel">Divisão Responsável</label>
+                    <p-autoComplete id="divisaoResponsavel" placeholder="Digite aqui para buscar" field="nomDivisao" [suggestions]="divisoes" (completeMethod)="searchDivisoes($event)" (onDropdownClick)="searchDivisoes($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="natureza">Natureza</label>
+                    <input pInputText id="natureza" type="text" value="Judicial" readonly placeholder="Digite aqui" />
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="numero">Número</label>
+                    <input pInputText id="numero" formControlName="numeroProcesso" />
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3">
+                    <label for="espDetNatureza">Esp./Det. da Natureza</label>
+                    <p-autoComplete id="espDetNatureza" formControlName="espDetNatureza" placeholder="Digite aqui para buscar" field="label" [suggestions]="espDetNatureza" (completeMethod)="searchEspDetNatureza($event)" (onDropdownClick)="searchEspDetNatureza($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="preObjetoEmpresa">Pré Objeto Empresa</label>
+                    <p-autoComplete id="preObjetoEmpresa" formControlName="preObjetoEmpresa" placeholder="Digite aqui para buscar" field="nomPreObjetoEmpresa" [suggestions]="preObjetosEmpresa" (completeMethod)="searchPreObjetoEmpresa($event)" (onDropdownClick)="searchPreObjetoEmpresa($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="objetoAcao">Objeto da Ação</label>
+                    <p-autoComplete id="objetoAcao" placeholder="Digite aqui para buscar" field="nomTipoAcaoProcesso" [suggestions]="tiposAcaoProcesso" (completeMethod)="searchTiposAcaoProcesso($event)" (onDropdownClick)="searchTiposAcaoProcesso($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="escritorioContratado">Escritório Contratado</label>
+                    <p-autoComplete id="escritorioContratado" placeholder="Digite aqui para buscar" field="nomEscritorioContratado" [suggestions]="escritoriosContratados" (completeMethod)="searchEscritoriosContratados($event)" (onDropdownClick)="searchEscritoriosContratados($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <label for="dataEnvioEscContratado">Data de Envio Esc. Contratado</label>
+                    <p-calendar id="dataEnvioEscContratado" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
+                </div>
+                <div class="ui-grid-col-2">
+                    <label for="dataCitacao">Data de Citação</label>
+                    <p-calendar id="dataCitacao" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
+                </div>
+                <div class="ui-grid-col-2">
+                    <label for="dataProtocoloAforamento">Data de Protocolo/Aforamento</label>
+                    <p-calendar id="dataProtocoloAforamento" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="responsavel">Responsável</label>
+                    <p-autoComplete id="responsavel" placeholder="Digite aqui para buscar" field="nomAdvogado" [suggestions]="advogados" (completeMethod)="searchAdvogados($event)" (onDropdownClick)="searchAdvogados($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="corresponsavel">Corresponsável</label>
+                    <p-autoComplete id="corresponsavel" placeholder="Digite aqui para buscar" field="nomAdvogado" [suggestions]="advogados" (completeMethod)="searchAdvogados($event)" (onDropdownClick)="searchAdvogados($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3">
+                    <label for="estado">Estado</label>
+                    <p-autoComplete id="estado" formControlName="estado" placeholder="Digite aqui para buscar" field="nomEstado" [suggestions]="estados" (completeMethod)="searchEstados($event)" (onDropdownClick)="searchEstados($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="municipio">Município</label>
+                    <p-autoComplete id="municipio" formControlName="municipio" placeholder="Digite aqui para buscar" field="nomMunicipio" [suggestions]="municipios" (completeMethod)="searchMunicipios($event)" (onDropdownClick)="searchMunicipios($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="comarca">Comarca</label>
+                    <p-autoComplete id="comarca" formControlName="comarca" placeholder="Digite aqui para buscar" field="nomComarca" [suggestions]="comarcas" (completeMethod)="searchComarcas($event)" (onDropdownClick)="searchComarcas($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3">
+                    <label for="local">Local</label>
+                    <p-autoComplete id="local" placeholder="Digite aqui para buscar" field="nomJuizo" [suggestions]="juizos" (completeMethod)="searchJuizos($event)" (onDropdownClick)="searchJuizos($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3">
+                    <label for="tipoAcao">Tipo de Ação</label>
+                    <p-autoComplete id="tipoAcao" placeholder="Digite aqui para buscar" field="desTipoAcao" [suggestions]="tiposAcao" (completeMethod)="searchTiposAcao($event)" (onDropdownClick)="searchTiposAcao($event)" [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-grid-col-3 button-field">
+                    <p-toggleButton onLabel="Passou pelo Call Center" offLabel="Passou pelo Call Center" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
+                </div>
+                <div class="ui-grid-col-2 button-field">
+                    <p-toggleButton onLabel="Relevante" offLabel="Relevante" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
+                </div>
+                <div class="ui-grid-col-2 button-field">
+                    <p-toggleButton onLabel="Consumerista" offLabel="Consumerista" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
+                </div>
+                <div class="ui-grid-col-2 button-field">
+                    <p-toggleButton onLabel="Passou pelo Procon" offLabel="Passou pelo Procon" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
+                </div>
+            </div>
+        </div>
+    </p-fieldset>
+
+    <div class="divisor"></div>
+
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+
+                <fieldset class="ui-fieldset ui-widget ui-widget-content ui-corner-all no-border-legend">
+                    <legend class="ui-fieldset-legend ui-corner-all ui-state-default ui-unselectable-text">
+                        Polo Ativo
+                        <div class="header-buttons">
+                            <button pButton type="button" icon="fa-search" class="icon-only" (click)="dialogPartes.show('POLO_ATIVO')"></button>
+                            <button pButton type="button" icon="fa-trash" class="icon-only" (click)="removeFromListbox('partesPoloAtivo')"></button>
+                        </div>
+                    </legend>
+                    <div class="ui-fieldset-content-wrapper">
+                        <div class="ui-fieldset-content">
+                            <p-listbox class="custom-listbox" [options]="partesPoloAtivo" formControlName="partesPoloAtivo" multiple="true">
+                                <template let-item pTemplate="item">
+                                    <span class="badge badge-default">{{(item.numCpfCnpj!=null)?item.numCpfCnpj:'---'}}</span>{{item.nomParteProcesso}}
+                                </template>
+                            </p-listbox>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="ui-grid-col-4">
+
+                <fieldset class="ui-fieldset ui-widget ui-widget-content ui-corner-all no-border-legend">
+                    <legend class="ui-fieldset-legend ui-corner-all ui-state-default ui-unselectable-text">
+                        Polo Passivo
+                        <div class="header-buttons">
+                            <button pButton type="button" icon="fa-search" class="icon-only" (click)="dialogPartes.show('POLO_PASSIVO')"></button>
+                            <button pButton type="button" icon="fa-trash" class="icon-only" (click)="removeFromListbox('partesPoloPassivo')"></button>
+                        </div>
+                    </legend>
+                    <div class="ui-fieldset-content-wrapper">
+                        <div class="ui-fieldset-content">
+                            <p-listbox class="custom-listbox" [options]="partesPoloPassivo" formControlName="partesPoloPassivo" multiple="true">
+                                <template let-item pTemplate="item">
+                                    <span class="badge badge-default">{{(item.numCpfCnpj!=null)?item.numCpfCnpj:'---'}}</span>{{item.nomParteProcesso}}
+                                </template>
+                            </p-listbox>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="ui-grid-col-4">
+
+                <fieldset class="ui-fieldset ui-widget ui-widget-content ui-corner-all no-border-legend">
+                    <legend class="ui-fieldset-legend ui-corner-all ui-state-default ui-unselectable-text">
+                        Vivo Terceiro Interessado
+                        <div class="header-buttons">
+                            <button pButton type="button" icon="fa-search" class="icon-only" (click)="dialogPartes.show('TERCEIRO_INTERESSADO')"></button>
+                            <button pButton type="button" icon="fa-trash" class="icon-only" (click)="removeFromListbox('partesTerceiroInteressado')"></button>
+                        </div>
+                    </legend>
+                    <div class="ui-fieldset-content-wrapper">
+                        <div class="ui-fieldset-content">
+                            <p-listbox class="custom-listbox" [options]="partesTerceiroInteressado" formControlName="partesTerceiroInteressado" multiple="true">
+                                <template let-item pTemplate="item">
+                                    <span class="badge badge-default">{{(item.numCpfCnpj!=null)?item.numCpfCnpj:'---'}}</span>{{item.nomParteProcesso}}
+                                </template>
+                            </p-listbox>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+
+</span>
+
+<div class="action-buttons">
+    <button pButton type="button" label="Salvar processo" icon="fa-save" class="ui-button-success"></button>
+    <button pButton type="button" label="Cancelar" icon="fa-close" class="ui-button-secondary"></button>
+</div>
+
+<dialog-partes #dialogPartes (add)="onAddPartes($event)"></dialog-partes>

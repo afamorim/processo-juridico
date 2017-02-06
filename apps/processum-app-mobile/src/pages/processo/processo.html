@@ -1,0 +1,63 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Processo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+    <ion-item-divider color="light">Detalhes do processo</ion-item-divider>
+    <ion-item>
+      <ion-note color="primary" item-left>
+        Número
+      </ion-note>
+      1002268-96.2016.8.26.00831
+    </ion-item>
+    <ion-item>
+      <ion-note color="primary" item-left>
+        Empresa
+      </ion-note>
+      TBRA - VIVO SP
+    </ion-item>
+    <ion-item>
+      <ion-note color="primary" item-left>
+        Divisão Responsável
+      </ion-note>
+      Consumidor Nacional
+    </ion-item>
+    <ion-item>
+      <ion-note color="primary" item-left>
+        Tipo de Ação
+      </ion-note>
+      Processo de conhecimento
+    </ion-item>
+
+    <ion-item-divider color="light">Partes do processo</ion-item-divider>
+    <button ion-item detail-push>
+      Polo Ativo
+      <ion-badge color="danger" item-right>3</ion-badge>
+    </button>
+    <button ion-item detail-push>
+      Polo Passivo
+      <ion-badge color="danger" item-right>3</ion-badge>
+    </button>
+    <button ion-item detail-push>
+      Vivo Terceiro Interessado
+      <ion-badge color="danger" item-right>3</ion-badge>
+    </button>
+
+    <ion-item-divider color="light">Ocorrências</ion-item-divider>
+    <button ion-item detail-push (click)="showOcorrencias()">
+      Apurações
+      <ion-badge color="danger" item-right>{{apuracoes.length}}</ion-badge>
+    </button>
+  </ion-list>
+  
+</ion-content>

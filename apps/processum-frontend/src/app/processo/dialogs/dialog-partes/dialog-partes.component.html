@@ -1,0 +1,35 @@
+<p-dialog width="600" modal="true" resizable="false" [(visible)]="visible">
+    <p-header>
+        Pesquisa de Partes <span class="badge badge-info">{{tipoParte.label}}</span>
+    </p-header>
+    
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields">
+        <div [formGroup]="formGroup" class="ui-grid-row">
+            <div class="ui-grid-col-9">
+                <label for="nomePesquisaPartes">Nome</label>
+                <input formControlName="nomParteProcesso" id="nomePesquisaPartes" pInputText type="text" placeholder="Digite aqui" />
+            </div>
+            <div class="ui-grid-col-3 button-field">
+                <button [disabled]="formGroup.invalid" pButton type="button" label="Pesquisar" icon="fa-search" class="ui-button-primary" (click)="search()"></button>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <p-dataTable [value]="partes" [(selection)]="partesSelected" scrollable="true" scrollHeight="117px" emptyMessage="Nenhum registro encontrado.">
+                    <p-column [style]="{'width':'28px'}" selectionMode="multiple"></p-column>
+                    <p-column [style]="{'width':'160px'}" field="numCpfCnpj" header="CPF/CNPJ">
+                        <template let-col let-row="rowData" pTemplate="body">
+                            {{row[col.field]}}
+                        </template>
+                    </p-column>
+                    <p-column field="nomParteProcesso" header="Nome"></p-column>
+                </p-dataTable>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button [disabled]="partesSelected.length == 0" pButton type="button" label="Adicionar" icon="fa-plus" class="ui-button-primary" (click)="addPartes()"></button>
+        <button pButton type="button" label="Cancelar" icon="fa-close" class="ui-button-secondary" (click)="hide()"></button>
+    </div>
+</p-dialog>
