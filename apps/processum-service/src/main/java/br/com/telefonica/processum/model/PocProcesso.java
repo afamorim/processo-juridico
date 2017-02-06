@@ -69,11 +69,11 @@ public class PocProcesso implements Serializable {
     private String nomPreObjetoEmpresa;
 
     @Column(name = "DTC_CITACAO")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dtcCitacao;
 
     @Column(name = "DTC_PROTOCOLO_AFORAMENTO")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dtcProtocoloAforamento;
 
     @Size(max = 1)
@@ -107,7 +107,7 @@ public class PocProcesso implements Serializable {
     private String numProcesso;
 
     @Column(name = "DTC_ENVIO_ESC_CONTRATADO")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dtcEnvioEscContratado;
 
     @Column(name = "COD_TIPO_ACAO_PROCESSO")
@@ -183,4 +183,5 @@ public class PocProcesso implements Serializable {
     @Size(min = 1, max = 4000)
     @Column(name = "NOM_TERCEIRO_INTERESSADO")
     private String nomTerceiroInteressado;
+    
 }

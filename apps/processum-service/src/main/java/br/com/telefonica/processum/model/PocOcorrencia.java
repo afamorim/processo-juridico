@@ -33,7 +33,7 @@ public class PocOcorrencia implements Serializable {
     private String stsPocOcorrencia;
     
     @Column(name = "DTC_POC_OCORRENCIA")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dtcPocOcorrencia;
     
     @Column(name = "NUM_PROCESSO")
@@ -46,11 +46,11 @@ public class PocOcorrencia implements Serializable {
     private String numLinha;
     
     @Column(name = "DTC_INICIO_PESQUISA")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dtcInicioPequisa;
     
     @Column(name = "DTC_FIM_PESQUISA")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dtcFimPesquisa;
     
     @Column(name = "NOM_CLIENTE")
@@ -60,7 +60,7 @@ public class PocOcorrencia implements Serializable {
     private String nomConta;
 
     @Column(name = "DTC_CADASTRO")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dtcCadastro;
     
     @Column(name = "NOM_TIPO_CONTA")
