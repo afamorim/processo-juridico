@@ -68,12 +68,13 @@ public class IntegracaoServiceImpl implements IntegracaoService {
                 List<Conta> contas = new ArrayList<>();
                 for (XML conta : dadosPessoa.nodes("//ns8:contas/*")) {
                     Conta contaVO = new Conta();
-                    contaVO.setCodigo(conta.xpath("//con:codigo/text()").get(0));
+                    final String codigoConta = conta.xpath("//con:codigo/text()").get(0);
+                    contaVO.setCodigo(codigoConta);
                     String codigoContaSistemaOrigem = conta.xpath("//con:codigoContaSistemOrigem/text()").get(0);
                     contaVO.setCodigoContaSistemOrigem(codigoContaSistemaOrigem);
 
                     cliente.setUrl("http://10.129.165.27/Conta");
-                    dadosRequisicao.setCodigoConta(codigoContaSistemaOrigem);
+                    dadosRequisicao.setCodigoConta(codigoConta);
 
                     cliente.setSoapEnvelope(dadosRequisicao.getBuscaContaRequest());
                     cliente.executarChamada();
@@ -95,7 +96,7 @@ public class IntegracaoServiceImpl implements IntegracaoService {
                         contaVO.setDataInicialCiclo(dadosConta.xpath("//con:dataInicialCiclo/text()").get(0));
                         contaVO.setNomeConta(dadosConta.xpath("//con:tipoConta/con:descricao/text()").get(0));
                         String siglaSistema = dadosConta.xpath("//con:sistemaOrigem/cat:nome/text()").get(0);
-                        if (("ATY".equalsIgnoreCase(siglaSistema)) || ("CSO".equalsIgnoreCase(siglaSistema))) {
+                        if (("Atlys".equalsIgnoreCase(siglaSistema)) || ("CSO".equalsIgnoreCase(siglaSistema))) {
                             contaVO.setTipoConta("PÓS");
                         } else {
                             contaVO.setTipoConta("PRÉ");
@@ -105,7 +106,6 @@ public class IntegracaoServiceImpl implements IntegracaoService {
                     }
 
                     //Busca buscarListaUltimasFaturas
-                    //
                     dadosRequisicao.setCodigoConta(codigoContaSistemaOrigem);
                     cliente.setSoapEnvelope(dadosRequisicao.getBuscaListaUltimasFaturasRequest());
                     cliente.executarChamada();
