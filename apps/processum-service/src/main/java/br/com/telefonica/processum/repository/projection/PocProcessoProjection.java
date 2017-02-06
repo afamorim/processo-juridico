@@ -93,5 +93,7 @@ public interface PocProcessoProjection {
     String getNomAdvogado();
 
     String getNomPoloAtivo();
+    
+    String getStsValidadoUsuario();
 
 }

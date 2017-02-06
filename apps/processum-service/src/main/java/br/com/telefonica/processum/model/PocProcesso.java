@@ -184,4 +184,8 @@ public class PocProcesso implements Serializable {
     @Column(name = "NOM_TERCEIRO_INTERESSADO")
     private String nomTerceiroInteressado;
     
+    @Size(max = 1)
+    @Column(name = "STS_VALIDADO_USUARIO")
+    private String stsValidadoUsuario;
+    
 }
