@@ -2,6 +2,8 @@ package br.com.telefonica.processum.threads;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.telefonica.processum.model.ProcessoScrapingModel;
 import br.com.telefonica.processum.model.StatusProcessoScraping;
 import br.com.telefonica.processum.scraping.ScrapingTJSP;
@@ -9,8 +11,10 @@ import br.com.telefonica.processum.service.ProcessoScrapingService;
 
 public class ThreadCarregarProcessosSolicitados implements Runnable{
 
+	@Autowired
 	private ScrapingTJSP scrapingTJSP;
 	
+	@Autowired
 	private ProcessoScrapingService	processoScrapingService;
 	
 	public ThreadCarregarProcessosSolicitados(ProcessoScrapingService aProcessoScrapingService, ScrapingTJSP aScrapingTJSP){

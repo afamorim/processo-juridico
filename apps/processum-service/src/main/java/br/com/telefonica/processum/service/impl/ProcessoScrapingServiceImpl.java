@@ -40,7 +40,7 @@ public class ProcessoScrapingServiceImpl implements ProcessoScrapingService {
 	}
 
 	@Override
-	public void inert(ProcessoScrapingModel aProcesso) {
+	public void insert(ProcessoScrapingModel aProcesso) {
 		processoScrapingRepository.save(aProcesso);
 	}
 	
@@ -50,7 +50,7 @@ public class ProcessoScrapingServiceImpl implements ProcessoScrapingService {
 
 	@Override
 	public void loadProcessosPendentes() {
-		List<ProcessoScrapingModel> processos = findProcessosByStatus(new StatusProcessoScraping());
+		List<ProcessoScrapingModel> processos = findProcessosByStatus(new StatusProcessoScraping(StatusProcessoScraping.CARREGADO));
 		for (ProcessoScrapingModel processoScraping : processos){
 			PocProcesso processo = new PocProcesso();
 			processo.setNumProcesso(processoScraping.getNumeroProcesso());
