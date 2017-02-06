@@ -26,13 +26,18 @@ import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.VerticalAlignment;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -176,9 +181,20 @@ public final class PdfUtil {
             final int widthImage = 72;
             final int heightImage = 274;
             
-            Image image = new Image(ImageDataFactory.create(getImage("img\\logo_telefonica.png")), 2, 2);
-            image.setFixedPosition(margin, PageSize.A4.getHeight() - margin);
-            image.scaleToFit(widthImage, heightImage);
+            Image image = null;
+            
+            try {
+                InputStream is = getImage("img//logo_telefonica.png");
+                if (is != null) {
+                    byte[] array = IOUtils.toByteArray(is);
+                    image = new Image(ImageDataFactory.create(array), 2, 2);
+                    image.setFixedPosition(margin, PageSize.A4.getHeight() - margin);
+                    image.scaleToFit(widthImage, heightImage);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(PdfUtil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             
             PdfDocumentEvent docEvent = (PdfDocumentEvent) event;
             PdfDocument pdfDoc = docEvent.getDocument();
@@ -189,13 +205,16 @@ public final class PdfUtil {
             Rectangle rect = new Rectangle(widthImage + margin * 2,
                     pdfDoc.getDefaultPageSize().getTop() - doc.getTopMargin(), 300, 17);
             
-            new Canvas(canvas, pdfDoc, rect).add(image);
+            
+            if (image != null) {
+                new Canvas(canvas, pdfDoc, rect).add(image);
+            }
             new Canvas(canvas, pdfDoc, rect).add(cell);
         }
 
-        private URL getImage(final String name) {
+        private InputStream getImage(final String name) {
             ClassLoader classLoader = getClass().getClassLoader();
-            return classLoader.getResource(name);
+            return classLoader.getResourceAsStream(name);
         }
     }
 
