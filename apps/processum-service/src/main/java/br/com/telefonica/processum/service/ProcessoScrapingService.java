@@ -11,7 +11,7 @@ public interface ProcessoScrapingService {
 	
 	public void update(ProcessoScrapingModel processo);
 	
-	public void inert(ProcessoScrapingModel processo);
+	public void insert(ProcessoScrapingModel processo);
 	
 	public List<ProcessoScrapingModel> findProcessosByStatus(StatusProcessoScraping status);
 	
