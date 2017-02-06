@@ -86,6 +86,11 @@ public class ProcessoScrapingModel {
 	@Size(min = 1, max = 200)
 	@Column(name = "DES_REQUERIDO")
 	private String	requerido;
+	
+	@Basic(optional = false)
+	@Size(min = 1, max = 200)
+	@Column(name = "DESC_DATA_INCLUSAO")
+	private String	strDataInclusao;
 
 	public String getNumeroProcesso() {
 		return numeroProcesso;
@@ -164,6 +169,12 @@ public class ProcessoScrapingModel {
 	}
 	public void setStatusProcessoScraping(StatusProcessoScraping statusProcessoScraping) {
 		this.statusProcessoScraping = statusProcessoScraping;
+	}
+	public String getStrDataInclusao() {
+		return strDataInclusao;
+	}
+	public void setStrDataInclusao(String strDataInclusao) {
+		this.strDataInclusao = strDataInclusao;
 	}
 	@Override
 	public String toString() {

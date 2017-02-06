@@ -27,7 +27,7 @@ public class ConfigureServicesBackgroundListener  implements ServletContextListe
 	
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-		initThreadProcessoScrapingAutomatico(scrapingTJSP);
+//		initThreadProcessoScrapingAutomatico(scrapingTJSP);
 		initThreadCarregarProcessoSolicitados(scrapingTJSP, processoScrapingService);
 		initThreadCarregarProcessosByScraping(processoScrapingService);
 	}

@@ -201,7 +201,7 @@ public class ScrapingTJSP {
 					String strRequerido = domElement.getElementsByTagName("td").get(3).getTextContent();
 					processoTJSP.setRequerente(strRequerente.trim().substring(0, strRequerente.trim().indexOf("\n")));
 					processoTJSP.setAdvogado(strRequerente.trim().substring(strRequerente.trim().indexOf("\n")).trim());
-					processoTJSP.setRequerido(strRequerido.trim());
+					processoTJSP.setRequerido(strRequerido.trim().substring(0, strRequerente.trim().indexOf("\n")));
 				}
 			}
 		}
