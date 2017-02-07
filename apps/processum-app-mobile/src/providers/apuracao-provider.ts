@@ -40,20 +40,35 @@ export class ApuracaoProvider {
   }
 
   private parseApuracoes(pApuracoes:Array<any>):Array<ApuracaoVO>{
-    let apuracoes:Array<ApuracaoVO> = ApuracaoVO.convertList(pApuracoes);
+    let apuracoes:Array<ApuracaoVO> = ApuracaoVO.convertList(pApuracoes); //converto a lista para o ApuracaoVO
+    apuracoes.sort((a:ApuracaoVO,b:ApuracaoVO):number=>{ //ordeno a lista do registro mais novo pro mais velho
+      return parseInt(b.idPocOcorrencia)-parseInt(a.idPocOcorrencia);
+    });
 
-    for(let apuracao of apuracoes){
-      apuracao.historico = new Array<ApuracaoVO>();
+    let newApuracoes:Array<ApuracaoVO> = new Array<ApuracaoVO>(); //crio a lista que vai receber os itens corretos e agrupados
 
-      for(let apuracaoHistorico of apuracoes){
-        if(apuracao.id == apuracaoHistorico.id && apuracao.idPocOcorrencia != apuracaoHistorico.idPocOcorrencia){
-          apuracao.historico.push(apuracaoHistorico);
+    let i:number = apuracoes.length;
+    while(i--){ //percorro a lista de trás para frente (dos mais novos p/ os mais antigos)
+      let apuracao:ApuracaoVO = apuracoes[i]; //pego a apuracao
+
+      if(apuracao!=null){ //verifico se a apuracao ja foi removida pelas ações abaixo
+        apuracao.historico = new Array<ApuracaoVO>(); //crio a lista que vai receber os possiveis agrupamentos
+        newApuracoes.push(apuracao); //coloco a apuracao na nova lista
+        apuracoes.splice(i,1); //removo essa apuracao da lista que esta sendo percorrida (assim ela nao será mais checada na logica do agrupamento)
+
+        let n:number = apuracoes.length;
+        while(n--){ //percorro novamente as apuracoes que ainda restam na lista inicial
+          let apuracaoHistorico:ApuracaoVO = apuracoes[n]; //pego a apuracao que será verificada com a a puracao "pai"
+          if(apuracaoHistorico.id == apuracao.id){ //verifico se a apuracao tem os mesmos dados e devem ficar no historico (id é um getter que retorna uma chave composta)
+            apuracao.historico.push(apuracaoHistorico); //coloco a apuracao "repetida" no historico da apuracao mais nova
+            apuracoes.splice(n,1); //removo essa apuracao da lista inicial, assim ela nao será mais checada
+          }
         }
       }
-
+            
     }
 
-    return apuracoes;
+    return newApuracoes;
   }
 
 }

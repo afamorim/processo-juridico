@@ -13,7 +13,7 @@
             <ul class="circle-index-list">
               <li *ngFor="let item of processos;">
                 <h6 class="circle-index-warning">{{item.strDataInclusao}}</h6>
-                <p><small>Processo </small><br />{{item.numProcesso}}</p>
+                <p><small>Processo </small><br />{{item.numeroProcesso}}</p>
               </li>
             </ul>
 
@@ -22,7 +22,7 @@
 
           <div class="single-icon-info">
             <div class="icon"><i class="fa fa-clock-o"></i></div>
-            <h6>08min</h6>
+            <h6>30min</h6>
             <p>Tempo médio para processamento</p>
           </div>
 
@@ -53,3 +53,5 @@
         <button pButton type="button" label="Cancelar" icon="fa-close" class="ui-button-secondary" (click)="hideDialog(dialogSolicitarPesquisa)"></button>
     </div>
 </p-dialog>
+
+<loading-indicator #loadingIndicator></loading-indicator>

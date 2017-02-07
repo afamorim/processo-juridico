@@ -314,7 +314,7 @@ pagination { display: block; width: 100%; }
 .circle-index-list li:after { content: " "; clear: both; display: table; height: 0; }
 .circle-index-list { padding: 10px 0; }
 .circle-index-list li { display: flex; align-items: center; padding: 0 0 18px; }
-.circle-index-list li h6 { box-shadow: 0px 2px 4px -2px rgba(0,0,0,1); width: 80px; height: 80px; font-size: 1em; text-align: center; letter-spacing: -.6px; font-weight: bold; display: flex; align-items: center; border-radius: 50%; float: left; margin: 0 10px 0 0; transition: border-width .2s; border: solid 0px #FFF; }
+.circle-index-list li h6 { box-shadow: 0px 2px 4px -2px rgba(0,0,0,1); width: 80px; height: 80px; font-size: .8em; text-align: center; letter-spacing: -.6px; font-weight: bold; display: flex; align-items: center; border-radius: 50%; float: left; margin: 0 10px 0 0; transition: border-width .2s; border: solid 0px #FFF; }
 .circle-index-list li p { margin: 0; padding: 0 0 10px; }
 .circle-index-list li small { font-size: .8em; }
 .circle-index-list li > a { display: inline-flex; align-items: center; color: inherit; text-decoration: none; transition: color .3s; }

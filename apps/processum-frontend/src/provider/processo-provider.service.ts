@@ -36,9 +36,13 @@ export class ProcessoProviderService extends BaseProvider {
     let params:URLSearchParams = new URLSearchParams();
     params.set('numeroProcesso', numeroProcesso);
 
-    return this.http.get(BaseProvider.getBaseAPI()+'scraping/salvarNumeroProcesso',{search:params}).toPromise()
-            .then(response => response.json()) 
-            .catch((e)=>{ console.error(e); });
+    return new Promise((resolve,reject)=>{
+      this.http.get(BaseProvider.getBaseAPI()+'scraping/salvarNumeroProcesso',{search:params}).toPromise()
+      .then(()=>{
+        resolve();
+      }) 
+      .catch((e)=>{ reject(e); });
+    });
   }
 
   public findProcessosSolicitados():Promise<Array<ProcessoVO>>{

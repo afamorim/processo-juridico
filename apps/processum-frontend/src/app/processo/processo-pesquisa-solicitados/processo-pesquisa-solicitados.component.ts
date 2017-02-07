@@ -1,7 +1,8 @@
+import { LoadingIndicatorComponent } from './../../uicomponents/loading-indicator/loading-indicator.component';
 import { ProcessoProviderService } from './../../../provider/processo-provider.service';
 import { ProcessoVO } from './../../../valueobject/ProcessoVO';
 import { Dialog } from 'primeng/primeng';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-processo-pesquisa-solicitados',
@@ -10,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
   providers: [ProcessoProviderService]
 })
 export class ProcessoPesquisaSolicitadosComponent implements OnInit {
+
+  @ViewChild('loadingIndicator') loadingIndicator:LoadingIndicatorComponent;
 
   private processos:Array<ProcessoVO> = new Array<ProcessoVO>();
   private numeroProcesso:string = '';
@@ -28,16 +31,22 @@ export class ProcessoPesquisaSolicitadosComponent implements OnInit {
   }
 
   solicitarProcesso():void{
-    this.processoProvider.solicitarProcesso(this.numeroProcesso).then((data)=>{
+    this.loadingIndicator.show();
+    this.processoProvider.solicitarProcesso(this.numeroProcesso).then(()=>{
       alert('Solicitação efetuada com sucesso!');
       this.numeroProcesso = '';
-    }).catch((e)=>{ console.error(e); this.numeroProcesso = ''; });
+
+      this.loadingIndicator.hide();
+      this.findAll();
+    }).catch((e)=>{ console.error(e); this.numeroProcesso = ''; this.loadingIndicator.hide(); });
   }
 
   findAll():void{
+    this.loadingIndicator.show();
     this.processoProvider.findProcessosSolicitados().then((data:Array<ProcessoVO>)=>{
-      this.processos = data;
-    }).catch((e)=>{ console.error(e);});
+      this.processos = data.reverse();
+      this.loadingIndicator.hide();
+    }).catch((e)=>{ console.error(e); this.loadingIndicator.hide(); });
   }
 
   showDialog(dialog:Dialog):void{

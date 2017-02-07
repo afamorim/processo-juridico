@@ -184,7 +184,7 @@
 
 <div class="action-buttons">
     <button pButton type="button" label="Salvar processo" icon="fa-save" class="ui-button-success" (click)="saveProcesso()"></button>
-    <button pButton type="button" label="Cancelar" icon="fa-close" class="ui-button-secondary"></button>
+    <button pButton routerLink="/processo/importados" type="button" label="Cancelar" icon="fa-close" class="ui-button-secondary"></button>
 </div>
 
 <dialog-partes #dialogPartes (add)="onAddPartes($event)"></dialog-partes>

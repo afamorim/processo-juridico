@@ -1,3 +1,4 @@
+import { Utils } from './../utils/Utils';
 import { GenericVO } from './GenericVO';
 export class ApuracaoVO extends GenericVO {
     public idPocOcorrencia:string;
@@ -27,6 +28,18 @@ export class ApuracaoVO extends GenericVO {
 
     public get id():string{
         return this.numCpfCnpj+'_'+this.numLinha+'_'+this.dtcInicioPequisa.substr(0,10)+'_'+this.dtcFimPesquisa.substr(0,10);
+    }
+
+    public get dtcPocOcorrenciaFormat():string{
+        return Utils.getDefaultFormatDate(this.dtcPocOcorrencia);
+    }
+
+    public get dtcInicioPequisaFormat():string{
+        return Utils.getDefaultFormatOnlyDate(this.dtcInicioPequisa);
+    }
+
+    public get dtcFimPesquisaFormat():string{
+        return Utils.getDefaultFormatOnlyDate(this.dtcFimPesquisa);
     }
 
     public static convertList(arr:Array<any>):Array<ApuracaoVO>{

@@ -117,7 +117,7 @@
             <div class="card-item">
                 <span class="header">
                     <span *ngIf="item.historico != null && item.historico.length > 0" class="badge badge-danger collapse-text">{{item.historico.length}}<span class="text"> apurações no histórico desse registro</span></span>
-                    <span class="date">{{item.dtcPocOcorrencia}}</span>
+                    <span class="date">{{item.dtcPocOcorrenciaFormat}}</span>
                     <span class="text">
                         <h5>{{item.labelExibicao}}</h5>
                         <small>Status da assinatura {{item.stsAssinatura}}.</small>
@@ -134,8 +134,8 @@
     <p-header>
         Detalhe da Apuração
         <select [(ngModel)]="detailApuracao">
-            <option [ngValue]="selectedApuracao">{{selectedApuracao.dtcPocOcorrencia}}</option>
-            <option *ngFor="let item of selectedApuracao.historico" [ngValue]="item">{{item.dtcPocOcorrencia}}</option>
+            <option [ngValue]="selectedApuracao">{{selectedApuracao.dtcPocOcorrenciaFormat}}</option>
+            <option *ngFor="let item of selectedApuracao.historico" [ngValue]="item">{{item.dtcPocOcorrenciaFormat}}</option>
         </select>
     </p-header>
     
@@ -156,13 +156,13 @@
             <div class="ui-grid-col-3">
                 <label>Data início pesquisa</label>
                 <div class="text-field">
-                    <span>{{detailApuracao.dtcInicioPequisa}}</span>
+                    <span>{{detailApuracao.dtcInicioPequisaFormat}}</span>
                 </div>
             </div>
             <div class="ui-grid-col-3">
                 <label>Data fim pesquisa</label>
                 <div class="text-field">
-                    <span>{{detailApuracao.dtcFimPesquisa}}</span>
+                    <span>{{detailApuracao.dtcFimPesquisaFormat}}</span>
                 </div>
             </div>
             

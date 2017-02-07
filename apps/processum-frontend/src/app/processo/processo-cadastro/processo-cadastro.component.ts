@@ -196,10 +196,13 @@ export class ProcessoCadastroComponent implements OnInit {
       console.error(e);
     }
 
+    this.loadingIndicator.show();
     this.processoProvider.saveProcesso(this.processo).then((data:ProcessoVO)=>{
       alert('Processo salvo com sucesso!');
+      this.loadingIndicator.hide();
       console.log(data);
     }).catch((e)=>{
+      this.loadingIndicator.hide();
       console.error(e);
     });
 
