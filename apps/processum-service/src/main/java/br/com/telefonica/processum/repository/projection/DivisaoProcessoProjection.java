@@ -10,7 +10,7 @@ import org.springframework.data.rest.core.config.Projection;
 @Projection(name = "projecao", types = DivisaoProcesso.class)
 public interface DivisaoProcessoProjection {
     
-    String codDivisaoProcesso();
+    String getCodDivisaoProcesso();
 
     String getNomDivisao();
 
