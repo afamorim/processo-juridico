@@ -50,6 +50,7 @@ export class ProcessoPesquisaSolicitadosComponent implements OnInit {
   }
 
   showDialog(dialog:Dialog):void{
+    this.numeroProcesso = '';
     dialog.visible = true;
   }
 

@@ -24,8 +24,17 @@ export class ApuracaoProviderService extends BaseProvider {
     apuracao.dtcInicioPequisa = this.stringToDate(apuracao.dtcInicioPequisa) as any;
     apuracao.dtcFimPesquisa   = this.stringToDate(apuracao.dtcFimPesquisa) as any;
 
-    apuracao.numLinha = apuracao.numLinha.replace(new RegExp('\\(|\\)|-', 'g'), '');
-    apuracao.numCpfCnpj = apuracao.numCpfCnpj.replace(new RegExp('-|\\\\|/|\\.', 'g'), '');
+    if(apuracao.numLinha != null){
+      apuracao.numLinha = apuracao.numLinha.replace(new RegExp('\\(|\\)|-', 'g'), '');
+    } else {
+      delete apuracao.numLinha;
+    }
+
+    if(apuracao.numCpfCnpj != null){
+      apuracao.numCpfCnpj = apuracao.numCpfCnpj.replace(new RegExp('-|\\\\|/|\\.', 'g'), '');
+    } else {
+      delete apuracao.numCpfCnpj;
+    }
     
     console.log(JSON.stringify(apuracao));
 

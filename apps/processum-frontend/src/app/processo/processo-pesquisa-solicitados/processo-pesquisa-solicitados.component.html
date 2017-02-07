@@ -49,7 +49,7 @@
     </div>
 
     <div class="action-buttons">
-        <button pButton type="button" label="Solicitar pesquisa" icon="fa-check" class="ui-button-primary" (click)="solicitarProcesso(); hideDialog(dialogSolicitarPesquisa)"></button>
+        <button pButton [disabled]="numeroProcesso==''" type="button" label="Solicitar pesquisa" icon="fa-check" class="ui-button-primary" (click)="solicitarProcesso(); hideDialog(dialogSolicitarPesquisa)"></button>
         <button pButton type="button" label="Cancelar" icon="fa-close" class="ui-button-secondary" (click)="hideDialog(dialogSolicitarPesquisa)"></button>
     </div>
 </p-dialog>
