@@ -99,11 +99,11 @@ public class ScrapingTJSP {
 			consultaProcessosPG = (HtmlPage)webClient.getPage("https://esaj.tjsp.jus.br/cpopg/search.do?conversationId=&dadosConsulta.localPesquisa.cdLocal=83&cbPesquisa=NMPARTE&dadosConsulta.tipoNuProcesso=UNIFICADO&dadosConsulta.valorConsulta=telefonica&uuidCaptcha=");
 			loadProcessosDiretos(consultaProcessosPG);
 			
-			consultaProcessosPG = (HtmlPage)webClient.getPage("https://esaj.tjsp.jus.br/cpopg/search.do?conversationId=&dadosConsulta.localPesquisa.cdLocal=81&cbPesquisa=NMPARTE&dadosConsulta.tipoNuProcesso=UNIFICADO&dadosConsulta.valorConsulta=telefonica&uuidCaptcha=&pbEnviar=Pesquisar");
+			/*consultaProcessosPG = (HtmlPage)webClient.getPage("https://esaj.tjsp.jus.br/cpopg/search.do?conversationId=&dadosConsulta.localPesquisa.cdLocal=81&cbPesquisa=NMPARTE&dadosConsulta.tipoNuProcesso=UNIFICADO&dadosConsulta.valorConsulta=telefonica&uuidCaptcha=&pbEnviar=Pesquisar");
 			loadProcessosDiretos(consultaProcessosPG);
 			
 			consultaProcessosPG = (HtmlPage)webClient.getPage("https://esaj.tjsp.jus.br/cpopg/search.do?conversationId=&dadosConsulta.localPesquisa.cdLocal=35&cbPesquisa=NMPARTE&dadosConsulta.tipoNuProcesso=UNIFICADO&dadosConsulta.valorConsulta=telefonica&uuidCaptcha=&pbEnviar=Pesquisar");
-			loadProcessosDiretos(consultaProcessosPG);
+			loadProcessosDiretos(consultaProcessosPG);*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
