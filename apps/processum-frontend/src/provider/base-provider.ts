@@ -15,6 +15,13 @@ export class BaseProvider {
         return filtered;
     }
 
+    protected stringToDate(date:any):Date {
+        if(date != null && typeof date === 'string'){
+            return new Date(date);
+        }
+        return date;
+    }
+
     public static getPDFApuracaoURL():string {
         return this.HOST+this.PDF_APURACAO;
     }
@@ -22,4 +29,5 @@ export class BaseProvider {
     public static getBaseAPI():string {
         return this.HOST+this.BASE_API;
     }
+    
 }

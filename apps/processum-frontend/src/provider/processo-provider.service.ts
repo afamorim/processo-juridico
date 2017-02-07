@@ -1,3 +1,5 @@
+import { ProcessoRESTModel } from './../model/ProcessoRESTModel';
+import { ProcessoVO } from './../valueobject/ProcessoVO';
 import { AdvogadoVO } from './../valueobject/AdvogadoVO';
 import { JuizoVO } from './../valueobject/JuizoVO';
 import { ParteProcessoVO } from './../valueobject/ParteProcessoVO';
@@ -12,7 +14,7 @@ import { DivisaoVO } from './../valueobject/DivisaoVO';
 import { EmpresaVO } from './../valueobject/EmpresaVO';
 import { GenericVO } from './../valueobject/GenericVO';
 import { EstadoVO } from './../valueobject/EstadoVO';
-import { Http, URLSearchParams } from '@angular/http';
+import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { BaseProvider } from './base-provider';
 import { Injectable } from '@angular/core';
 
@@ -28,6 +30,78 @@ export class ProcessoProviderService extends BaseProvider {
 
   constructor(private http:Http) {
     super();
+  }
+
+  public solicitarProcesso(numeroProcesso:string):Promise<ProcessoVO>{
+    let params:URLSearchParams = new URLSearchParams();
+    params.set('numeroProcesso', numeroProcesso);
+
+    return this.http.get(BaseProvider.getBaseAPI()+'scraping/salvarNumeroProcesso',{search:params}).toPromise()
+            .then(response => response.json()) 
+            .catch((e)=>{ console.error(e); });
+  }
+
+  public findProcessosSolicitados():Promise<Array<ProcessoVO>>{
+    let params:URLSearchParams = new URLSearchParams();
+    params.set('codigoStatus', '1');
+
+    return this.http.get(BaseProvider.getBaseAPI()+'scraping/buscaProcessos',{search:params}).toPromise()
+            .then(response => response.json()) 
+            .catch((e)=>{ console.error(e); });
+  }
+
+  public saveProcesso(processo:ProcessoVO):Promise<ProcessoVO>{
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    delete processo['_links'];
+
+    if(processo.nomTerceiroInteressado == null || processo.nomTerceiroInteressado == ''){
+      delete processo.nomTerceiroInteressado;
+    }
+
+    if(processo.nomPoloAtivo == null || processo.nomPoloAtivo == ''){
+      delete processo.nomPoloAtivo;
+    }
+
+    if(processo.nomPoloPassivo == null || processo.nomPoloPassivo == ''){
+      delete processo.nomPoloPassivo;
+    }
+    
+    console.log(JSON.stringify(processo));
+
+    return this.http.post(BaseProvider.getBaseAPI()+'pocprocesso',JSON.stringify(processo), options).toPromise()
+            .then(response => response.json()) 
+            .catch((e)=>{ console.error(e); });
+  }
+
+  public findProcessoById(idPocProcesso:string):Promise<ProcessoVO>{
+
+    return this.http.get(BaseProvider.getBaseAPI()+'pocprocesso/'+idPocProcesso).toPromise()
+            .then(response => new ProcessoVO(response.json())) 
+            .catch((e)=>{ console.error(e); });
+
+  }
+
+  public findProcessosByPage(page:number):Promise<ProcessoRESTModel>{
+    let params:URLSearchParams = new URLSearchParams();
+    params.set('page', page.toString());
+
+    return new Promise((resolve,reject)=>{
+
+      this.http.get(BaseProvider.getBaseAPI()+'pocprocesso', {search:params}).toPromise()
+        .then((response) => {
+          let model:ProcessoRESTModel = new ProcessoRESTModel();
+          model.processos = response.json()._embedded.pocProcesso;
+          model.page = response.json().page;
+          
+          resolve(model);
+        }) 
+        .catch((e)=>{ reject(e); });
+
+    });
+    
   }
 
   public findAllTiposAcaoProcesso():Promise<Array<TipoAcaoProcesso>>{

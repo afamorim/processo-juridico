@@ -38,6 +38,14 @@ body {/* font-family: Arial; */
 .align-center { text-align: center; }
 .align-right { text-align: right; }
 
+.truncate-cell {
+    width: 100%;
+    white-space: nowrap;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .main-container { width: 100%; min-height: 100%; position: relative;
     background: -moz-linear-gradient(top, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 100px); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, rgba(0,0,0,0.18) 0%,rgba(0,0,0,0) 100px); /* Chrome10-25,Safari5.1-6 */

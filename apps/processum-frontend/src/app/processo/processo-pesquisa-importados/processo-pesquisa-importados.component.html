@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields">
+<div *ngIf="false" class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields">
     <div class="ui-grid-row">
         <div class="ui-grid-col-3">
             <label for="nroProcesso">Número do processo</label>
@@ -22,24 +22,24 @@
     </div>
 </div>
 
-<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields margin-top">
+<div [hidden]="processos==null" class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid fields margin-top">
     <div class="ui-grid-row">
         <div class="ui-grid-col-12">
-            <p-dataTable [value]="processos" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"
-                selectionMode="single" [(selection)]="processoSelected" (onRowSelect)="onRowSelect($event)">
-                <p-column field="numero" [style]="{'width':'180px'}" header="Nro. Processo" styleClass="align-center"></p-column>
-                <p-column field="classe" header="Classe" styleClass="align-center"></p-column>
-                <p-column field="assunto" header="Assunto" styleClass="align-center"></p-column>
-                <p-column field="distribuicao" header="Distribuição" styleClass="align-center"></p-column>
-                <p-column field="controle" header="Controle" styleClass="align-center"></p-column>
-                <p-column field="juiz" header="Juiz" styleClass="align-center"></p-column>
-                <p-column field="valor_acao" [style]="{'width':'110px'}" header="Valor ação" styleClass="align-center"></p-column>
-                <p-column field="status" [style]="{'width':'80px'}" header="Status" styleClass="align-center">
+            <p-dataTable [value]="processos" [paginator]="true" [pageLinks]="10"
+                selectionMode="single" [(selection)]="processoSelected" (onRowSelect)="onRowSelect($event)"
+                [lazy]="true" [rows]="numRows" [paginator]="true" [totalRecords]="numTotal" (onLazyLoad)="lazyLoadProcessos($event)">
+                <p-column field="numProcesso" [style]="{'width':'180px'}" header="Nro. Processo" styleClass="align-center"></p-column>
+                <p-column field="nomPoloAtivo" header="Polo Ativo" styleClass="align-center truncate-cell"></p-column>
+                <p-column field="nomPoloPassivo" header="Polo Passivo" styleClass="align-center truncate-cell"></p-column>
+                <p-column field="stsValidadoUsuario" [style]="{'width':'80px'}" header="Status" styleClass="align-center">
                     <template let-col let-item="rowData" pTemplate="body">
-                        <span class="badge badge-warning">{{item[col.field]}}</span>
+                        <span *ngIf="item[col.field] == null" class="badge badge-warning">Importado</span>
+                        <span *ngIf="item[col.field] != null" class="badge badge-success">Validado</span>
                     </template>
                 </p-column>
             </p-dataTable>
         </div>
     </div>
 </div>
+
+<loading-indicator #loadingIndicator></loading-indicator>

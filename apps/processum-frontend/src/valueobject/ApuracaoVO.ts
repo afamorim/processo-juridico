@@ -26,7 +26,7 @@ export class ApuracaoVO extends GenericVO {
     }
 
     public get id():string{
-        return this.numCpfCnpj+'_'+this.numLinha+'_'+this.dtcInicioPequisa+'_'+this.dtcFimPesquisa;
+        return this.numCpfCnpj+'_'+this.numLinha+'_'+this.dtcInicioPequisa.substr(0,10)+'_'+this.dtcFimPesquisa.substr(0,10);
     }
 
     public static convertList(arr:Array<any>):Array<ApuracaoVO>{

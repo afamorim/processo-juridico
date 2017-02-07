@@ -1,3 +1,4 @@
+import { LoadingIndicatorComponent } from './../../uicomponents/loading-indicator/loading-indicator.component';
 import { BaseProvider } from './../../../provider/base-provider';
 import { ApuracaoProviderService } from './../../../provider/apuracao-provider.service';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -13,6 +14,7 @@ import { SelectItem, Menu, Dialog } from 'primeng/primeng';
 })
 export class ApuracoesComponent implements OnInit {
 
+  @ViewChild('loadingIndicator') loadingIndicator:LoadingIndicatorComponent;
   @ViewChild('dialogDetalheApuracao') dialogDetalheApuracao:Dialog;
 
   private listboxGenerico:Array<any> = new Array<any>();
@@ -80,10 +82,15 @@ export class ApuracoesComponent implements OnInit {
   }
 
   private findAll():void{
+    this.loadingIndicator.show();
     this.apuracaoProvider.findAllApuracoes().then((data:Array<ApuracaoVO>)=>{
       this.apuracoes = data;
+      
+      this.loadingIndicator.hide();
     }).catch((e)=>{
       console.error(e);
+
+      this.loadingIndicator.hide();
     });
   }
 
@@ -91,12 +98,19 @@ export class ApuracoesComponent implements OnInit {
     let apuracao:ApuracaoVO = (data!=null)?data:new ApuracaoVO(this.formGroup.value);
     console.log(apuracao);
 
+    this.loadingIndicator.show();
+
     this.apuracaoProvider.saveApuracao(apuracao).then((data)=>{
       alert('Apuração efetuada com sucesso!');
+
+      this.loadingIndicator.hide();
+
       this.clearForm();
       this.findAll(); //TODO - pegar o data salvo
     }).catch((e)=>{
       console.error(e);
+
+      this.loadingIndicator.hide();
     });
   }
 

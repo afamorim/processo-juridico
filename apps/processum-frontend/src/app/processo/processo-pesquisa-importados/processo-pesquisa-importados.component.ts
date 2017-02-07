@@ -1,45 +1,56 @@
+import { LoadingIndicatorComponent } from './../../uicomponents/loading-indicator/loading-indicator.component';
+import { ProcessoRESTModel } from './../../../model/ProcessoRESTModel';
+import { ProcessoProviderService } from './../../../provider/processo-provider.service';
 import { ProcessoVO } from './../../../valueobject/ProcessoVO';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+
+import {LazyLoadEvent} from 'primeng/primeng';
 
 @Component({
   selector: 'app-processo-pesquisa-importados',
   templateUrl: './processo-pesquisa-importados.component.html',
-  styleUrls: ['./processo-pesquisa-importados.component.css']
+  styleUrls: ['./processo-pesquisa-importados.component.css'],
+  providers:[ProcessoProviderService]
 })
 export class ProcessoPesquisaImportadosComponent implements OnInit {
 
+  @ViewChild('loadingIndicator') loadingIndicator:LoadingIndicatorComponent;
+
   private comboGenerico:Array<any> = new Array<any>();
-  private processos:Array<ProcessoVO> = new Array<ProcessoVO>();
+  private processos:Array<ProcessoVO>;
   private processoSelected:ProcessoVO;
 
-  constructor(private router:Router, private activatedRoute:ActivatedRoute) { }
+  private numRows:number = 0;
+  private numTotal:number = 0;
+
+  constructor(private router:Router, private activatedRoute:ActivatedRoute, private processoProvider:ProcessoProviderService) { }
 
   ngOnInit() {
     this.comboGenerico.push({label:'.: Selecione :.', value:'1'});
+  }
 
-    for(let i=0; i<5; i++){
-      let temp:ProcessoVO = new ProcessoVO();
-      temp.codigo = i;
-      temp.numero = '1002268-96.2016.8.26.0083'+i;
-      temp.classe = 'Procedimento Comum';
-      temp.assunto = 'ASSUNTOS ANTIGOS DO SAJ - DECLARATÓRIA';
-      temp.outros_assuntos = 'Antecipação de Tutela / Tutela Específica,Indenização por Dano Moral,Pagamento Indevido,Telefonia';
-      temp.distribuicao = '16/11/2016 às 22:02 - Livre';
-      temp.controle = '16/11/2016 às 22:02 - Livre';
-      temp.juiz = 'André Acayaba de Rezende';
-      temp.valor_acao = 'R$ 21.656,84';
-      temp.status = 'Importado';
+  private lazyLoadProcessos(event:LazyLoadEvent):void{
+    this.findProcessosByPage(event.first/event.rows);
+  }
 
-      this.processos.push(temp);
+  private findProcessosByPage(page:number):void{
+    this.loadingIndicator.show();
+    this.processoProvider.findProcessosByPage(page).then((data:ProcessoRESTModel)=>{
+      this.processos = data.processos;
+      this.numRows = data.page.size;
+      this.numTotal = data.page.totalElements;
 
-    }
-
+      this.loadingIndicator.hide();
+    }).catch((e)=>{
+      console.error(e);
+      this.loadingIndicator.hide();
+    });
   }
 
   onRowSelect(event) {
     let processo:ProcessoVO = event.data as ProcessoVO;
-    this.router.navigate(['/processo/cadastro',processo.numero]);
+    this.router.navigate(['/processo/cadastro',processo.idPocProcesso]);
   }
 
 }

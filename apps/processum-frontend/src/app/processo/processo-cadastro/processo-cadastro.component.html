@@ -1,6 +1,6 @@
 <div class="content-header">
     <h3>Cadastro de Processo</h3>
-    <small>Breve descrição para a tela de cadastro de processo.</small>
+    <small>Tela para completar o cadastro de processos importados do TJ.</small>
     <div class="header-buttons">
         
     </div>
@@ -13,11 +13,11 @@
             <div class="ui-grid-row">
                 <div class="ui-grid-col-3">
                     <label for="empresa">Empresa</label>
-                    <p-autoComplete id="empresa" placeholder="Digite aqui para buscar" field="nomEmpresa" [suggestions]="empresas" (completeMethod)="searchEmpresas($event)" (onDropdownClick)="searchEmpresas($event)" [dropdown]="true"></p-autoComplete>
+                    <p-autoComplete formControlName="empresa" id="empresa" placeholder="Digite aqui para buscar" field="nomEmpresa" [suggestions]="empresas" (completeMethod)="searchEmpresas($event)" (onDropdownClick)="searchEmpresas($event)" [dropdown]="true"></p-autoComplete>
                 </div>
                 <div class="ui-grid-col-3">
                     <label for="divisaoResponsavel">Divisão Responsável</label>
-                    <p-autoComplete id="divisaoResponsavel" placeholder="Digite aqui para buscar" field="nomDivisao" [suggestions]="divisoes" (completeMethod)="searchDivisoes($event)" (onDropdownClick)="searchDivisoes($event)" [dropdown]="true"></p-autoComplete>
+                    <p-autoComplete formControlName="divisaoResponsavel" id="divisaoResponsavel" placeholder="Digite aqui para buscar" field="nomDivisao" [suggestions]="divisoes" (completeMethod)="searchDivisoes($event)" (onDropdownClick)="searchDivisoes($event)" [dropdown]="true"></p-autoComplete>
                 </div>
                 <div class="ui-grid-col-3">
                     <label for="natureza">Natureza</label>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="ui-grid-col-3">
                     <label for="numero">Número</label>
-                    <input pInputText id="numero" formControlName="numeroProcesso" />
+                    <input pInputText id="numero" formControlName="numProcesso" />
                 </div>
             </div>
             <div class="ui-grid-row">
@@ -39,33 +39,33 @@
                 </div>
                 <div class="ui-grid-col-3">
                     <label for="objetoAcao">Objeto da Ação</label>
-                    <p-autoComplete id="objetoAcao" placeholder="Digite aqui para buscar" field="nomTipoAcaoProcesso" [suggestions]="tiposAcaoProcesso" (completeMethod)="searchTiposAcaoProcesso($event)" (onDropdownClick)="searchTiposAcaoProcesso($event)" [dropdown]="true"></p-autoComplete>
+                    <p-autoComplete formControlName="objetoAcao" id="objetoAcao" placeholder="Digite aqui para buscar" field="nomTipoAcaoProcesso" [suggestions]="tiposAcaoProcesso" (completeMethod)="searchTiposAcaoProcesso($event)" (onDropdownClick)="searchTiposAcaoProcesso($event)" [dropdown]="true"></p-autoComplete>
                 </div>
                 <div class="ui-grid-col-3">
                     <label for="escritorioContratado">Escritório Contratado</label>
-                    <p-autoComplete id="escritorioContratado" placeholder="Digite aqui para buscar" field="nomEscritorioContratado" [suggestions]="escritoriosContratados" (completeMethod)="searchEscritoriosContratados($event)" (onDropdownClick)="searchEscritoriosContratados($event)" [dropdown]="true"></p-autoComplete>
+                    <p-autoComplete formControlName="escritorioContratado" id="escritorioContratado" placeholder="Digite aqui para buscar" field="nomEscritorioContratado" [suggestions]="escritoriosContratados" (completeMethod)="searchEscritoriosContratados($event)" (onDropdownClick)="searchEscritoriosContratados($event)" [dropdown]="true"></p-autoComplete>
                 </div>
             </div>
             <div class="ui-grid-row">
                 <div class="ui-grid-col-2">
                     <label for="dataEnvioEscContratado">Data de Envio Esc. Contratado</label>
-                    <p-calendar id="dataEnvioEscContratado" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
+                    <p-calendar formControlName="dataEnvioEscContratado" id="dataEnvioEscContratado" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
                 </div>
                 <div class="ui-grid-col-2">
                     <label for="dataCitacao">Data de Citação</label>
-                    <p-calendar id="dataCitacao" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
+                    <p-calendar formControlName="dataCitacao" id="dataCitacao" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
                 </div>
                 <div class="ui-grid-col-2">
                     <label for="dataProtocoloAforamento">Data de Protocolo/Aforamento</label>
-                    <p-calendar id="dataProtocoloAforamento" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
+                    <p-calendar formControlName="dataProtocoloAforamento" id="dataProtocoloAforamento" dateFormat="dd/mm/yy" placeholder="00/00/0000"></p-calendar>
                 </div>
                 <div class="ui-grid-col-3">
                     <label for="responsavel">Responsável</label>
-                    <p-autoComplete id="responsavel" placeholder="Digite aqui para buscar" field="nomAdvogado" [suggestions]="advogados" (completeMethod)="searchAdvogados($event)" (onDropdownClick)="searchAdvogados($event)" [dropdown]="true"></p-autoComplete>
+                    <p-autoComplete formControlName="responsavel" id="responsavel" placeholder="Digite aqui para buscar" field="nomAdvogado" [suggestions]="advogados" (completeMethod)="searchAdvogados($event)" (onDropdownClick)="searchAdvogados($event)" [dropdown]="true"></p-autoComplete>
                 </div>
                 <div class="ui-grid-col-3">
                     <label for="corresponsavel">Corresponsável</label>
-                    <p-autoComplete id="corresponsavel" placeholder="Digite aqui para buscar" field="nomAdvogado" [suggestions]="advogados" (completeMethod)="searchAdvogados($event)" (onDropdownClick)="searchAdvogados($event)" [dropdown]="true"></p-autoComplete>
+                    <p-autoComplete formControlName="corresponsavel" id="corresponsavel" placeholder="Digite aqui para buscar" field="nomAdvogado" [suggestions]="advogados" (completeMethod)="searchAdvogados($event)" (onDropdownClick)="searchAdvogados($event)" [dropdown]="true"></p-autoComplete>
                 </div>
             </div>
             <div class="ui-grid-row">
@@ -83,25 +83,25 @@
                 </div>
                 <div class="ui-grid-col-3">
                     <label for="local">Local</label>
-                    <p-autoComplete id="local" placeholder="Digite aqui para buscar" field="nomJuizo" [suggestions]="juizos" (completeMethod)="searchJuizos($event)" (onDropdownClick)="searchJuizos($event)" [dropdown]="true"></p-autoComplete>
+                    <p-autoComplete formControlName="local" id="local" placeholder="Digite aqui para buscar" field="nomJuizo" [suggestions]="juizos" (completeMethod)="searchJuizos($event)" (onDropdownClick)="searchJuizos($event)" [dropdown]="true"></p-autoComplete>
                 </div>
             </div>
             <div class="ui-grid-row">
                 <div class="ui-grid-col-3">
                     <label for="tipoAcao">Tipo de Ação</label>
-                    <p-autoComplete id="tipoAcao" placeholder="Digite aqui para buscar" field="desTipoAcao" [suggestions]="tiposAcao" (completeMethod)="searchTiposAcao($event)" (onDropdownClick)="searchTiposAcao($event)" [dropdown]="true"></p-autoComplete>
+                    <p-autoComplete formControlName="tipoAcao" id="tipoAcao" placeholder="Digite aqui para buscar" field="desTipoAcao" [suggestions]="tiposAcao" (completeMethod)="searchTiposAcao($event)" (onDropdownClick)="searchTiposAcao($event)" [dropdown]="true"></p-autoComplete>
                 </div>
                 <div class="ui-grid-col-3 button-field">
-                    <p-toggleButton onLabel="Passou pelo Call Center" offLabel="Passou pelo Call Center" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
+                    <p-toggleButton formControlName="passouCallCenter" onLabel="Passou pelo Call Center" offLabel="Passou pelo Call Center" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
                 </div>
                 <div class="ui-grid-col-2 button-field">
-                    <p-toggleButton onLabel="Relevante" offLabel="Relevante" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
+                    <p-toggleButton formControlName="relevante" onLabel="Relevante" offLabel="Relevante" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
                 </div>
                 <div class="ui-grid-col-2 button-field">
-                    <p-toggleButton onLabel="Consumerista" offLabel="Consumerista" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
+                    <p-toggleButton formControlName="consumerista" onLabel="Consumerista" offLabel="Consumerista" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
                 </div>
                 <div class="ui-grid-col-2 button-field">
-                    <p-toggleButton onLabel="Passou pelo Procon" offLabel="Passou pelo Procon" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
+                    <p-toggleButton formControlName="passouProcon" onLabel="Passou pelo Procon" offLabel="Passou pelo Procon" onIcon="fa-check-square-o" offIcon="fa-square-o"></p-toggleButton>
                 </div>
             </div>
         </div>
@@ -183,8 +183,10 @@
 </span>
 
 <div class="action-buttons">
-    <button pButton type="button" label="Salvar processo" icon="fa-save" class="ui-button-success"></button>
+    <button pButton type="button" label="Salvar processo" icon="fa-save" class="ui-button-success" (click)="saveProcesso()"></button>
     <button pButton type="button" label="Cancelar" icon="fa-close" class="ui-button-secondary"></button>
 </div>
 
 <dialog-partes #dialogPartes (add)="onAddPartes($event)"></dialog-partes>
+
+<loading-indicator #loadingIndicator></loading-indicator>

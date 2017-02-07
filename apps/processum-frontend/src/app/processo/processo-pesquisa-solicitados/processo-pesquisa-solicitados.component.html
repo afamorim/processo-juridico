@@ -12,8 +12,8 @@
             
             <ul class="circle-index-list">
               <li *ngFor="let item of processos;">
-                <h6 class="circle-index-warning">{{item.dataSolicitacaoPesquisa}}</h6>
-                <p><small>Processo </small><br />{{item.numero}}</p>
+                <h6 class="circle-index-warning">{{item.strDataInclusao}}</h6>
+                <p><small>Processo </small><br />{{item.numProcesso}}</p>
               </li>
             </ul>
 
@@ -43,13 +43,13 @@
         <div class="ui-grid-row">
             <div class="ui-grid-col-12">
                 <label for="nroProcessoSolicitacaoPesquisa">Número do processo</label>
-                <input id="nroProcessoSolicitacaoPesquisa" pInputText type="text" placeholder="Digite aqui" />
+                <input id="nroProcessoSolicitacaoPesquisa" [(ngModel)]="numeroProcesso" pInputText type="text" placeholder="Digite aqui" />
             </div>
         </div>
     </div>
 
     <div class="action-buttons">
-        <button pButton type="button" label="Solicitar pesquisa" icon="fa-check" class="ui-button-primary" (click)="hideDialog(dialogSolicitarPesquisa)"></button>
+        <button pButton type="button" label="Solicitar pesquisa" icon="fa-check" class="ui-button-primary" (click)="solicitarProcesso(); hideDialog(dialogSolicitarPesquisa)"></button>
         <button pButton type="button" label="Cancelar" icon="fa-close" class="ui-button-secondary" (click)="hideDialog(dialogSolicitarPesquisa)"></button>
     </div>
 </p-dialog>
