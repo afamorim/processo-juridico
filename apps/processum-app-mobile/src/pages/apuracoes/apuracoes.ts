@@ -4,7 +4,7 @@ import { ApuracaoVO } from './../../valueobject/ApuracaoVO';
 import { ApuracaoDetalhePage } from './../apuracao-detalhe/apuracao-detalhe';
 import { ApuracaoCadastroPage } from './../apuracao-cadastro/apuracao-cadastro';
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, ModalController, Modal, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ModalController, Modal, ActionSheetController, LoadingController, Loading } from 'ionic-angular';
 
 /*
   Generated class for the Apuracoes page.
@@ -21,7 +21,7 @@ export class ApuracoesPage {
 
   private apuracoes:Array<ApuracaoVO>;
   
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams, public modalCtrl: ModalController, public actionSheetCtrl: ActionSheetController, private apuracaoProvider:ApuracaoProvider) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams, public modalCtrl: ModalController, public actionSheetCtrl: ActionSheetController, private apuracaoProvider:ApuracaoProvider) {
     this.apuracoes = navParams.get('apuracoes') as Array<ApuracaoVO>;
     this.apuracoes = (this.apuracoes != null)?this.apuracoes:new Array<ApuracaoVO>();
   }
@@ -44,10 +44,17 @@ export class ApuracoesPage {
   }
 
   private findAll():void{
+    let loading:Loading = this.loadingCtrl.create();
+    loading.present();
+
     this.apuracaoProvider.findAllApuracoes().then((data:Array<ApuracaoVO>)=>{
       this.apuracoes = data;
+
+      loading.dismiss();
     }).catch((e)=>{
       console.error(e);
+
+      loading.dismiss();
     });
   }
 
@@ -90,12 +97,16 @@ export class ApuracoesPage {
 
   private efetuarApuracao(apuracao:ApuracaoVO):void{
     console.log(apuracao);
-
+    let loading:Loading = this.loadingCtrl.create();
+    loading.present();
     this.apuracaoProvider.saveApuracao(apuracao).then((data)=>{
       alert('Apuração efetuada com sucesso!');
+      
+      loading.dismiss();
       this.findAll();
     }).catch((e)=>{
       console.error(e);
+      loading.dismiss();
     });
   }
 

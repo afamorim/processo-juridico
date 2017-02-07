@@ -26,7 +26,7 @@
 
     <button *ngFor="let item of apuracoes" ion-item detail-none (click)="showActionSheetApuracao(item)">
       <div class="text-block" item-left>
-        <span>{{item.dtcPocOcorrencia}}</span>
+        <span>{{item.dtcPocOcorrenciaFormat}}</span>
       </div>
       <h3>{{item.labelExibicao}}</h3>
       <p>Status da assinatura {{item.stsAssinatura}}.</p>
