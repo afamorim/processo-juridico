@@ -16,10 +16,7 @@
 	
     <context:component-scan base-package="br.com.telefonica.processum" />
 	
-    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" cache-period="120"/>
-    <mvc:resources mapping="/js/**" location="/js/" cache-period="120"/>
-    <mvc:resources mapping="/images/**" location="/images/" cache-period="120"/>
-    <mvc:resources mapping="/css/**" location="/css/" cache-period="120"/>
+    <mvc:resources mapping="/**" location="/" cache-period="120"/>
 
     <mvc:annotation-driven />
     
@@ -28,8 +25,8 @@
 	
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-        <property name="prefix" value="/WEB-INF/views/jsp/" />
-        <property name="suffix" value=".jsp" />
+        <property name="prefix" value="/" />
+        <property name="suffix" value=".html" />
     </bean>
 </beans>
 
