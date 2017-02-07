@@ -102,7 +102,7 @@ public final class PdfUtil {
         addCell(table, "Tipo de Assinatura", pocOcorrencia.getNomTipoAssinatura());
         addCell(table, "Status da Assinatura", pocOcorrencia.getStsAssinatura());
         addCell(table, "Endereço Correspondência", pocOcorrencia.getDesEnderecoCorrespondencia());
-        addCell(table, "Endereço Tributação", pocOcorrencia.getDesEnderecoTributacao() + "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 ");
+        addCell(table, "Endereço Tributação", pocOcorrencia.getDesEnderecoTributacao());
         addCell(table, "Saldo", pocOcorrencia.getValSaldo());
         addCell(table, "Forma de Pagamento", pocOcorrencia.getNomFormaPagamento());
 
