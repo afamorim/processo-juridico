@@ -39,8 +39,8 @@ export class ProcessoPage {
   }
 
   showOcorrencias():void{
-    console.log(this.apuracoes);
-    if(this.apuracoes!=null && this.apuracoes.length > 0){
+    //console.log(this.apuracoes);
+    //if(this.apuracoes!=null && this.apuracoes.length > 0){
       let modal:Modal = this.modalCtrl.create(ApuracoesPage,{apuracoes:this.apuracoes});
       modal.onDidDismiss((data:Array<ApuracaoVO>)=>{
         if(data!=null){
@@ -51,7 +51,7 @@ export class ProcessoPage {
         
       });
       modal.present();
-    }
+    //}
   }
 
 }

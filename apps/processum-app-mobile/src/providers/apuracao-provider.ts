@@ -25,6 +25,7 @@ export class ApuracaoProvider {
 
     delete apuracao.idPocOcorrencia;
     delete apuracao.dtcPocOcorrencia;
+    delete apuracao.dtcCadastro;
     delete apuracao.historico;
 
     apuracao.dtcInicioPequisa = this.stringToDate(apuracao.dtcInicioPequisa) as any;

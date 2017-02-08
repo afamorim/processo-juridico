@@ -19,6 +19,7 @@ export class ApuracaoProviderService extends BaseProvider {
 
     delete apuracao.idPocOcorrencia;
     delete apuracao.dtcPocOcorrencia;
+    delete apuracao.dtcCadastro;
     delete apuracao.historico;
 
     apuracao.dtcInicioPequisa = this.stringToDate(apuracao.dtcInicioPequisa) as any;
