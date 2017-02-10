@@ -50,17 +50,18 @@ public class IntegracaoServiceImpl implements IntegracaoService {
                     .registerNs("con", "http://www.vivo.com.br/MC/Conta")
                     .registerNs("ass", "http://www.vivo.com.br/MC/Assinatura");
             List<Pessoa> pessoas = new ArrayList<>();
+            System.out.println("PESSOAS - " + dadosPessoa);
 
             for (XML pessoa : dadosPessoa.nodes("//pes:pessoas/*")) {
 
                 Pessoa pessoaVO = new Pessoa();
-                pessoaVO.setNomeCliente(pessoa.xpath("//ns8:nomeCompleto/text()").get(0));
+                pessoaVO.setNomeCliente(pessoa.xpath("//ns8:nomeCompleto/text()").isEmpty() ? "" : pessoa.xpath("//ns8:nomeCompleto/text()").get(0));
 
                 List<Assinatura> assinaturas = new ArrayList<>();
                 for (XML assinatura : dadosPessoa.nodes("//ns8:assinaturas/*")) {
                     Assinatura assinaturaVO = new Assinatura();
-                    assinaturaVO.setStatusAssinatura(assinatura.xpath("//ass:statusAssinatura/ass:descricao/text()").get(0));
-                    assinaturaVO.setTipoAssinatura(assinatura.xpath("//ass:tipoAssinatura/ass:descricao/text()").get(0));
+                    assinaturaVO.setStatusAssinatura(assinatura.xpath("//ass:statusAssinatura/ass:descricao/text()").isEmpty() ? "" : assinatura.xpath("//ass:statusAssinatura/ass:descricao/text()").get(0));
+                    assinaturaVO.setTipoAssinatura(assinatura.xpath("//ass:tipoAssinatura/ass:descricao/text()").isEmpty() ? "" : assinatura.xpath("//ass:tipoAssinatura/ass:descricao/text()").get(0));
                     assinaturas.add(assinaturaVO);
                 }
                 pessoaVO.setAssinaturas(assinaturas);
@@ -68,9 +69,9 @@ public class IntegracaoServiceImpl implements IntegracaoService {
                 List<Conta> contas = new ArrayList<>();
                 for (XML conta : dadosPessoa.nodes("//ns8:contas/*")) {
                     Conta contaVO = new Conta();
-                    final String codigoConta = conta.xpath("//con:codigo/text()").get(0);
+                    final String codigoConta = conta.xpath("//con:codigo/text()").isEmpty() ? "" : conta.xpath("//con:codigo/text()").get(0);
                     contaVO.setCodigo(codigoConta);
-                    String codigoContaSistemaOrigem = conta.xpath("//con:codigoContaSistemOrigem/text()").get(0);
+                    String codigoContaSistemaOrigem = conta.xpath("//con:codigoContaSistemOrigem/text()").isEmpty() ? "" : conta.xpath("//con:codigoContaSistemOrigem/text()").get(0);
                     contaVO.setCodigoContaSistemOrigem(codigoContaSistemaOrigem);
 
                     cliente.setUrl("http://10.129.165.27/Conta");
@@ -93,9 +94,11 @@ public class IntegracaoServiceImpl implements IntegracaoService {
                                 .registerNs("con", "http://www.vivo.com.br/MC/Conta")
                                 .registerNs("ass", "http://www.vivo.com.br/MC/Assinatura");
 
-                        contaVO.setDataInicialCiclo(dadosConta.xpath("//con:dataInicialCiclo/text()").get(0));
-                        contaVO.setNomeConta(dadosConta.xpath("//con:tipoConta/con:descricao/text()").get(0));
-                        String siglaSistema = dadosConta.xpath("//con:sistemaOrigem/cat:nome/text()").get(0);
+                        System.out.println(dadosConta);
+
+                        contaVO.setDataInicialCiclo(dadosConta.xpath("//con:dataInicialCiclo/text()").isEmpty() ? "" : dadosConta.xpath("//con:dataInicialCiclo/text()").get(0));
+                        contaVO.setNomeConta(dadosConta.xpath("//con:tipoConta/con:descricao/text()").isEmpty() ? "" : dadosConta.xpath("//con:tipoConta/con:descricao/text()").get(0));
+                        String siglaSistema = dadosConta.xpath("//con:sistemaOrigem/cat:nome/text()").isEmpty() ? "" : dadosConta.xpath("//con:sistemaOrigem/cat:nome/text()").get(0);
                         if (("Atlys".equalsIgnoreCase(siglaSistema)) || ("CSO".equalsIgnoreCase(siglaSistema))) {
                             contaVO.setTipoConta("PÓS");
                         } else {
@@ -106,6 +109,7 @@ public class IntegracaoServiceImpl implements IntegracaoService {
                     }
 
                     //Busca buscarListaUltimasFaturas
+                    System.out.println("codigoConta: " + codigoContaSistemaOrigem);
                     dadosRequisicao.setCodigoConta(codigoContaSistemaOrigem);
                     cliente.setSoapEnvelope(dadosRequisicao.getBuscaListaUltimasFaturasRequest());
                     cliente.executarChamada();
@@ -127,7 +131,7 @@ public class IntegracaoServiceImpl implements IntegracaoService {
                         List<Fatura> faturas = new ArrayList<>();
                         for (XML fatura : dadosFaturas.nodes("//ns1:Faturas/*")) {
                             Fatura faturaVO = new Fatura();
-                            faturaVO.setSaldo(fatura.xpath("//ns1:valorAPagarFatura/text()").get(0));
+                            faturaVO.setSaldo(fatura.xpath("//ns1:valorAPagarFatura/text()").isEmpty() ? "" : fatura.xpath("//ns1:valorAPagarFatura/text()").get(0));
                             faturas.add(faturaVO);
                         }
                         contaVO.setFaturas(faturas);
@@ -155,7 +159,7 @@ public class IntegracaoServiceImpl implements IntegracaoService {
                         List<Pagamento> pagamentos = new ArrayList<>();
                         for (XML pagamento : dadosPagamentos.nodes("//ns0:Pagamentos/*")) {
                             Pagamento pagamentoVO = new Pagamento();
-                            pagamentoVO.setFormaPagamento(pagamento.xpath("//ns0:formaPagamento/cat:nome/text()").get(0));
+                            pagamentoVO.setFormaPagamento(pagamento.xpath("//ns0:formaPagamento/cat:nome/text()").isEmpty() ? "" : pagamento.xpath("//ns0:formaPagamento/cat:nome/text()").get(0));
                             pagamentos.add(pagamentoVO);
                         }
                         contaVO.setPagamentos(pagamentos);
