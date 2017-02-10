@@ -23,11 +23,19 @@ export class ApuracaoVO extends GenericVO {
     public historico:Array<ApuracaoVO>;
 
     public get labelExibicao():string {
-        return this.nomCliente||this.numLinha||this.numCpfCnpj;
+        return Utils.formatPhone(this.numLinha)||Utils.formatCpfCnpj(this.numCpfCnpj)||this.nomCliente;
     }
 
     public get id():string{
-        return this.numCpfCnpj+'_'+this.numLinha+'_'+this.dtcInicioPequisa.substr(0,10)+'_'+this.dtcFimPesquisa.substr(0,10);
+        return this.numCpfCnpj+'_'+this.numLinha+'_'+((this.dtcInicioPequisa!=null)?this.dtcInicioPequisa.substr(0,10):this.dtcInicioPequisa)+'_'+((this.dtcFimPesquisa!=null)?this.dtcFimPesquisa.substr(0,10):this.dtcFimPesquisa);
+    }
+
+    public get numLinhaFormat():string {
+        return Utils.formatPhone(this.numLinha);
+    }
+
+    public get numCpfCnpjFormat():string {
+        return Utils.formatCpfCnpj(this.numCpfCnpj);
     }
 
     public get dtcPocOcorrenciaFormat():string{
@@ -40,6 +48,10 @@ export class ApuracaoVO extends GenericVO {
 
     public get dtcFimPesquisaFormat():string{
         return Utils.getDefaultFormatOnlyDate(this.dtcFimPesquisa);
+    }
+
+    public get dtcCadastroFormat():string{
+        return Utils.getDefaultFormatOnlyDate(this.dtcCadastro);
     }
 
     public static convertList(arr:Array<any>):Array<ApuracaoVO>{

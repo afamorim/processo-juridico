@@ -22,27 +22,27 @@
   <ion-item>
       <ion-label stacked>Data da apuração</ion-label>
       <ion-select [(ngModel)]="detailApuracao">
-        <ion-option [value]="apuracao">{{apuracao.dtcPocOcorrencia}}</ion-option>
-        <ion-option *ngFor="let item of apuracao.historico" [value]="item">{{item.dtcPocOcorrencia}}</ion-option>
+        <ion-option [value]="apuracao">{{apuracao.dtcPocOcorrenciaFormat}}</ion-option>
+        <ion-option *ngFor="let item of apuracao.historico" [value]="item">{{item.dtcPocOcorrenciaFormat}}</ion-option>
       </ion-select>
     </ion-item>
   <ion-list>
     <ion-item-divider color="light">Dados da pesquisa</ion-item-divider>
     <ion-item>
       <ion-label stacked>CPF/CNPJ</ion-label>
-      <ion-input disabled value="{{detailApuracao.numCpfCnpj}}"></ion-input>
+      <ion-input disabled value="{{detailApuracao.numCpfCnpjFormat}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Número linha fixa/móvel</ion-label>
-      <ion-input disabled value="{{detailApuracao.numLinha}}"></ion-input>
+      <ion-input disabled value="{{detailApuracao.numLinhaFormat}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Data início pesquisa</ion-label>
-      <ion-input disabled value="{{detailApuracao.dtcInicioPequisa}}"></ion-input>
+      <ion-input disabled value="{{detailApuracao.dtcInicioPequisaFormat}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Data fim pesquisa</ion-label>
-      <ion-input disabled value="{{detailApuracao.dtcFimPesquisa}}"></ion-input>
+      <ion-input disabled value="{{detailApuracao.dtcFimPesquisaFormat}}"></ion-input>
     </ion-item>
 
     <ion-item-divider color="light">Dados de retorno</ion-item-divider>
@@ -60,7 +60,7 @@
     </ion-item>
     <ion-item>
       <ion-label stacked>Data do Cadastro</ion-label>
-      <ion-input disabled value="{{detailApuracao.dtcCadastro}}"></ion-input>
+      <ion-input disabled value="{{detailApuracao.dtcCadastroFormat}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Tipo de Assinatura</ion-label>

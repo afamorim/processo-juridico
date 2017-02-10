@@ -23,8 +23,27 @@ export class ApuracaoProvider {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    apuracao.idPocOcorrencia = null;
-    apuracao.historico = null;
+    delete apuracao.idPocOcorrencia;
+    delete apuracao.dtcPocOcorrencia;
+    delete apuracao.dtcCadastro;
+    delete apuracao.historico;
+
+    apuracao.dtcInicioPequisa = this.stringToDate(apuracao.dtcInicioPequisa) as any;
+    apuracao.dtcFimPesquisa   = this.stringToDate(apuracao.dtcFimPesquisa) as any;
+
+    if(apuracao.numLinha != null){
+      apuracao.numLinha = apuracao.numLinha.replace(new RegExp('\\(|\\)|-', 'g'), '');
+    } else {
+      delete apuracao.numLinha;
+    }
+
+    if(apuracao.numCpfCnpj != null){
+      apuracao.numCpfCnpj = apuracao.numCpfCnpj.replace(new RegExp('-|\\\\|/|\\.', 'g'), '');
+    } else {
+      delete apuracao.numCpfCnpj;
+    }
+    
+    console.log(JSON.stringify(apuracao));
 
     return this.http.post(BaseProvider.getBaseAPI()+'pococorrencia',JSON.stringify(apuracao), options).toPromise()
             .then(response => response.json()) 
@@ -34,15 +53,23 @@ export class ApuracaoProvider {
   public findAllApuracoes():Promise<Array<ApuracaoVO>>{
     let params:URLSearchParams = new URLSearchParams();
 
-    return this.http.get(BaseProvider.getBaseAPI()+'pococorrencia?size=999',{search:params}).toPromise()
-            .then(response => this.parseApuracoes(response.json()._embedded.pocOcorrencia)) 
-            .catch((e)=>{ console.error(e); });
+    return new Promise((resolve,reject)=>{
+      this.http.get(BaseProvider.getBaseAPI()+'pococorrencia?size=999',{search:params}).toPromise()
+        .then((response) => {
+          try {
+            resolve(this.parseApuracoes(response.json()._embedded.pocOcorrencia));
+          } catch(e){
+            resolve(new Array<ApuracaoVO>());
+          }
+        }) 
+        .catch((e)=>{ reject(e); });
+    });
   }
 
   private parseApuracoes(pApuracoes:Array<any>):Array<ApuracaoVO>{
     let apuracoes:Array<ApuracaoVO> = ApuracaoVO.convertList(pApuracoes); //converto a lista para o ApuracaoVO
     apuracoes.sort((a:ApuracaoVO,b:ApuracaoVO):number=>{ //ordeno a lista do registro mais novo pro mais velho
-      return parseInt(b.idPocOcorrencia)-parseInt(a.idPocOcorrencia);
+      return parseInt(a.idPocOcorrencia)-parseInt(b.idPocOcorrencia);
     });
 
     let newApuracoes:Array<ApuracaoVO> = new Array<ApuracaoVO>(); //crio a lista que vai receber os itens corretos e agrupados
@@ -69,6 +96,13 @@ export class ApuracaoProvider {
     }
 
     return newApuracoes;
+  }
+
+  protected stringToDate(date:any):Date {
+      if(date != null && typeof date === 'string'){
+          return new Date(date);
+      }
+      return date;
   }
 
 }

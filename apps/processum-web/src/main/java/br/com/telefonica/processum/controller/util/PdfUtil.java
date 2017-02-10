@@ -21,18 +21,13 @@ import com.itextpdf.layout.Style;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
-import com.itextpdf.layout.property.HorizontalAlignment;
-import com.itextpdf.layout.property.VerticalAlignment;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -83,56 +78,52 @@ public final class PdfUtil {
         // Initialize document
         Document document = new Document(pdf, PageSize.A4);
         document.setMargins(20, 20, 20, 20);
+        document.add(new Paragraph(""));
 
         pdf.addEventHandler(PdfDocumentEvent.END_PAGE, new TableHeaderEventHandler(document));
 
-        Table table = newTable();
-        addCell(table, "CNPJ/CPF", pocOcorrencia.getNumCpfCnpj());
-        addCell(table, "Número da linha fixa/móvel", pocOcorrencia.getNumLinha());
-        addCell(table, "Data Início da Pesquisa", getDateToString(pocOcorrencia.getDtcInicioPequisa()));
-        addCell(table, "Data Fim da Pesquisa", getDateToString(pocOcorrencia.getDtcFimPesquisa()));
-
-        addTable(document, table, "1 – Dados de entrada");
-
-        table = newTable();
-        addCell(table, "Nome do Cliente", pocOcorrencia.getNomCliente());
-        addCell(table, "Nome da Conta", pocOcorrencia.getNomConta());
-        addCell(table, "Data do Cadastro", getDateToString(pocOcorrencia.getDtcPocOcorrencia()));
-        addCell(table, "Tipo de Conta", pocOcorrencia.getNomTipoConta());
-        addCell(table, "Tipo de Assinatura", pocOcorrencia.getNomTipoAssinatura());
-        addCell(table, "Status da Assinatura", pocOcorrencia.getStsAssinatura());
-        addCell(table, "Endereço Correspondência", pocOcorrencia.getDesEnderecoCorrespondencia());
-        addCell(table, "Endereço Tributação", pocOcorrencia.getDesEnderecoTributacao());
-        addCell(table, "Saldo", pocOcorrencia.getValSaldo());
-        addCell(table, "Forma de Pagamento", pocOcorrencia.getNomFormaPagamento());
-
-        addTable(document, table, "2 – Dados de saída");
+        addTitle(document, "1 – Dados do Processo");
+        
+        addCell(document, "CNPJ/CPF", pocOcorrencia.getNumCpfCnpj());
+        addCell(document, "Número da linha fixa/móvel", pocOcorrencia.getNumLinha());
+        addCell(document, "Data Início da Pesquisa", getDateToString_DDMMYYYY(pocOcorrencia.getDtcInicioPequisa()));
+        addCell(document, "Data Fim da Pesquisa", getDateToString_DDMMYYYY(pocOcorrencia.getDtcFimPesquisa()));
+        
+        addTitle(document, "2 – Dados da(s) Linhas(s) Reclamada(s)");
+        
+        addCell(document, "Nome do Cliente", pocOcorrencia.getNomCliente());
+        addCell(document, "Nome da Conta", pocOcorrencia.getNomConta());
+        addCell(document, "Data do Cadastro", getDateToString_DDMMYYYY_HHMMSS(pocOcorrencia.getDtcPocOcorrencia()));
+        addCell(document, "Tipo de Conta", pocOcorrencia.getNomTipoConta());
+        addCell(document, "Tipo de Assinatura", pocOcorrencia.getNomTipoAssinatura());
+        addCell(document, "Status da Assinatura", pocOcorrencia.getStsAssinatura());
+        addCell(document, "Endereço Correspondência", pocOcorrencia.getDesEnderecoCorrespondencia());
+        addCell(document, "Endereço Tributação", pocOcorrencia.getDesEnderecoTributacao());
+        addCell(document, "Saldo", pocOcorrencia.getValSaldo());
+        addCell(document, "Forma de Pagamento", pocOcorrencia.getNomFormaPagamento());
 
         //Close document
         document.close();
     }
 
-    private static Table newTable() {
-        Table table = new Table(new float[]{35, 65});
-        table.setWidthPercent(100);
-        return table;
-    }
-
-    private static void addCell(final Table table, final String label, final String texto) throws IOException {
-        final String labelFormat = label != null ? label : "";
-        final String textoFormat = texto != null ? texto : "";
+    private static void addCell(final Document document, final String strLabel, final String strTexto) throws IOException {
+        final String labelFormat = strLabel != null ? strLabel + ": " : "";
+        final String textoFormat = strTexto != null ? strTexto : "";
 
         final PdfFont fontLabel = PdfFontFactory.createFont(FontConstants.HELVETICA_BOLD);
         final PdfFont fontTexto = PdfFontFactory.createFont(FontConstants.HELVETICA);
-
-        final Cell cellLabel = new Cell().add(new Paragraph(labelFormat).setFont(fontLabel)).setPaddings(5, 10, 5, 10).setVerticalAlignment(VerticalAlignment.MIDDLE).setHorizontalAlignment(HorizontalAlignment.LEFT);
-        final Cell cellFormat = new Cell().add(new Paragraph(textoFormat).setFont(fontTexto)).setPaddings(5, 10, 5, 10).setVerticalAlignment(VerticalAlignment.MIDDLE).setHorizontalAlignment(HorizontalAlignment.LEFT);
-
-        table.addCell(cellLabel);
-        table.addCell(cellFormat);
+        
+        final Text textLabel = new Text(labelFormat).setFont(fontLabel);
+        final Text textTexto = new Text(textoFormat).setFont(fontTexto);
+ 
+        Paragraph paragraph = new Paragraph().setMargin(0);
+        paragraph.add(textLabel);
+        paragraph.add(textTexto);
+        
+        document.add(paragraph);
     }
 
-    private static void addTable(final Document document, final Table table, final String titulo) throws IOException {
+    private static void addTitle(final Document document, final String titulo) throws IOException {
         Style blueText = new Style();
         PdfFont font = PdfFontFactory.createFont(FontConstants.HELVETICA_BOLD);
         blueText.setFont(font).setFontSize(18).setFontColor(Color.BLUE);
@@ -140,13 +131,19 @@ public final class PdfUtil {
         Paragraph p = new Paragraph();
         p.add(new Text(titulo).addStyle(blueText));
         document.add(p);
-        document.add(table);
-        document.add(new Paragraph(""));
     }
 
-    private static String getDateToString(final Date date) {
+    private static String getDateToString_DDMMYYYY_HHMMSS(final Date date) {
         if (date != null) {
             SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+            return dt.format(date);
+        }
+        return "";
+    }
+    
+    private static String getDateToString_DDMMYYYY(final Date date) {
+        if (date != null) {
+            SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
             return dt.format(date);
         }
         return "";
