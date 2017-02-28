@@ -1,3 +1,4 @@
+import { GrowlController } from './../../uicomponents/growl/growl.controller';
 import { LoadingIndicatorController } from './../../uicomponents/loading-indicator/loading-indicator.controller';
 import { element } from 'protractor';
 import { AdvogadoVO } from './../../../valueobject/AdvogadoVO';
@@ -53,7 +54,7 @@ export class ProcessoCadastroComponent implements OnInit {
 
   private formGroup:FormGroup;
 
-  constructor(private route: ActivatedRoute, private processoProvider:ProcessoProviderService, private loadingIndicator:LoadingIndicatorController) {
+  constructor(private route: ActivatedRoute, private processoProvider:ProcessoProviderService, private loadingIndicator:LoadingIndicatorController, private growl:GrowlController) {
 
     this.formGroup = new FormGroup({
       empresa: new FormControl(),
@@ -196,7 +197,7 @@ export class ProcessoCadastroComponent implements OnInit {
 
     this.loadingIndicator.show();
     this.processoProvider.saveProcesso(this.processo).then((data:ProcessoVO)=>{
-      alert('Processo salvo com sucesso!');
+      this.growl.showSuccess('Processo salvo com sucesso!');
       this.loadingIndicator.hide();
       console.log(data);
     }).catch((e)=>{

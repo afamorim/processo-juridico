@@ -1,3 +1,4 @@
+import { GrowlController } from './../../uicomponents/growl/growl.controller';
 import { LoadingIndicatorController } from './../../uicomponents/loading-indicator/loading-indicator.controller';
 import { LoadingIndicatorComponent } from './../../uicomponents/loading-indicator/loading-indicator.component';
 import { ProcessoRESTModel } from './../../../model/ProcessoRESTModel';
@@ -23,7 +24,7 @@ export class ProcessoPesquisaImportadosComponent implements OnInit {
   private numRows:number = 0;
   private numTotal:number = 0;
 
-  constructor(private router:Router, private activatedRoute:ActivatedRoute, private processoProvider:ProcessoProviderService, private loadingIndicator:LoadingIndicatorController) { }
+  constructor(private router:Router, private activatedRoute:ActivatedRoute, private processoProvider:ProcessoProviderService, private loadingIndicator:LoadingIndicatorController, private growl:GrowlController) { }
 
   ngOnInit() {
     this.comboGenerico.push({label:'.: Selecione :.', value:'1'});
@@ -43,6 +44,7 @@ export class ProcessoPesquisaImportadosComponent implements OnInit {
       this.loadingIndicator.hide();
     }).catch((e)=>{
       console.error(e);
+      this.growl.showError('Ocorreu um erro ao obter os processos!');
       this.loadingIndicator.hide();
     });
   }

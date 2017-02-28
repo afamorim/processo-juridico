@@ -1,3 +1,4 @@
+import { GrowlController } from './../../uicomponents/growl/growl.controller';
 import { LoadingIndicatorController } from './../../uicomponents/loading-indicator/loading-indicator.controller';
 import { BaseProvider } from './../../../provider/base-provider';
 import { ApuracaoProviderService } from './../../../provider/apuracao-provider.service';
@@ -30,7 +31,7 @@ export class ApuracoesComponent implements OnInit {
   private formGroup:FormGroup;
   private formGroupInitValue:any;
 
-  constructor(private apuracaoProvider:ApuracaoProviderService, private loadingIndicator:LoadingIndicatorController) {
+  constructor(private apuracaoProvider:ApuracaoProviderService, private loadingIndicator:LoadingIndicatorController, private growl:GrowlController) {
     this.formGroup = new FormGroup({
       isCpfCnpj: new FormControl('cpf'),
       isFixaMovel: new FormControl('movel'),
@@ -100,7 +101,7 @@ export class ApuracoesComponent implements OnInit {
     this.loadingIndicator.show();
 
     this.apuracaoProvider.saveApuracao(apuracao).then((data)=>{
-      alert('Apuração efetuada com sucesso!');
+      this.growl.showSuccess('Apuração efetuada com sucesso!');
 
       this.loadingIndicator.hide();
 
