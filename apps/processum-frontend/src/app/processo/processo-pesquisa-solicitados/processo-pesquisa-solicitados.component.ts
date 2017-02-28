@@ -1,4 +1,4 @@
-import { LoadingIndicatorComponent } from './../../uicomponents/loading-indicator/loading-indicator.component';
+import { LoadingIndicatorController } from './../../uicomponents/loading-indicator/loading-indicator.controller';
 import { ProcessoProviderService } from './../../../provider/processo-provider.service';
 import { ProcessoVO } from './../../../valueobject/ProcessoVO';
 import { Dialog } from 'primeng/primeng';
@@ -12,12 +12,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class ProcessoPesquisaSolicitadosComponent implements OnInit {
 
-  @ViewChild('loadingIndicator') loadingIndicator:LoadingIndicatorComponent;
-
   private processos:Array<ProcessoVO> = new Array<ProcessoVO>();
   private numeroProcesso:string = '';
 
-  constructor(private processoProvider:ProcessoProviderService) { }
+  constructor(private processoProvider:ProcessoProviderService, private loadingIndicator:LoadingIndicatorController) { }
 
   ngOnInit() {
     /*for(let i=1; i<=5; i++){

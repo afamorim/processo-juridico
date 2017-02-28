@@ -1,4 +1,3 @@
-import { LoadingIndicatorComponent } from './../uicomponents/loading-indicator/loading-indicator.component';
 import { DialogPartesComponent } from './dialogs/dialog-partes/dialog-partes.component';
 import { ApuracoesComponent } from './apuracoes/apuracoes.component';
 import { CommonModule } from '@angular/common';
@@ -57,7 +56,6 @@ const routes: Routes = [
     Prime.MenuModule
   ],
   declarations: [
-    LoadingIndicatorComponent,
     ProcessoCadastroComponent,
     ProcessoPesquisaImportadosComponent,
     ProcessoPesquisaSolicitadosComponent,

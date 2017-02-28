@@ -1,3 +1,4 @@
+import { LoadingIndicatorController } from './../../uicomponents/loading-indicator/loading-indicator.controller';
 import { LoadingIndicatorComponent } from './../../uicomponents/loading-indicator/loading-indicator.component';
 import { ProcessoRESTModel } from './../../../model/ProcessoRESTModel';
 import { ProcessoProviderService } from './../../../provider/processo-provider.service';
@@ -15,8 +16,6 @@ import {LazyLoadEvent} from 'primeng/primeng';
 })
 export class ProcessoPesquisaImportadosComponent implements OnInit {
 
-  @ViewChild('loadingIndicator') loadingIndicator:LoadingIndicatorComponent;
-
   private comboGenerico:Array<any> = new Array<any>();
   private processos:Array<ProcessoVO>;
   private processoSelected:ProcessoVO;
@@ -24,7 +23,7 @@ export class ProcessoPesquisaImportadosComponent implements OnInit {
   private numRows:number = 0;
   private numTotal:number = 0;
 
-  constructor(private router:Router, private activatedRoute:ActivatedRoute, private processoProvider:ProcessoProviderService) { }
+  constructor(private router:Router, private activatedRoute:ActivatedRoute, private processoProvider:ProcessoProviderService, private loadingIndicator:LoadingIndicatorController) { }
 
   ngOnInit() {
     this.comboGenerico.push({label:'.: Selecione :.', value:'1'});

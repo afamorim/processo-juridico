@@ -1,4 +1,4 @@
-import { LoadingIndicatorComponent } from './../../uicomponents/loading-indicator/loading-indicator.component';
+import { LoadingIndicatorController } from './../../uicomponents/loading-indicator/loading-indicator.controller';
 import { BaseProvider } from './../../../provider/base-provider';
 import { ApuracaoProviderService } from './../../../provider/apuracao-provider.service';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -14,7 +14,6 @@ import { SelectItem, Menu, Dialog } from 'primeng/primeng';
 })
 export class ApuracoesComponent implements OnInit {
 
-  @ViewChild('loadingIndicator') loadingIndicator:LoadingIndicatorComponent;
   @ViewChild('dialogDetalheApuracao') dialogDetalheApuracao:Dialog;
 
   private listboxGenerico:Array<any> = new Array<any>();
@@ -31,7 +30,7 @@ export class ApuracoesComponent implements OnInit {
   private formGroup:FormGroup;
   private formGroupInitValue:any;
 
-  constructor(private apuracaoProvider:ApuracaoProviderService) {
+  constructor(private apuracaoProvider:ApuracaoProviderService, private loadingIndicator:LoadingIndicatorController) {
     this.formGroup = new FormGroup({
       isCpfCnpj: new FormControl('cpf'),
       isFixaMovel: new FormControl('movel'),

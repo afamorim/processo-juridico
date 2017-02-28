@@ -1,3 +1,4 @@
+import { UicomponentsModule } from './uicomponents/uicomponents.module';
 import { AutenticacaoModule } from './autenticacao/autenticacao.module';
 import { AppRoutingModule } from './app.routing-module';
 import { ProcessoComponent } from './processo/processo.component';
@@ -14,6 +15,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
+    UicomponentsModule,
+    
     AppRoutingModule,
     BrowserModule,
     FormsModule,

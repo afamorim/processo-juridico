@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { LoadingIndicatorController } from './uicomponents/loading-indicator/loading-indicator.controller';
+import { Component, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  //we need viewContainerRef instance to create components dinamically
+  constructor(public viewContainerRef:ViewContainerRef){}
 }

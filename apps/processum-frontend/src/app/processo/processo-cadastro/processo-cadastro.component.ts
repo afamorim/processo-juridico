@@ -1,4 +1,4 @@
-import { LoadingIndicatorComponent } from './../../uicomponents/loading-indicator/loading-indicator.component';
+import { LoadingIndicatorController } from './../../uicomponents/loading-indicator/loading-indicator.controller';
 import { element } from 'protractor';
 import { AdvogadoVO } from './../../../valueobject/AdvogadoVO';
 import { JuizoVO } from './../../../valueobject/JuizoVO';
@@ -28,8 +28,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ProcessoCadastroComponent implements OnInit {
 
-  @ViewChild('loadingIndicator') loadingIndicator:LoadingIndicatorComponent;
-
   private comboGenerico:Array<any> = new Array<any>();
   private autoCompleteGenerico:Array<any> = new Array<any>();
   private listboxGenerico:Array<any> = new Array<any>();
@@ -55,7 +53,7 @@ export class ProcessoCadastroComponent implements OnInit {
 
   private formGroup:FormGroup;
 
-  constructor(private route: ActivatedRoute, private processoProvider:ProcessoProviderService) {
+  constructor(private route: ActivatedRoute, private processoProvider:ProcessoProviderService, private loadingIndicator:LoadingIndicatorController) {
 
     this.formGroup = new FormGroup({
       empresa: new FormControl(),
